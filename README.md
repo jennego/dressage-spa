@@ -1,3 +1,7 @@
+#Dressage Tests App - Single Page Application (SPA)
+
+This is the React SPA version of the dressage test listing app. API is running on Ruby on Rails. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
