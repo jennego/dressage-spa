@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 
 import './App.css';
 import DressageIndexPage from './DressageIndexPage.js'
+import DressageShowPage from './DressageShowPage.js'
 
 
 class App extends Component {
@@ -15,7 +16,16 @@ class App extends Component {
           <li> <Link to="/">Index</Link></li>
           <li> <Link to="/about"> About </Link></li>
         </ul>
-        <Route exact path='/' component={DressageIndexPage} /> 
+        <Switch>
+        <Route
+            exact path='/' 
+            component={DressageIndexPage} 
+            /> 
+        <Route
+            path="/test/:id"
+            component={DressageShowPage}
+          />
+        </Switch>
       </div>
       </Router>
     );

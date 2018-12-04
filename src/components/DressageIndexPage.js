@@ -23,7 +23,7 @@ class DressageIndexPage extends Component {
             <p> Hi From the DressageIndexPage! </p>
 
         {  this.state.dressage_tests.map(test => (
-            <p> <Link to={`/tests/${test.id}`}>  {test.level} {test.name} </Link>  </p>
+            <p> <Link to={`/test/${test.id}`}>  {test.level} {test.name} </Link>  </p>
         )) }
 
             </div>
