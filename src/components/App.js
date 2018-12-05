@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Router>
       <div className="App">
-        <ul>
+        <ul className="menu">
           <li> <Link to="/">Index</Link></li>
           <li> <Link to="/about"> About </Link></li>
         </ul>
