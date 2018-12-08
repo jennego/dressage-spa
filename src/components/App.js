@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 
 import './App.css';
+import Routes from './routes.js'
 import DressageIndexPage from './DressageIndexPage.js'
 import DressageShowPage from './DressageShowPage.js'
 
@@ -16,16 +17,7 @@ class App extends Component {
           <li> <Link to="/">Index</Link></li>
           <li> <Link to="/about"> About </Link></li>
         </ul>
-        <Switch>
-        <Route
-            exact path='/' 
-            component={DressageIndexPage} 
-            /> 
-        <Route
-            path="/test/:id"
-            component={DressageShowPage}
-          />
-        </Switch>
+        <Routes></Routes>
       </div>
       </Router>
     );
