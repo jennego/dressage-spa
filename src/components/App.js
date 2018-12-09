@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 import './App.css';
 import Routes from './routes.js'
-import DressageIndexPage from './DressageIndexPage.js'
-import DressageShowPage from './DressageShowPage.js'
+import NavBar from "./NavBar.js";
+import 'semantic-ui-css/semantic.min.css';
 
 
 class App extends Component {
@@ -13,10 +13,7 @@ class App extends Component {
     return (
       <Router>
       <div className="App">
-        <ul className="menu">
-          <li> <Link to="/">Index</Link></li>
-          <li> <Link to="/about"> About </Link></li>
-        </ul>
+        <NavBar></NavBar>
         <Routes></Routes>
       </div>
       </Router>

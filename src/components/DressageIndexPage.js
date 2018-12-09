@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { DressageTest } from '../requests'
 import {Link} from 'react-router-dom'
+import TestSegmentItem from './TestSegmentItem';
 
 
 class DressageIndexPage extends Component {
@@ -25,7 +26,7 @@ class DressageIndexPage extends Component {
             <div id="testlist"> 
             <ul>
                 {  this.state.dressage_tests.map(test => (
-                    <li key={test.id}> <Link to={`/test/${test.id}`}>  {test.level} {test.name} </Link>  </li>
+                    <TestSegmentItem key={test.id} {...test}></TestSegmentItem>
                 )) }
             </ul>
             </div>
