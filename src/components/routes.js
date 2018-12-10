@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 import DressageIndexPage from './DressageIndexPage.js'
 import DressageShowPage from './DressageShowPage.js'
+import WelcomePage from './WelcomePage'
 import About from './AboutPage.js'
 
 class Routes extends Component {
@@ -12,7 +13,11 @@ class Routes extends Component {
         return(
             <Switch>
             <Route
-                exact path='/'
+                    exact path='/'
+                    component={WelcomePage}
+            />
+            <Route
+                exact path='/tests'
                 component={DressageIndexPage}
             />
             <Route

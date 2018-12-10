@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { DressageTest } from '../requests'
 import {Link} from 'react-router-dom'
 import TestSegmentItem from './TestSegmentItem';
+import { Container } from 'semantic-ui-react';
 
 
 class DressageIndexPage extends Component {
@@ -20,6 +21,7 @@ class DressageIndexPage extends Component {
     render() {
         return (
             <div className='DressageTestsIndexPage'>
+            <Container text>
 
             <p> Hi From the DressageIndexPage! </p>
 
@@ -30,7 +32,7 @@ class DressageIndexPage extends Component {
                 )) }
             </ul>
             </div>
-
+            </Container>
             </div>
         )
     }
