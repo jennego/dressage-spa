@@ -20,7 +20,7 @@ class Routes extends Component {
                 component={About}
             />
             <Route
-                path="/test/:id"
+                path="/tests/:id"
                 component={DressageShowPage}
             />
             </Switch>

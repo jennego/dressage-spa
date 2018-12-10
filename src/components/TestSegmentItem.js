@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { DressageTest } from '../requests'
 import {Link} from 'react-router-dom'
 import { Segment } from 'semantic-ui-react';
 

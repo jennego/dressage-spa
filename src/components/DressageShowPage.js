@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { DressageTest } from '../requests'
+import TestInfo from './TestInfo.js'
+import MovesList from './MovesList.js'
 
 class DressageShowPage extends Component {
     constructor(props) {
@@ -19,12 +21,15 @@ class DressageShowPage extends Component {
 
 
     render() {
-        const { title } = this.state.dressage_test
+        const test = this.state.dressage_test
         return (
             <div className="DressageShowPage">
                 <p> Hi this is the test show page!! </p>
-                <h2> {this.state.dressage_test.full_name} </h2>   
+
+                <TestInfo {...test}></TestInfo>
+                <MovesList {...test}></MovesList>
             </div>
+
         )
     }
 }
