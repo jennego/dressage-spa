@@ -2,14 +2,17 @@ import React from 'react';
 
 function TestInfo(props) {
     const {
-        name, level, year, orgname, full_name, notes
+        org_name, name, level, year, created_at, updated_at, note, links = [], subtitle, introduce, purpose,current, full_name
     } = props;
     console.log(props);
 
     return (
         <div className="TestInfo">
             <h2>{full_name}</h2>
-            <p> </p>
+            <p> {subtitle} </p>
+            <p> Purpose: {purpose} </p>
+            <p> Introduce: {introduce} </p>
+            <p> Note: {note} </p>
         </div>
     );
 }

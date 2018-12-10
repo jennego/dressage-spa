@@ -4,12 +4,12 @@ import { Segment } from 'semantic-ui-react';
 
 function TestSegmentItem(props) {
     const {
-        full_name, id 
+        name, full_name, id 
     } = props
 
     return (
         <div className="TestSegmentItem">
-           <Segment> <Link to={`/tests/${id}`}> {full_name} </Link> </Segment>
+           <Segment> <Link to={`/tests/${id}`}> {full_name} {name} </Link> </Segment>
         </div>
     )
 
