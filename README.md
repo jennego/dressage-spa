@@ -4,6 +4,10 @@ This is the React SPA version of the dressage test listing app. API is running o
 
 Don't forget your dressage test or learn the wrong one!
 
+TO DO
+- refactor code to modern react
+- redesign
+
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
