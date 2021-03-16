@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { DressageTest } from "../requests";
-import { Link } from "react-router-dom";
-import TestSegmentItem from "./TestSegmentItem";
+import TestSegmentItem from "../components/TestSegmentItem";
 import { Container } from "semantic-ui-react";
 
 const DressageIndexPage = () => {
@@ -19,9 +18,11 @@ const DressageIndexPage = () => {
         <p> Hi From the DressageIndexPage! </p>
         <div id="testlist">
           <ul>
-            {tests.dressage_tests.map((test) => (
-              <TestSegmentItem key={test.id} {...test}></TestSegmentItem>
-            ))}
+            <li className="panel-block">
+              {tests.dressage_tests.map((test) => (
+                <TestSegmentItem key={test.id} {...test}></TestSegmentItem>
+              ))}
+            </li>
           </ul>
         </div>
       </Container>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DressageTest } from "../requests";
-import TestInfo from "./TestInfo.js";
-import MovesList from "./MovesList.js";
+import TestInfo from "../components/TestInfo";
+import MovesList from "../components/MovesList.js";
 import { Container } from "semantic-ui-react";
 
 const DressageShowPage = (params) => {
