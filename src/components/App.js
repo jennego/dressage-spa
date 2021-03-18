@@ -13,7 +13,7 @@ class App extends Component {
       global: {
         font: {
           family: "Roboto",
-          size: "54px",
+          size: "25px",
           height: "20px",
         },
       },

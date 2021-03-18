@@ -9,9 +9,7 @@ function WelcomePage(props) {
         <h2>Dressage Tests</h2>
         <p>Simple directory of dressage tests.</p>
 
-        <Link to={"/tests"}>
-          <Button primary label="Go to Tests" />
-        </Link>
+        <Button primary label="Go to Tests" as={Link} to="/tests" />
       </Main>
     </div>
   );

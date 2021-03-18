@@ -1,45 +1,50 @@
-import  React, { Component } from "react";
-import { Menu, Header } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+import { Anchor, Box, Header, Nav, Menu, ResponsiveContext } from "grommet";
+import { grommet } from "grommet/themes";
 
-class NavBar extends Component {
-    
-
-    state = {}
-
-    
-    handleItemClick = (e, { name }) =>
-        this.setState({ activeItem: name })
-
-        
-    render() {
-        const { activeItem } = this.state
-        return (
-            <Menu size='large'>
-                <h3 class="header item">Dressage Tests</h3>
-                <Menu.Item
-                    as={Link} to='/'
-                    name='home'
-                    active={activeItem === 'home'}
-                    onClick={this.handleItemClick}
-                >
-                </Menu.Item>
-                <Menu.Item
-                    as={Link} to='/tests'
-                    name='Tests'
-                    active={activeItem === 'tests'}
-                    onClick={this.handleItemClick}
-                >
-                </Menu.Item>
-                <Menu.Item
-                    as={Link} to='about'
-                    name='about'
-                    active={activeItem === 'about'}
-                    onClick={this.handleItemClick}
-                >
-                </Menu.Item>
-            </Menu>
+const NavBar = () => (
+  <Header pad="medium">
+    <Box direction="row" align="center" gap="small">
+      <h3>Dressage Tests</h3>
+    </Box>
+    <ResponsiveContext.Consumer>
+      {(responsive) =>
+        responsive === "small" ? (
+          <Menu
+            label="Menu"
+            items={[
+              {
+                label: "About",
+                href: "/about",
+              },
+              {
+                label: "Tests",
+                href: "/tests",
+              },
+              { label: "Home", onClick: () => {} },
+            ]}
+          />
+        ) : (
+          <Nav direction="row">
+            <Anchor as={Link} to="/about" label="About" />
+            <Anchor as={Link} to="/tests" label="Tests" />
+            <Anchor as={Link} to="/" label="Home" />
+          </Nav>
         )
-    }
-}
-export default NavBar
+      }
+    </ResponsiveContext.Consumer>
+  </Header>
+);
+
+export const Collapsable = () => <NavBar />;
+
+export default NavBar;
+
+// const NavBar = () => {
+//   // handleItemClick = (e, { name }) =>
+//   //     this.setState({ activeItem: name })
+
+//   return <div></div>;
+// };
+// export default NavBar;

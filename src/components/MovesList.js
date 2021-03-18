@@ -1,29 +1,28 @@
 import React from "react";
-import {
-  Container,
-  Table,
-  TableBody,
-  TableRow,
-  TableCell,
-} from "semantic-ui-react";
+import { Card, Text } from "grommet";
 
 const MovesList = (props) => {
   const { moves = [] } = props;
 
   return (
     <div className="MovesList">
-      <Container>
-        <Table collapsing large>
-          <TableBody>
-            {moves.map((move) => (
-              <TableRow>
-                <TableCell className="move_letter"> {move.letter} </TableCell>
-                <TableCell> {move.movement} </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Container>
+      {moves.map((move) => (
+        <div style={{ display: "flex" }}>
+          <Card
+            pad="large"
+            margin={{ right: "medium" }}
+            gridArea="letter"
+            style={{ width: "150px" }}
+          >
+            <Text size="large" textAlign="center">
+              {move.letter}
+            </Text>
+          </Card>
+          <Card pad="large" gridArea="movement" style={{ width: "500px" }}>
+            <Text>{move.movement}</Text>
+          </Card>
+        </div>
+      ))}
     </div>
   );
 };
