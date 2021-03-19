@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { DressageTest } from "../requests";
 import TestInfo from "../components/TestInfo";
 import MovesList from "../components/MovesList.js";
-import { Container } from "semantic-ui-react";
 
 const DressageShowPage = (params) => {
   const [testData, setTestData] = useState({});
@@ -16,13 +15,11 @@ const DressageShowPage = (params) => {
 
   return (
     <div className="DressageShowPage">
-      <Container text>
-        <p> Hi this is the test show page!! </p>
-        {console.log("test", test)}
+      <p> Hi this is the test show page!! </p>
+      {console.log("test", test)}
 
-        <TestInfo {...test}></TestInfo>
-        <MovesList {...test}></MovesList>
-      </Container>
+      <TestInfo {...test}></TestInfo>
+      <MovesList {...test}></MovesList>
     </div>
   );
 };

@@ -4,32 +4,51 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import "./App.css";
 import Routes from "./routes.js";
 import NavBar from "./NavBar.js";
-import "semantic-ui-css/semantic.min.css";
+import FooterSection from "./Footer";
 import { Grommet } from "grommet";
 
-class App extends Component {
-  render() {
-    const theme = {
-      global: {
+const App = () => {
+  const theme = {
+    global: {
+      background: "background",
+      font: {
+        family: "Arial",
+        size: "30px",
+        height: "20px",
+        color: "font",
+      },
+      colors: {
+        background: {
+          light: "#fff",
+          dark: "#000",
+        },
         font: {
-          family: "Roboto",
-          size: "25px",
-          height: "20px",
+          light: "#000",
+          dark: "#fff",
+        },
+        brand: {
+          light: "#7c38d6",
+          dark: "#9857fa",
+        },
+        focus: {
+          light: "#7c38d6",
+          dark: "#9857fa",
         },
       },
-    };
+    },
+  };
 
-    return (
-      <Grommet theme={theme}>
-        <Router>
-          <div className="App">
-            <NavBar></NavBar>
-            <Routes></Routes>
-          </div>
-        </Router>
-      </Grommet>
-    );
-  }
-}
+  return (
+    <Grommet theme={theme} themeMode="dark">
+      <Router>
+        <div className="App">
+          <NavBar></NavBar>
+          <Routes></Routes>
+        </div>
+        <FooterSection></FooterSection>
+      </Router>
+    </Grommet>
+  );
+};
 
 export default App;

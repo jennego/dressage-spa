@@ -1,18 +1,15 @@
-import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
-import { Segment } from 'semantic-ui-react';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-function TestSegmentItem(props) {
-    const {
-        name, full_name, id 
-    } = props
+const TestSegmentItem = ({ name, full_name, id }) => {
+  return (
+    <div className="TestSegmentItem">
+      <Link to={`/tests/${id}`}>
+        {" "}
+        {full_name} {name}{" "}
+      </Link>
+    </div>
+  );
+};
 
-    return (
-        <div className="TestSegmentItem">
-           <Segment> <Link to={`/tests/${id}`}> {full_name} {name} </Link> </Segment>
-        </div>
-    )
-
-}
-
-export default TestSegmentItem
+export default TestSegmentItem;

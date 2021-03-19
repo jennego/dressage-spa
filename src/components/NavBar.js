@@ -1,41 +1,52 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Anchor, Box, Header, Nav, Menu, ResponsiveContext } from "grommet";
+import {
+  Anchor,
+  Box,
+  Header,
+  Nav,
+  Menu,
+  ResponsiveContext,
+  Button,
+} from "grommet";
 import { grommet } from "grommet/themes";
 
-const NavBar = () => (
-  <Header pad="medium">
-    <Box direction="row" align="center" gap="small">
-      <h3>Dressage Tests</h3>
-    </Box>
-    <ResponsiveContext.Consumer>
-      {(responsive) =>
-        responsive === "small" ? (
-          <Menu
-            label="Menu"
-            items={[
-              {
-                label: "About",
-                href: "/about",
-              },
-              {
-                label: "Tests",
-                href: "/tests",
-              },
-              { label: "Home", onClick: () => {} },
-            ]}
-          />
-        ) : (
-          <Nav direction="row">
-            <Anchor as={Link} to="/about" label="About" />
-            <Anchor as={Link} to="/tests" label="Tests" />
-            <Anchor as={Link} to="/" label="Home" />
-          </Nav>
-        )
-      }
-    </ResponsiveContext.Consumer>
-  </Header>
-);
+const NavBar = () => {
+  return (
+    <Header pad="medium">
+      <Box direction="row" align="center" gap="small">
+        <h3>Dressage Tests</h3>
+      </Box>
+      <Box direction="row" align="left" gap="small"></Box>
+      <ResponsiveContext.Consumer>
+        {(responsive) =>
+          responsive === "small" ? (
+            <Menu
+              label="Menu"
+              items={[
+                {
+                  label: "About",
+                  href: "/about",
+                },
+                {
+                  label: "Tests",
+                  href: "/tests",
+                },
+                { label: "Home", onClick: () => {} },
+              ]}
+            />
+          ) : (
+            <Nav direction="row">
+              <Anchor as={Link} to="/about" label="About" color="brand" />
+              <Anchor as={Link} to="/tests" label="Tests" color="brand" />
+              <Anchor as={Link} to="/" label="Home" color="brand" />
+            </Nav>
+          )
+        }
+      </ResponsiveContext.Consumer>
+    </Header>
+  );
+};
 
 export const Collapsable = () => <NavBar />;
 
