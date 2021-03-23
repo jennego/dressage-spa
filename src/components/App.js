@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import "./App.css";
@@ -6,6 +6,7 @@ import Routes from "./routes.js";
 import NavBar from "./NavBar.js";
 import FooterSection from "./Footer";
 import { Grommet } from "grommet";
+import { AppContext } from "./AppProvider";
 
 const App = () => {
   const theme = {
@@ -14,7 +15,7 @@ const App = () => {
       font: {
         family: "Arial",
         size: "30px",
-        height: "20px",
+        height: "30px",
         color: "font",
       },
       colors: {
@@ -38,8 +39,10 @@ const App = () => {
     },
   };
 
+  const { mode } = useContext(AppContext);
+
   return (
-    <Grommet theme={theme} themeMode="dark">
+    <Grommet theme={theme} themeMode={mode}>
       <Router>
         <div className="App">
           <NavBar></NavBar>
