@@ -3,6 +3,7 @@ import { DressageTest } from "../requests";
 import TestInfo from "../components/TestInfo";
 import MovesList from "../components/MovesList.js";
 import { Box, Grid } from "grommet";
+import TestHeading from "../components/TestHeading";
 
 const DressageShowPage = (params) => {
   const [testData, setTestData] = useState({});
@@ -18,6 +19,9 @@ const DressageShowPage = (params) => {
     <div className="show">
       <p> Hi this is the test show page!! </p>
       {console.log(test)}
+      <div className="row mx-auto">
+        <TestHeading {...test}></TestHeading>
+      </div>
 
       <div className="row mx-auto">
         <div className="col-lg-7 col-12">
