@@ -16,11 +16,9 @@ const DressageIndexPage = () => {
       <p> Hi From the DressageIndexPage! </p>
       <div id="testlist">
         <ul>
-          <li className="panel-block">
-            {tests.dressage_tests.map((test) => (
-              <TestSegmentItem key={test.id} {...test}></TestSegmentItem>
-            ))}
-          </li>
+          {tests.dressage_tests.map((test) => (
+            <TestSegmentItem key={test.id} {...test}></TestSegmentItem>
+          ))}
         </ul>
       </div>
     </div>

@@ -5,6 +5,7 @@ import DressageIndexPage from "../pages/Index.js";
 import DressageShowPage from "../pages/Show.js";
 import WelcomePage from "../pages/WelcomePage";
 import About from "../pages/About.js";
+import Page404 from "../pages/404.js";
 
 class Routes extends Component {
   render() {
@@ -14,6 +15,7 @@ class Routes extends Component {
         <Route exact path="/tests" component={DressageIndexPage} />
         <Route exact path="/about" component={About} />
         <Route path="/tests/:id" component={DressageShowPage} />
+        <Route component={Page404} />
       </Switch>
     );
   }

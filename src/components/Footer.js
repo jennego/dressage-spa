@@ -4,7 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 const FooterSection = (props) => (
   <Footer background="brand" pad="medium">
-    <Text color="">Made by Jennifer Chow</Text>
+    <Text color="">
+      Site by Jennifer Chow. Tests copyright of their copyright holders.
+    </Text>
     <Box direction="row">
       <FontAwesomeIcon icon={faFacebook} className="sm-icon" />
       <FontAwesomeIcon icon={faInstagram} className="sm-icon" />

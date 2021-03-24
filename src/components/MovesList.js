@@ -9,7 +9,7 @@ const MovesList = (props) => {
       {moves.map((move) => (
         <div style={{ display: "flex" }}>
           <Card
-            pad="medium"
+            pad="small"
             margin="xsmall"
             justify="center"
             width="10rem"
@@ -22,13 +22,13 @@ const MovesList = (props) => {
           </Card>
 
           <Card
-            pad="medium"
+            pad="small"
             margin="xsmall"
             justify="center"
             background="surface"
             elevation="none"
           >
-            <Paragraph size="xlarge" margin="xsmall">
+            <Paragraph size="large" margin="none">
               {move.movement}
             </Paragraph>
           </Card>

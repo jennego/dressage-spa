@@ -30,7 +30,7 @@ const DressageShowPage = (params) => {
           </Box>
         </div>
         <div className="col-lg-4 col-12">
-          <Box background="surface">
+          <Box background="surface" pad="small">
             <TestInfo {...test}></TestInfo>
           </Box>
         </div>
