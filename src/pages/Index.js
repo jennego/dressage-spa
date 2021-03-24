@@ -12,7 +12,7 @@ const DressageIndexPage = () => {
   }, []);
 
   return (
-    <div className="DressageTestsIndexPage">
+    <div className="index main">
       <p> Hi From the DressageIndexPage! </p>
       <div id="testlist">
         <ul>

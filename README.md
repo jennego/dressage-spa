@@ -5,8 +5,10 @@ This is the React SPA version of the dressage test listing app. API is running o
 Don't forget your dressage test or learn the wrong one!
 
 TO DO
+
 - refactor code to modern react
 - redesign
+- Auth via Api/OAuth
 
 ---
 

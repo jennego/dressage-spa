@@ -20,7 +20,7 @@ const TestInfo = (props) => {
 
   return (
     <div className="TestInfo">
-      <h2>{full_name}</h2>
+      <p>{full_name}</p>
       <p> {subtitle} </p>
       <p> Purpose: {purpose} </p>
       <p> Introduce: {introduce} </p>

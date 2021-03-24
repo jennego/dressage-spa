@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { DressageTest } from "../requests";
 import TestInfo from "../components/TestInfo";
 import MovesList from "../components/MovesList.js";
+import { Box, Grid } from "grommet";
 
 const DressageShowPage = (params) => {
   const [testData, setTestData] = useState({});
@@ -14,12 +15,22 @@ const DressageShowPage = (params) => {
   const test = testData.data;
 
   return (
-    <div className="DressageShowPage">
+    <div className="show">
       <p> Hi this is the test show page!! </p>
-      {console.log("test", test)}
+      {console.log(test)}
 
-      <TestInfo {...test}></TestInfo>
-      <MovesList {...test}></MovesList>
+      <div className="row mx-auto">
+        <div className="col-lg-7 col-12">
+          <Box>
+            <MovesList {...test}></MovesList>
+          </Box>
+        </div>
+        <div className="col-lg-4 col-12">
+          <Box background="surface">
+            <TestInfo {...test}></TestInfo>
+          </Box>
+        </div>
+      </div>
     </div>
   );
 };

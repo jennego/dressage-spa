@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Text } from "grommet";
+import { Card, Paragraph, Text } from "grommet";
 
 const MovesList = (props) => {
   const { moves = [] } = props;
@@ -9,17 +9,28 @@ const MovesList = (props) => {
       {moves.map((move) => (
         <div style={{ display: "flex" }}>
           <Card
-            pad="large"
-            margin={{ right: "medium" }}
-            gridArea="letter"
-            style={{ width: "150px" }}
+            pad="medium"
+            margin="xsmall"
+            justify="center"
+            width="10rem"
+            background="surface"
+            elevation="none"
           >
-            <Text size="large" textAlign="center">
+            <Text weight="bold" size="xxlarge" textAlign="center">
               {move.letter}
             </Text>
           </Card>
-          <Card pad="large" gridArea="movement" style={{ width: "500px" }}>
-            <Text>{move.movement}</Text>
+
+          <Card
+            pad="medium"
+            margin="xsmall"
+            justify="center"
+            background="surface"
+            elevation="none"
+          >
+            <Paragraph size="xlarge" margin="xsmall">
+              {move.movement}
+            </Paragraph>
           </Card>
         </div>
       ))}

@@ -9,7 +9,6 @@ import {
   ResponsiveContext,
   Button,
 } from "grommet";
-import { grommet } from "grommet/themes";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 const NavBar = () => {
@@ -18,7 +17,7 @@ const NavBar = () => {
       <Box direction="row" align="center" gap="small">
         <h3>Dressage Tests</h3>
       </Box>
-      <Box direction="row" align="left" gap="small">
+      <Box direction="row" align="end" gap="small">
         <ThemeSwitcher />
       </Box>
       <ResponsiveContext.Consumer>
