@@ -42,7 +42,7 @@ const App = () => {
         },
         surface: {
           light: "light-1",
-          dark: "#0d0d0d",
+          dark: "dark-1",
         },
       },
     },
