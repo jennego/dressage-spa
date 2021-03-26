@@ -42,6 +42,7 @@ const NavBar = () => {
               <Anchor as={Link} to="/about" label="About" color="brand" />
               <Anchor as={Link} to="/tests" label="Tests" color="brand" />
               <Anchor as={Link} to="/" label="Home" color="brand" />
+              Arena
             </Nav>
           )
         }

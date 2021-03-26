@@ -14,8 +14,8 @@ const App = () => {
     global: {
       background: "background",
       font: {
-        family: "Arial",
-        size: "25px",
+        family: "Open Sans",
+        size: "24px",
         height: "1em",
         color: "font",
       },
@@ -33,8 +33,8 @@ const App = () => {
           dark: "#fff",
         },
         brand: {
-          light: "#7c38d6",
-          dark: "#9857fa",
+          light: "#6939a8",
+          dark: "#7b46c2",
         },
         focus: {
           light: "#7c38d6",

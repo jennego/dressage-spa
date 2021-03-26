@@ -1,4 +1,4 @@
-import { Box, Button } from "grommet";
+import { Box, Button, Heading, Paragraph } from "grommet";
 import { Refresh } from "grommet-icons";
 
 const refresh = () => {
@@ -8,7 +8,9 @@ const refresh = () => {
 const ErrorMessage = () => {
   return (
     <Box background="status-error" pad="small">
-      Opps! There has been an error in fetching data from the server.
+      <Heading textAlign="center" level="3" fill={true}>
+        Opps! There has been an error in fetching data from the server.
+      </Heading>
       <div className="d-flex justify-content-center">
         <Button
           icon={<Refresh />}
