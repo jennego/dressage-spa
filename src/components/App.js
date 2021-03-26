@@ -14,7 +14,7 @@ const App = () => {
     global: {
       background: "background",
       font: {
-        family: "Open Sans",
+        family: "Poppins",
         size: "24px",
         height: "1em",
         color: "font",
