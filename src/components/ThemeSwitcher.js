@@ -21,8 +21,8 @@ const ThemeSwitcher = (props) => {
           <Switch
             onChange={setTheme}
             checked={mode === "light" ? true : false}
-            offColor="#1d1f2f"
-            onColor="#FDB813"
+            offColor="#555555"
+            onColor="#F2F2F2"
             checkedIcon={
               <Sun
                 style={{

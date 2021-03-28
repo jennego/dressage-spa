@@ -16,7 +16,7 @@ const App = () => {
       font: {
         family: "Poppins",
         size: "24px",
-        height: "1em",
+        height: "normal",
         color: "font",
       },
       colors: {

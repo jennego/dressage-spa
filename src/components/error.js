@@ -7,7 +7,15 @@ const refresh = () => {
 
 const ErrorMessage = () => {
   return (
-    <Box background="status-error" pad="small">
+    <Box
+      border={{
+        color: "status-error",
+        size: "small",
+        style: "solid",
+        side: "all",
+      }}
+      pad="small"
+    >
       <Heading textAlign="center" level="3" fill={true}>
         Opps! There has been an error in fetching data from the server.
       </Heading>
