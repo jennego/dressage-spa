@@ -7,7 +7,7 @@ const MovesList = (props) => {
   return (
     <div className="MovesList">
       {moves.map((move) => (
-        <div style={{ display: "flex" }}>
+        <div className="d-flex">
           <Card
             pad="small"
             margin="xsmall"

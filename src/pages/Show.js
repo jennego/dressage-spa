@@ -24,8 +24,8 @@ const DressageShowPage = (params) => {
         <TestHeading {...test}></TestHeading>
       </div>
 
-      <div className="row mx-auto">
-        <div className="col-lg-7 col-12">
+      <div className="row mx-auto d-flex justify-content-center">
+        <div className="col-lg-7 col-12 d-flex">
           <Box>
             <MovesList {...test}></MovesList>
           </Box>

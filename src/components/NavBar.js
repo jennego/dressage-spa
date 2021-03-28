@@ -17,9 +17,7 @@ const NavBar = () => {
       <Box direction="row" align="center" gap="small">
         <h3>Dressage Tests</h3>
       </Box>
-      <Box direction="row" align="end" gap="small">
-        <ThemeSwitcher />
-      </Box>
+      <Box direction="row" align="end" gap="small"></Box>
       <ResponsiveContext.Consumer>
         {(responsive) =>
           responsive === "small" ? (
@@ -43,6 +41,7 @@ const NavBar = () => {
               <Anchor as={Link} to="/tests" label="Tests" color="brand" />
               <Anchor as={Link} to="/" label="Home" color="brand" />
               Arena
+              <ThemeSwitcher />
             </Nav>
           )
         }
