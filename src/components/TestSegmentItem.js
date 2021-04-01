@@ -1,6 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Anchor, Card, Text, Box, ThemeContext } from "grommet";
+import {
+  Anchor,
+  Card,
+  Text,
+  Box,
+  ThemeContext,
+  CardHeader,
+  CardBody,
+  CardFooter,
+} from "grommet";
+import { useHistory } from "react-router-dom";
 
 // need to figure out how to style card on hover
 
@@ -13,6 +23,11 @@ const TestSegmentItem = ({
   full_name,
   id,
 }) => {
+  const history = useHistory();
+
+  const handleTestClick = (id) => {
+    history.push(`/tests/${id}`);
+  };
   return (
     <div className="TestSegmentItem container-fluid" style={{ width: "700px" }}>
       <ThemeContext.Extend
@@ -22,31 +37,42 @@ const TestSegmentItem = ({
               textDecoration: "none",
             },
           },
-          global: {
-            hover: {
-              background: "dark-1",
-            },
-          },
         }}
       >
-        <Anchor
+        {/* <Anchor
           className="test-card-link"
           as={Link}
           color="brand"
           to={`/tests/${id}`}
+        > */}
+        <Card
+          className="test-card"
+          background="surface"
+          margin="medium"
+          a11yTitle={full_name}
+          onClick={() => handleTestClick(id)}
+          hoverIndicator={true}
         >
-          <Card className="test-card" margin="medium">
-            <h2 style={{ marginBottom: "4px" }}> {full_name} </h2>
+          <CardHeader>{full_name}</CardHeader>
+          <CardBody>
             <Text size="small">
               Organization: {orgname} Level: {level} Test: {name} Year: {year}
-              {current ? (
-                <Box background="status-ok">Current</Box>
-              ) : (
-                <Box background="status-warning">Outdated</Box>
-              )}
             </Text>
-          </Card>
-        </Anchor>
+          </CardBody>
+
+          {current ? (
+            <Box background="status-ok">
+              {" "}
+              <Text size="small">Current</Text>
+            </Box>
+          ) : (
+            <Box background="status-warning">
+              {" "}
+              <Text size="small">Outdated</Text>
+            </Box>
+          )}
+        </Card>
+        {/* </Anchor> */}
       </ThemeContext.Extend>
     </div>
   );
