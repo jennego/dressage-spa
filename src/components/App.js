@@ -46,6 +46,11 @@ const App = () => {
         },
       },
     },
+    // anchor: {
+    //   hover: {
+    //     textDecoration: "none",
+    //   },
+    // },
   };
 
   const { mode } = useContext(AppContext);

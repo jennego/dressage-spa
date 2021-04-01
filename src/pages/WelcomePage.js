@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { grommet, Button, Main } from "grommet";
+import Search from "../components/search";
 
 function WelcomePage(props) {
   return (
