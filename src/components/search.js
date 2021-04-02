@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Fuse from "fuse.js";
 import TestSegmentItem from "./TestSegmentItem";
-import { TextInput } from "grommet";
+import { TextInput, Card } from "grommet";
 import { Search as SearchIcon } from "grommet-icons";
 
 const Search = (props) => {
@@ -32,11 +32,13 @@ const Search = (props) => {
   return (
     <div>
       <div className="container-fluid">
-        <TextInput
-          placeholder="search"
-          icon={<SearchIcon />}
-          onChange={handleSearch}
-        />
+        <Card background="surface" elevation="none" round={false}>
+          <TextInput
+            placeholder="search"
+            icon={<SearchIcon />}
+            onChange={handleSearch}
+          />
+        </Card>
       </div>
 
       {searchResults.length !== 0
