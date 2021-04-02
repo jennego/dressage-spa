@@ -17,7 +17,6 @@ const DressageShowPage = (params) => {
 
   return (
     <div className="show">
-      <p> Hi this is the test show page!! </p>
       {console.log(test)}
 
       <div className="row mx-auto">

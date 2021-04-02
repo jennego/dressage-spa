@@ -10,9 +10,15 @@
   min-height: 70vh;
 }
 
-.text-card-link a,
-.text-card-link {
-  text-decoration: none !important;
+.info {
+  font-weight: bold;
+}
+
+.test-info-box ul li {
+  list-style-type: none;
+}
+.test-info-box ul {
+  padding-left: 0;
 }
 
 body {

@@ -24,9 +24,13 @@ const DressageIndexPage = () => {
       <div id="testlist">
         {hasError ? <ErrorMessage /> : ""}
 
-        {tests.dressage_tests.map((test) => (
-          <TestSegmentItem key={test.id} {...test}></TestSegmentItem>
-        ))}
+        <div className="row no-gutters">
+          {tests.dressage_tests.map((test) => (
+            <div className="col-12 col-sm-6">
+              <TestSegmentItem key={test.id} {...test}></TestSegmentItem>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

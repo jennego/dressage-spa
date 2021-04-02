@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
+  Heading,
 } from "grommet";
 import { useHistory } from "react-router-dom";
 
@@ -29,7 +30,7 @@ const TestSegmentItem = ({
     history.push(`/tests/${id}`);
   };
   return (
-    <div className="TestSegmentItem container-fluid" style={{ width: "700px" }}>
+    <div className="TestSegmentItem">
       <ThemeContext.Extend
         value={{
           anchor: {
@@ -53,7 +54,11 @@ const TestSegmentItem = ({
           onClick={() => handleTestClick(id)}
           hoverIndicator={true}
         >
-          <CardHeader>{full_name}</CardHeader>
+          <CardHeader>
+            <Heading level={2} margin="xsmall">
+              {full_name}{" "}
+            </Heading>
+          </CardHeader>
           <CardBody>
             <Text size="small">
               Organization: {orgname} Level: {level} Test: {name} Year: {year}
