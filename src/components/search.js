@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import Fuse from "fuse.js";
 import TestSegmentItem from "./TestSegmentItem";
-import { TextInput, Card } from "grommet";
+import {
+  TextInput,
+  Card,
+  CheckBox,
+  RadioButtonGroup,
+  Box,
+  CheckBoxGroup,
+  FormField,
+  Button,
+} from "grommet";
 import { Search as SearchIcon } from "grommet-icons";
 
 const Search = (props) => {
@@ -37,8 +46,22 @@ const Search = (props) => {
             placeholder="search"
             icon={<SearchIcon />}
             onChange={handleSearch}
+            suggestions={["training", "first"]}
           />
         </Card>
+        <Box direction="row">
+          <Box>
+            Level
+            <CheckBoxGroup options={["Intro", "Training", "First"]} />
+          </Box>
+          <Box>
+            Current
+            <RadioButtonGroup options={["Current", "Historical", "All"]} />
+          </Box>
+          <Box>
+            <Button label="Display All"></Button>
+          </Box>
+        </Box>
       </div>
 
       {searchResults.length !== 0
