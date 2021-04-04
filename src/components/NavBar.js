@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Anchor,
@@ -12,41 +12,58 @@ import {
 import ThemeSwitcher from "./ThemeSwitcher";
 
 const NavBar = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const handleScroll = () => {
+    const offset = window.scrollY;
+    if (offset > 200) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  });
+
+  // Scrolled: remove title/logo, reduce all menu items to a sidebar toggle? Maybe leave Arena out? Add semi transparency. Full opacity on hover.
+
   return (
-    <Header pad="medium">
-      <Box direction="row" align="center" gap="small">
-        <h3>Dressage Tests</h3>
-      </Box>
-      <Box direction="row" align="end" gap="small"></Box>
-      <ResponsiveContext.Consumer>
-        {(responsive) =>
-          responsive === "small" ? (
-            <Menu
-              label="Menu"
-              items={[
-                {
-                  label: "About",
-                  href: "/about",
-                },
-                {
-                  label: "Tests",
-                  href: "/tests",
-                },
-                { label: "Home", onClick: () => {} },
-              ]}
-            />
-          ) : (
-            <Nav direction="row">
-              <Anchor as={Link} to="/about" label="About" color="brand" />
-              <Anchor as={Link} to="/tests" label="Tests" color="brand" />
-              <Anchor as={Link} to="/" label="Home" color="brand" />
-              Arena
-              <ThemeSwitcher />
-            </Nav>
-          )
-        }
-      </ResponsiveContext.Consumer>
-    </Header>
+    <div className={`navbar ${scrolled ? "sticky-nav" : "heading"}`}>
+      <Header pad={`${scrolled ? "none" : "medium"}`}>
+        <Box direction="row" align="center" gap="small">
+          <h3>Dressage Tests</h3>
+        </Box>
+        <ResponsiveContext.Consumer>
+          {(responsive) =>
+            responsive === "small" ? (
+              <Menu
+                label="Menu"
+                items={[
+                  {
+                    label: "About",
+                    href: "/about",
+                  },
+                  {
+                    label: "Tests",
+                    href: "/tests",
+                  },
+                  { label: "Home", onClick: () => {} },
+                ]}
+              />
+            ) : (
+              <Nav direction="row">
+                <Anchor as={Link} to="/about" label="About" color="brand" />
+                <Anchor as={Link} to="/tests" label="Tests" color="brand" />
+                <Anchor as={Link} to="/" label="Home" color="brand" />
+                Arena
+                <ThemeSwitcher />
+              </Nav>
+            )
+          }
+        </ResponsiveContext.Consumer>
+      </Header>
+    </div>
   );
 };
 
