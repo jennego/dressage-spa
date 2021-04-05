@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Heading } from "grommet";
+import { Box, Heading, Button } from "grommet";
 import {
   Share,
   Download,
@@ -12,17 +12,28 @@ import {
 const TestHeading = (props) => {
   const { full_name } = props;
   return (
-    <Box fill="horizontal" margin={{ bottom: "large" }}>
-      <Box background="brand" fill="horizontal">
-        <Heading level="2" margin="medium">
-          {full_name}
-        </Heading>
-      </Box>
-      <Box background="neutral-1">
-        <div>
-          <Share size="medium" /> <Download size="medium" />{" "}
-          <Star size="medium" />
-          <div>Current or not</div>
+    <Box fill="horizontal" direction="row" margin={{ bottom: "large" }}>
+      <Box
+        direction="row"
+        border={{
+          color: "brand",
+          size: "medium",
+          style: "solid",
+          side: "bottom",
+        }}
+      >
+        <div className="row">
+          <div className="col-12" style={{ paddingBottom: "0" }}>
+            <Heading level="1" color="brand" margin="medium">
+              {full_name}
+            </Heading>
+          </div>
+
+          <div className="col-12 test-toolbar" x>
+            <Button icon={<Share />} label="share" pad="none" />
+            <Button icon={<Download />} label="download" pad="none" />
+            <Button icon={<Star />} label="favourite" pad="none" />
+          </div>
         </div>
       </Box>
     </Box>
