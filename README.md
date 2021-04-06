@@ -6,19 +6,27 @@ Don't forget your dressage test or learn the wrong one!
 
 TO DO
 
+ASAP
+
+- contexts for slide menu
+- do something about the css/grommet/styled variables - this colors
+
+Roadmap
+
 - refactor code to modern react ✔️
 - redesign - in progress
 - error handling
 - arena pull out - svg for now
-- switch for dark mode
+- right click context menu (open, open in new tab, open pdf, add to favs)
+- switch for dark mode - done
 - Auth via Api/OAuth
 - secure api? Or leave as public API?
 - user settings (theme mode, arena setting) - local storage unless user is logged in
+- app tour / help
 - offline mode (after when things are done)
 
 Index page
 
-- Search via Algolia - search for key terms in info
 - Filter by year, org, level, asc and dsc
 - Results component (same page as index)
 - figure out default view (search only or show full list of tests and search to filter?)

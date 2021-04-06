@@ -7,7 +7,8 @@ import Routes from "./routes.js";
 import NavBar from "./NavBar.js";
 import FooterSection from "./Footer";
 import { Grommet } from "grommet";
-import { AppContext } from "./AppProvider";
+import { AppContext } from "../contexts/ThemeToggleProvider";
+import SlideMenu from "./SideMenu";
 
 const App = () => {
   const theme = {
@@ -54,6 +55,7 @@ const App = () => {
     <Grommet theme={theme} themeMode={mode}>
       <Router>
         <div className="App">
+          <SlideMenu />
           <NavBar></NavBar>
           <Routes></Routes>
         </div>

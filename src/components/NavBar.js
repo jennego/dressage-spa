@@ -10,6 +10,7 @@ import {
   Button,
 } from "grommet";
 import ThemeSwitcher from "./ThemeSwitcher";
+import SlideMenu from "./SideMenu";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -56,7 +57,8 @@ const NavBar = () => {
                 <Anchor as={Link} to="/about" label="About" color="brand" />
                 <Anchor as={Link} to="/tests" label="Tests" color="brand" />
                 <Anchor as={Link} to="/" label="Home" color="brand" />
-                Arena
+                Help Arena
+                <SlideMenu />
                 <ThemeSwitcher />
               </Nav>
             )

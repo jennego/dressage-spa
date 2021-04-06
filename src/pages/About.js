@@ -29,6 +29,15 @@ const About = () => (
         <li>Basic offline support</li>
         <li>Canvas/Phaser Arena drawing app/game </li>
       </ul>
+
+      <p>What about iPhone/Android app?</p>
+      <p>
+        I'm focusing on the web app first, which is accessible to most devices
+        with internet access. I will then look into Android/iPhone packaging. I
+        may do Android. We will see. Not sure about iOS yet due to the $100 USD
+        dev fee...and this will be a free app so that doesn't really add up (I
+        don't have other lucrative iOS app plans either).
+      </p>
     </Main>
   </div>
 );

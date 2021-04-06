@@ -30,9 +30,19 @@ const TestHeading = (props) => {
           </div>
 
           <div className="col-12 test-toolbar" x>
-            <Button icon={<Share />} label="share" pad="none" />
-            <Button icon={<Download />} label="download" pad="none" />
-            <Button icon={<Star />} label="favourite" pad="none" />
+            <Button icon={<Share />} label="share" pad="none" color="brand" />
+            <Button
+              icon={<Download />}
+              label="download"
+              pad="none"
+              color="brand"
+            />
+            <Button
+              icon={<Star />}
+              label="favourite"
+              pad="none"
+              color="brand"
+            />
           </div>
         </div>
       </Box>
