@@ -6,7 +6,6 @@ const About = () => (
   <div className="AboutPage Main">
     <Main pad="large" background="surface">
       <h2> About </h2>
-      <p> Hi From the About Page! </p>
       <p>
         Our goal is quick and easy access to dressage tests on all sorts of
         devices. While there's no getting around the fact that "B", "C" and "E"
