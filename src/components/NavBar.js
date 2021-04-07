@@ -29,10 +29,6 @@ const NavBar = () => {
     window.addEventListener("scroll", handleScroll);
   });
 
-  const handleMenu = () => {
-    openMenu();
-  };
-
   // Scrolled: remove title/logo, reduce all menu items to a sidebar toggle? Maybe leave Arena out? Add semi transparency. Full opacity on hover.
 
   return (
@@ -64,8 +60,8 @@ const NavBar = () => {
                 <Anchor as={Link} to="/tests" label="Tests" color="brand" />
                 <Anchor as={Link} to="/" label="Home" color="brand" />
                 Help Arena
-                <Button onClick={openMenu} label="open slide"></Button>
                 <Button onClick={closeMenu} label="close slide"></Button>
+                <Button onClick={openMenu} label="open slide"></Button>
                 <ThemeSwitcher />
               </Nav>
             )
