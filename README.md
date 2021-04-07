@@ -23,6 +23,7 @@ Roadmap
 - secure api? Or leave as public API?
 - user settings (theme mode, arena setting) - local storage unless user is logged in
 - app tour / help
+- move textual content to headless CMS
 - offline mode (after when things are done)
 
 Index page

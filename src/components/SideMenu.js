@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { slide as Menu } from "react-burger-menu";
+import { MenuContext } from "../contexts/SlideMenuProvider";
 
 // this is probably going to need context
 
@@ -30,19 +31,25 @@ const sideMenuStyles = {
 };
 
 const SlideMenu = () => {
+  const { closeMenu, openMenu, isOpen } = useContext(MenuContext);
+
   const handleOnOpen = () => {
-    // set to true
+    openMenu();
   };
   const handleOnClose = () => {
+    closeMenu();
     // set to false \
   };
-
-  // customBurgerIcon={false}
-  // onOpen={handleOnOpen}
-  // onClose={handleOnClose}
   return (
-    <Menu styles={sideMenuStyles} right>
+    <Menu
+      styles={sideMenuStyles}
+      customBurgerIcon={false}
+      onOpen={handleOnOpen}
+      onClose={handleOnClose}
+      right
+    >
       <p>Hello Arena and settings go here!</p>
+      {console.log("menu toggle", isOpen)}
     </Menu>
   );
 };

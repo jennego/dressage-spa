@@ -4,10 +4,13 @@ import "./index.css";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import AppProvider from "./contexts/ThemeToggleProvider";
+import MenuProvider from "./contexts/SlideMenuProvider";
 
 ReactDOM.render(
   <AppProvider>
-    <App />
+    <MenuProvider>
+      <App />
+    </MenuProvider>
   </AppProvider>,
   document.getElementById("root")
 );

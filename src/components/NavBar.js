@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   Anchor,
@@ -10,10 +10,12 @@ import {
   Button,
 } from "grommet";
 import ThemeSwitcher from "./ThemeSwitcher";
-import SlideMenu from "./SideMenu";
+import { MenuContext } from "../contexts/SlideMenuProvider";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const { setIsOpen, openMenu, closeMenu } = useContext(MenuContext);
+
   const handleScroll = () => {
     const offset = window.scrollY;
     if (offset > 200) {
@@ -26,6 +28,10 @@ const NavBar = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
   });
+
+  const handleMenu = () => {
+    openMenu();
+  };
 
   // Scrolled: remove title/logo, reduce all menu items to a sidebar toggle? Maybe leave Arena out? Add semi transparency. Full opacity on hover.
 
@@ -58,7 +64,8 @@ const NavBar = () => {
                 <Anchor as={Link} to="/tests" label="Tests" color="brand" />
                 <Anchor as={Link} to="/" label="Home" color="brand" />
                 Help Arena
-                <SlideMenu />
+                <Button onClick={openMenu} label="open slide"></Button>
+                <Button onClick={closeMenu} label="close slide"></Button>
                 <ThemeSwitcher />
               </Nav>
             )

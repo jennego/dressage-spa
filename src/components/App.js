@@ -8,6 +8,8 @@ import NavBar from "./NavBar.js";
 import FooterSection from "./Footer";
 import { Grommet } from "grommet";
 import { AppContext } from "../contexts/ThemeToggleProvider";
+import { MenuContext } from "../contexts/SlideMenuProvider";
+
 import SlideMenu from "./SideMenu";
 
 const App = () => {
