@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Fuse from "fuse.js";
 import TestSegmentItem from "./TestSegmentItem";
 import {
@@ -21,6 +21,10 @@ const Search = (props) => {
   const options = { keys: ["name", "level", "orgname", "full_name"] };
   const fuse = new Fuse(dressage_tests, options);
   const [searchResults, setSearchResults] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(""); // might use it
+
+  const { search } = useLocation();
+  const { query } = queryString.parse(search);
 
   const setSearchQuery = (query) => {
     let results = fuse.search(query);
@@ -28,19 +32,29 @@ const Search = (props) => {
     setSearchResults(results);
   };
 
-  console.log(searchResults);
+  useEffect(() => {
+    const setSearchQueryfromParams = (query) => {
+      let results = fuse.search(query);
+      setSearchResults(results);
+    };
+    if (query === undefined) {
+      return;
+    } else if (query !== undefined || query.length !== 0) {
+      console.log("there is something in the params", query);
+      setSearchQueryfromParams(query);
+    }
+  }, [fuse, query]);
+
+  console.log(searchResults, query);
 
   let location = useLocation();
   let history = useHistory();
   console.log(location, history);
 
-  const { search } = useLocation();
-  const { query } = queryString.parse(search);
-
   // const searchParams = new URLSearchParams(search);
   // const query = searchParams.get("query");
 
-  const handleSearch = (e) => {
+  const handleSearch = (e, params) => {
     console.log(e.target.value);
     setTimeout(() => {
       setSearchQuery(e.target.value);
