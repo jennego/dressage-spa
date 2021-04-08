@@ -57,10 +57,14 @@ const NavBar = () => {
             ) : (
               <Nav direction="row">
                 <Anchor as={Link} to="/about" label="About" color="brand" />
-                <Anchor as={Link} to="/tests" label="Tests" color="brand" />
-                <Anchor as={Link} to="/" label="Home" color="brand" />
+                <Anchor as={Link} to="/" label="Tests" color="brand" />
+                <Anchor
+                  as={Link}
+                  to="/settings"
+                  label="Settings"
+                  color="brand"
+                />
                 Help Arena
-                <Button onClick={closeMenu} label="close slide"></Button>
                 <Button onClick={openMenu} label="open slide"></Button>
                 <ThemeSwitcher />
               </Nav>
