@@ -12,6 +12,8 @@ import {
   Button,
 } from "grommet";
 import { Search as SearchIcon } from "grommet-icons";
+import { useLocation, useHistory } from "react-router-dom";
+import queryString from "query-string";
 
 const Search = (props) => {
   const { dressage_tests = [] } = props;
@@ -23,24 +25,38 @@ const Search = (props) => {
   const setSearchQuery = (query) => {
     let results = fuse.search(query);
     // set equivalents
-    console.log(query, results);
-    if (results.length === 0) {
-      return `nothing found for ${query}`; // figure out how to display this, probably a state
-    } else {
-      setSearchResults(results);
-    }
+    setSearchResults(results);
   };
+
+  console.log(searchResults);
+
+  let location = useLocation();
+  let history = useHistory();
+  console.log(location, history);
+
+  const { search } = useLocation();
+  const { query } = queryString.parse(search);
+
+  // const searchParams = new URLSearchParams(search);
+  // const query = searchParams.get("query");
 
   const handleSearch = (e) => {
     console.log(e.target.value);
     setTimeout(() => {
       setSearchQuery(e.target.value);
-    }, 1000);
+      history.push({
+        pathname: "/search",
+        search: `?query=${e.target.value}`,
+      });
+
+      // window.history.pushState("null", "null", `/search/q=${e.target.value}`);
+    }, 500);
   };
 
   return (
     <div>
       <div className="container-fluid">
+        <h2> search query: {query} </h2>
         <Card background="surface" elevation="none" round={false}>
           <TextInput
             placeholder="search"
@@ -64,9 +80,11 @@ const Search = (props) => {
         </Box>
       </div>
 
-      {searchResults.length !== 0
-        ? searchResults.map(({ item, refIndex }) => <div>{item.full_name}</div>)
-        : ""}
+      {searchResults.length === 0 && query !== undefined
+        ? `There is nothing found for ${query}`
+        : searchResults.map(({ item, refIndex }) => (
+            <div>{item.full_name}</div>
+          ))}
     </div>
   );
 };
