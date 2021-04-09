@@ -18,19 +18,18 @@ const DressageIndexPage = () => {
 
   return (
     <div className="index main">
-      <p> Hi From the DressageIndexPage! </p>
       {console.log(tests)}
       <Search {...tests} />
       <div id="testlist">
         {hasError ? <ErrorMessage /> : ""}
 
-        <div className="row no-gutters">
+        {/* <div className="row no-gutters">
           {tests.dressage_tests.map((test) => (
             <div className="col-12 col-sm-6">
               <TestSegmentItem key={test.id} {...test}></TestSegmentItem>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );
