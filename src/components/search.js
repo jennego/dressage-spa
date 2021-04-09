@@ -16,20 +16,20 @@ import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 
 const Search = (props) => {
-  const { dressage_tests = [] } = props;
+  // const { dressage_tests = [] } = props;
 
-  const options = {
-    keys: ["name", "level", "orgname", "full_name"],
-    threshold: 0.4,
-    includeScore: true,
-    includeMatches: true,
-    minMatchCharLength: 2,
-  };
+  // const options = {
+  //   keys: ["name", "level", "orgname", "full_name"],
+  //   threshold: 0.4,
+  //   includeScore: true,
+  //   includeMatches: true,
+  //   minMatchCharLength: 2,
+  // };
+  // const fuse = new Fuse(dressage_tests, options);
   const [searchResults, setSearchResults] = useState([]);
-
+  const [searchTerm, setSearchTerm] = useState("");
   const { search } = useLocation();
   const { query } = queryString.parse(search);
-  const fuse = new Fuse(dressage_tests, options);
 
   // const setSearchQuery = (query) => {
   //   let results = fuse.search(query);
@@ -40,34 +40,60 @@ const Search = (props) => {
   // can also try props match?
 
   useEffect(() => {
+    const getParams = (query) => {
+      setSearchTerm(query);
+      console.log("grab from url", query);
+      console.log("search term state: ", searchTerm);
+    };
+    // const setSearchQueryfromParams = (query) => {
+    //   let results = fuse.search(query);
+    //   setSearchResults(results);
+    //   console.log(results);
+    // };
+    getParams(query);
+    return console.log("please clean this mess");
+    // setSearchQueryfromParams(searchTerm);
+  }, [query]);
+
+  useEffect(() => {
     const setSearchQueryfromParams = (query) => {
+      const { dressage_tests = [] } = props;
+      const options = {
+        keys: ["name", "level", "orgname", "full_name"],
+        threshold: 0.4,
+        includeScore: true,
+        includeMatches: true,
+        minMatchCharLength: 2,
+      };
+      const fuse = new Fuse(dressage_tests, options);
       let results = fuse.search(query);
       setSearchResults(results);
+      console.log("searching", results);
     };
-    if (query === undefined) {
-      return;
-    } else if (query !== undefined || query.length !== 0) {
-      console.log("use effect is running", query);
-      // setSearchQueryfromParams(query);
-    }
-  }, [fuse, query]);
+    setSearchQueryfromParams(searchTerm);
+  }, [searchTerm, props]);
 
-  console.log(searchResults, query);
+  // useEffect(() => {
+  //   return () => {
+  //     console.log("cleaned up");
+  //   };
+  // }, []);
 
   let location = useLocation();
   let history = useHistory();
-  console.log(location, history);
+  // console.log(location, history);
 
   const handleSearch = (e, params) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setTimeout(() => {
+      setSearchTerm(e.target.value);
       history.push({
         pathname: "/search",
         search: `?query=${e.target.value}`,
       });
 
       // window.history.pushState("null", "null", `/search/q=${e.target.value}`);
-    }, 500);
+    }, 4000);
   };
 
   return (

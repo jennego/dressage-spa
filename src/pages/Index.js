@@ -18,7 +18,6 @@ const DressageIndexPage = () => {
 
   return (
     <div className="index main">
-      {console.log(tests)}
       <Search {...tests} />
       <div id="testlist">
         {hasError ? <ErrorMessage /> : ""}

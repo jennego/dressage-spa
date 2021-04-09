@@ -13,11 +13,21 @@ class Routes extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/about" component={About} />
-        <Route exact path="/settings" component={Settings} />
-        <Route path="/tests/:id" component={DressageShowPage} />
-        <Route path="/search/:q" component={Search} />
-        <Route path={["/tests", "/"]} component={DressageIndexPage} />
+        <Route exact path="/about">
+          <About />
+        </Route>
+        <Route exact path="/settings">
+          <Settings />
+        </Route>
+        <Route path="/tests/:id">
+          <DressageShowPage />
+        </Route>
+        <Route path="/search/:query">
+          <Search />
+        </Route>
+        <Route path={["/tests", "/"]}>
+          <DressageIndexPage />
+        </Route>
         <Route component={Page404} />
       </Switch>
     );
