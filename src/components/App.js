@@ -4,13 +4,12 @@ import "bootstrap-4-grid/css/grid.css";
 
 import "./App.css";
 import Routes from "./routes.js";
-import NavBar from "./NavBar.js";
-import FooterSection from "./Footer";
+import NavBar from "./Layout/NavBar.js";
+import FooterSection from "./Layout/Footer";
 import { Grommet } from "grommet";
 import { AppContext } from "../contexts/ThemeToggleProvider";
-import { MenuContext } from "../contexts/SlideMenuProvider";
 
-import SlideMenu from "./SideMenu";
+import SlideMenu from "./Layout/SideMenu";
 
 const App = () => {
   const theme = {

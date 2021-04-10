@@ -10,7 +10,7 @@ import {
   Button,
 } from "grommet";
 import ThemeSwitcher from "./ThemeSwitcher";
-import { MenuContext } from "../contexts/SlideMenuProvider";
+import { MenuContext } from "../../contexts/SlideMenuProvider";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);

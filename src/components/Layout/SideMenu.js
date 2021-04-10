@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { slide as Menu } from "react-burger-menu";
-import { MenuContext } from "../contexts/SlideMenuProvider";
+import { MenuContext } from "../../contexts/SlideMenuProvider";
 import { Box, Tab, Tabs } from "grommet";
 
 // this is probably going to need context

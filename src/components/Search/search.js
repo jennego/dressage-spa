@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Fuse from "fuse.js";
-import TestSegmentItem from "./TestSegmentItem";
+import TestSegmentItem from "../List/TestSegmentItem";
 import {
   TextInput,
   Card,
@@ -58,7 +58,6 @@ const Search = (props) => {
 
   useEffect(() => {
     const setSearchQueryfromParams = (query) => {
-      const { dressage_tests = [] } = props;
       const options = {
         keys: ["name", "level", "orgname", "full_name"],
         threshold: 0.4,
@@ -66,7 +65,7 @@ const Search = (props) => {
         includeMatches: true,
         minMatchCharLength: 2,
       };
-      const fuse = new Fuse(dressage_tests, options);
+      const fuse = new Fuse(props.dressage_tests, options);
       let results = fuse.search(query);
       if (searchTerm !== undefined) {
         setSearchResults(results);
@@ -77,7 +76,7 @@ const Search = (props) => {
       }
     };
     setSearchQueryfromParams(searchTerm);
-  }, [searchTerm, props]);
+  }, [searchTerm, props.dressage_tests]);
 
   let location = useLocation();
   let history = useHistory();

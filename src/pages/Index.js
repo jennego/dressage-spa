@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DressageTest } from "../requests";
-import TestSegmentItem from "../components/TestSegmentItem";
 import ErrorMessage from "../components/error";
-import Search from "../components/search";
-import Filters from "../components/Filters";
+import Search from "../components/Search/search";
 
 const DressageIndexPage = () => {
   const [tests, setTests] = useState({ dressage_tests: [] });

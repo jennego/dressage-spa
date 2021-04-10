@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { AppContext } from "../contexts/ThemeToggleProvider";
+import { AppContext } from "../../contexts/ThemeToggleProvider";
 import { Button, Text } from "grommet";
 import Switch from "react-switch";
 import { Sun, Moon } from "grommet-icons";

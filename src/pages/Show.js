@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { DressageTest } from "../requests";
-import TestInfo from "../components/TestInfo";
-import MovesList from "../components/MovesList.js";
-import { Box, Grid } from "grommet";
-import TestHeading from "../components/TestHeading";
+import TestInfo from "../components/ShowTest/TestInfo";
+import MovesList from "../components/ShowTest/MovesList.js";
+import { Box } from "grommet";
+import TestHeading from "../components/ShowTest/TestHeading";
 
 const DressageShowPage = (params) => {
   const [testData, setTestData] = useState({});
