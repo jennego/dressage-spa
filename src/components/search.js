@@ -14,6 +14,7 @@ import {
 import { Search as SearchIcon } from "grommet-icons";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
+import Filters from "./Filters";
 
 const Search = (props) => {
   // const { dressage_tests = [] } = props;
@@ -26,6 +27,7 @@ const Search = (props) => {
   //   minMatchCharLength: 2,
   // };
   // const fuse = new Fuse(dressage_tests, options);
+
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const { search } = useLocation();
@@ -41,18 +43,17 @@ const Search = (props) => {
 
   useEffect(() => {
     const getParams = (query) => {
-      setSearchTerm(query);
-      console.log("grab from url", query);
-      console.log("search term state: ", searchTerm);
+      if (query !== undefined) {
+        console.log("grab from url", query);
+        console.log("search term state: ", searchTerm);
+        return setSearchTerm(query);
+      } else {
+        console.log("we do nothing");
+        return;
+      }
     };
-    // const setSearchQueryfromParams = (query) => {
-    //   let results = fuse.search(query);
-    //   setSearchResults(results);
-    //   console.log(results);
-    // };
     getParams(query);
     return console.log("please clean this mess");
-    // setSearchQueryfromParams(searchTerm);
   }, [query]);
 
   useEffect(() => {
@@ -67,21 +68,19 @@ const Search = (props) => {
       };
       const fuse = new Fuse(dressage_tests, options);
       let results = fuse.search(query);
-      setSearchResults(results);
-      console.log("searching", results);
+      if (searchTerm !== undefined) {
+        setSearchResults(results);
+        console.log("searching", results);
+      } else {
+        console.log("undefined do nothing");
+        return;
+      }
     };
     setSearchQueryfromParams(searchTerm);
   }, [searchTerm, props]);
 
-  // useEffect(() => {
-  //   return () => {
-  //     console.log("cleaned up");
-  //   };
-  // }, []);
-
   let location = useLocation();
   let history = useHistory();
-  // console.log(location, history);
 
   const handleSearch = (e, params) => {
     // console.log(e.target.value);
@@ -93,7 +92,7 @@ const Search = (props) => {
       });
 
       // window.history.pushState("null", "null", `/search/q=${e.target.value}`);
-    }, 4000);
+    }, 1000);
   };
 
   return (
@@ -108,20 +107,7 @@ const Search = (props) => {
             suggestions={["training", "first"]}
           />
         </Card>
-        <Box direction="row">
-          <Box>
-            Level
-            <CheckBoxGroup options={["Intro", "Training", "First"]} />
-          </Box>
-          <Box>
-            Current
-            <RadioButtonGroup options={["Current", "Historical", "All"]} />
-          </Box>
-          <Box>
-            <Button label="Display All"></Button>
-            <Button label="Reset All"></Button>
-          </Box>
-        </Box>
+        <Filters />
       </div>
       {query === undefined ? (
         <div className="row no-gutters">

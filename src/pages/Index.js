@@ -3,6 +3,7 @@ import { DressageTest } from "../requests";
 import TestSegmentItem from "../components/TestSegmentItem";
 import ErrorMessage from "../components/error";
 import Search from "../components/search";
+import Filters from "../components/Filters";
 
 const DressageIndexPage = () => {
   const [tests, setTests] = useState({ dressage_tests: [] });
