@@ -33,8 +33,8 @@ export const theme = {
         dark: "dark-1",
       },
       slide: {
-        light: "#2c994c",
-        dark: "#1e7537",
+        light: "light-3",
+        dark: "dark-1",
       },
     },
   },
