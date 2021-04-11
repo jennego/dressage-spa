@@ -53,10 +53,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 /* Wrapper for item list */
-.bm-item-list {
+/* .bm-item-list {
   color: #000;
   padding: 0.8em;
-}
+} */
 
 nav.bm-item-list {
   color: black;

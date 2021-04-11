@@ -26,8 +26,7 @@ const sideMenuStyles = {
     fill: "#373a47",
   },
   bmItemList: {
-    color: "dark-2",
-    padding: "0.8em",
+    padding: "0",
   },
 };
 
@@ -50,12 +49,14 @@ const SlideMenu = () => {
       right
       isOpen={isOpen}
     >
-      <Tabs pad="none">
-        <Tab title="Arena">Arena Content</Tab>
-        <Tab title="User Settings">Setting content</Tab>
-      </Tabs>
-      <p>Hello Arena and settings go here!</p>
-      {console.log("menu toggle", isOpen)}
+      <Box background="slide" fill="vertical" pad="small">
+        <Tabs pad="none">
+          <Tab title="Arena">Arena Content</Tab>
+          <Tab title="User Settings">Setting content</Tab>
+        </Tabs>
+        <p>Hello Arena and settings go here!</p>
+        {console.log("menu toggle", isOpen)}
+      </Box>
     </Menu>
   );
 };

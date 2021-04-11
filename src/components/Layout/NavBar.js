@@ -33,7 +33,7 @@ const NavBar = () => {
 
   return (
     <div className={`navbar ${scrolled ? "sticky-nav" : "heading"}`}>
-      <Header pad={`${scrolled ? "none" : "medium"}`}>
+      <Header pad={`${scrolled ? "none" : "medium"}`} background="brand">
         <Box direction="row" align="center" gap="small">
           <h3>Dressage Tests</h3>
         </Box>
@@ -56,13 +56,13 @@ const NavBar = () => {
               />
             ) : (
               <Nav direction="row">
-                <Anchor as={Link} to="/about" label="About" color="brand" />
-                <Anchor as={Link} to="/" label="Tests" color="brand" />
+                <Anchor as={Link} to="/about" label="About" color="light-1" />
+                <Anchor as={Link} to="/" label="Tests" color="light-1" />
                 <Anchor
                   as={Link}
                   to="/settings"
                   label="Settings"
-                  color="brand"
+                  color="light-1"
                 />
                 Help Arena
                 <Button onClick={openMenu} label="open slide"></Button>

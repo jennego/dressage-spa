@@ -8,42 +8,49 @@ TO DO
 
 ASAP
 
-- contexts for slide menu
+- contexts for slide menu ✔️
+- filter current
 - do something about the css/grommet/styled variables - colors
+- optimize responsive design
+- fix colours
+- make sure it is usable in light and dark modes
 
 Roadmap
 
 - refactor code to modern react ✔️
-- redesign - in progress
+- redesign - in progress ✔️
 - error handling - basic
 - loading states
 - arena pull out - svg for now
 - right click context menu (open, open in new tab, add to favs)
 - switch for dark mode - done
-- Auth via Api/OAuth
 - secure api? Or leave as public API?
 - user settings (theme mode, arena setting) - local storage unless user is logged in
+
+Next release
+
 - app tour / help
+- Auth via Api/OAuth - next release?
 - move textual content to headless CMS
 - offline mode (after when things are done)
 
 Index page
 
-- Filter by year, org, level, asc and dsc
+- Filter by year, org, level (asc and dsc later)
+- Filter by current or not
 - Results component (same page as index)
-- figure out default view (search only or show full list of tests and search to filter?)
+- Show full list, current only as default
 
 ---
 
 This is a React SPA using
 
 - React, obviously - with functional components and hooks
-- React-Router
 - Grommet (UI Components) / Bootstrap 4 grid only
 - React-Burger-Menu
 - Fuse.js (search, I was going to use Algolia but that seemed overkill)
 
-With a Ruby on Rails backend.
+With a Ruby on Rails/Postgres backend.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

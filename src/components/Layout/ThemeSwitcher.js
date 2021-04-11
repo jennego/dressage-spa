@@ -25,6 +25,7 @@ const ThemeSwitcher = (props) => {
             onColor="#F2F2F2"
             checkedIcon={
               <Sun
+                color="dark-1"
                 style={{
                   marginLeft: "4px",
                 }}
