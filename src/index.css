@@ -2,11 +2,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400;1,600&display=swap");
 
-.test-toolbar {
-  padding-bottom: 0.5rem;
-  margin-left: 1rem;
-}
-
 .sticky-nav {
   position: -webkit-sticky; /* Safari */
   position: sticky;

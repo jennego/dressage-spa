@@ -18,7 +18,7 @@ const NavBar = () => {
 
   const handleScroll = () => {
     const offset = window.scrollY;
-    if (offset > 200) {
+    if (offset > 100) {
       setScrolled(true);
     } else {
       setScrolled(false);
@@ -33,7 +33,11 @@ const NavBar = () => {
 
   return (
     <div className={`navbar ${scrolled ? "sticky-nav" : "heading"}`}>
-      <Header pad={`${scrolled ? "none" : "medium"}`} background="brand">
+      <Header
+        pad={`${scrolled ? "none" : "medium"}`}
+        height={`${scrolled ? "xxsmall" : "xsmall"}`}
+        background="brand"
+      >
         <Box direction="row" align="center" gap="small">
           <h3>Dressage Tests</h3>
         </Box>

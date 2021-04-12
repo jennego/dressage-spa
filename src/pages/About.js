@@ -9,8 +9,9 @@ const About = () => (
       <p>
         Our goal is quick and easy access to dressage tests on all sorts of
         devices. While there's no getting around the fact that "B", "C" and "E"
-        sound shockingly indistinguishable when yelled across the ring, there is
-        something to be done about finding the freaking dressage test.
+        seem to to sound shockingly indistinguishable when yelled across the
+        ring, there is something to be done about finding the freaking dressage
+        test.
       </p>
       <p>
         We is actually just me. I am web developer who is also an amateur
@@ -19,13 +20,14 @@ const About = () => (
       </p>
       <p>
         This app is made with React and is using Ruby on Rails for the backend.
+        Code is on Github.
       </p>
-      <p>Features planned</p>
+      <p>Features planned for next release</p>
       <ul>
         <li>Sign in/Out via OAuth (FB, Google, maybe Twitter?)</li>
         <li>Favoriting</li>
         <li>Save personal notes on test page</li>
-        <li>Basic offline support</li>
+        <li>Basic offline support (Progessive Web App)</li>
         <li>Canvas/Phaser Arena drawing app/game </li>
       </ul>
 

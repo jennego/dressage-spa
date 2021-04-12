@@ -1,5 +1,5 @@
 // filters for test will go here once I figure the logic from a single prop level
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextInput,
   Card,
@@ -10,14 +10,30 @@ import {
   FormField,
   Button,
 } from "grommet";
+import { useLocation, useHistory } from "react-router-dom";
+import queryString from "query-string";
 
 const Filters = (props) => {
   const [isCurrentValue, setisCurrentValue] = useState(true);
+  const [isCurrentLabel, setisCurrentLabel] = useState("Current");
+
+  const history = useHistory();
+  const location = useLocation();
 
   const setisCurrent = (e) => {
-    console.log(e.target.value);
-    setisCurrentValue(e.target.label);
+    setisCurrentValue(e.target.value);
+    setisCurrentLabel(e.target.name);
+    console.log(isCurrentLabel);
   };
+
+  useEffect(() => {
+    const queryParams = queryString.parse(location.search);
+    const newQueries = {
+      ...queryParams,
+      current: isCurrentValue,
+    };
+    history.push({ search: queryString.stringify(newQueries) });
+  }, [isCurrentValue]);
 
   return (
     <Box direction="row">
@@ -28,13 +44,12 @@ const Filters = (props) => {
       <Box>
         Current
         <RadioButtonGroup
+          name="isCurrent"
           options={[
             { name: "Current", label: "Current", value: true },
-            { name: "Not Current", label: "Historical", value: false },
+            { name: "Historical", label: "Historical", value: false },
             { name: "All", label: "All", value: "all" },
           ]}
-          checked={isCurrentValue}
-          value={isCurrentValue}
           onChange={setisCurrent}
         />
       </Box>

@@ -30,6 +30,7 @@ const Search = (props) => {
 
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchValue, setSearchValue] = useState("");
   const { search } = useLocation();
   const { query } = queryString.parse(search);
 
@@ -41,15 +42,18 @@ const Search = (props) => {
 
   // can also try props match?
 
+  console.log(TextInput);
+
   useEffect(() => {
     const getParams = (query) => {
       if (query !== undefined) {
         console.log("grab from url", query);
         console.log("search term state: ", searchTerm);
-        return setSearchTerm(query);
+        setSearchTerm(query);
+        setSearchValue(query);
       } else {
+        setSearchValue("");
         console.log("we do nothing");
-        return;
       }
     };
     getParams(query);
@@ -83,12 +87,22 @@ const Search = (props) => {
 
   const handleSearch = (e, params) => {
     // console.log(e.target.value);
+    setSearchValue(e.target.value);
     setTimeout(() => {
       setSearchTerm(e.target.value);
-      history.push({
-        pathname: "/search",
-        search: `?query=${e.target.value}`,
-      });
+
+      const queryParams = queryString.parse(location.search);
+      const newQueries = {
+        ...queryParams,
+
+        query: e.target.value,
+      };
+      history.push({ search: queryString.stringify(newQueries) });
+
+      // history.push({
+      //   pathname: "/search",
+      //   search: `?query=${e.target.value}`,
+      // });
 
       // window.history.pushState("null", "null", `/search/q=${e.target.value}`);
     }, 1000);
@@ -102,6 +116,7 @@ const Search = (props) => {
           <TextInput
             placeholder="search"
             icon={<SearchIcon />}
+            value={searchValue}
             onChange={handleSearch}
             suggestions={["training", "first"]}
           />
