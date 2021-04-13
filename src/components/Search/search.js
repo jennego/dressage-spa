@@ -15,6 +15,7 @@ import { Search as SearchIcon } from "grommet-icons";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 import Filters from "./Filters";
+import UseUrlParams from "./UseURLParams";
 
 const Search = (props) => {
   // const { dressage_tests = [] } = props;
@@ -41,8 +42,6 @@ const Search = (props) => {
   // };
 
   // can also try props match?
-
-  console.log(TextInput);
 
   useEffect(() => {
     const getParams = (query) => {
@@ -94,7 +93,6 @@ const Search = (props) => {
       const queryParams = queryString.parse(location.search);
       const newQueries = {
         ...queryParams,
-
         query: e.target.value,
       };
       history.push({ search: queryString.stringify(newQueries) });

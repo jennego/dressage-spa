@@ -15,6 +15,8 @@ const DressageIndexPage = () => {
       .catch((err) => setHasError(true));
   }, []);
 
+  // create loading state
+
   return (
     <div className="index main">
       <Search {...tests} />

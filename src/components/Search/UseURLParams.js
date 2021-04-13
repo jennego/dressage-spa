@@ -1,5 +1,13 @@
+import Filters from "./Filters";
+import Search from "./search";
+
 const UseUrlParams = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Search></Search>
+      <Filters></Filters>
+    </div>
+  );
 };
 
 export default UseUrlParams;

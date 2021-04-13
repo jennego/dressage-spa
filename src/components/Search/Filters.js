@@ -15,15 +15,18 @@ import queryString from "query-string";
 
 const Filters = (props) => {
   const [isCurrentValue, setisCurrentValue] = useState(true);
-  const [isCurrentLabel, setisCurrentLabel] = useState("Current");
+  const [isDefaultChecked, setIsDefaultChecked] = useState(true);
 
   const history = useHistory();
   const location = useLocation();
 
   const setisCurrent = (e) => {
     setisCurrentValue(e.target.value);
-    setisCurrentLabel(e.target.name);
-    console.log(isCurrentLabel);
+    if (e.target.name === "Current") {
+      setIsDefaultChecked(true);
+    } else {
+      setIsDefaultChecked(false);
+    }
   };
 
   useEffect(() => {
@@ -46,10 +49,16 @@ const Filters = (props) => {
         <RadioButtonGroup
           name="isCurrent"
           options={[
-            { name: "Current", label: "Current", value: true },
+            {
+              name: "Current",
+              label: "Current",
+              value: true,
+              checked: isDefaultChecked,
+            },
             { name: "Historical", label: "Historical", value: false },
             { name: "All", label: "All", value: "all" },
           ]}
+          // checked={isCurrentValue ? 1 : 0}
           onChange={setisCurrent}
         />
       </Box>
