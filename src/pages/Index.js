@@ -2,15 +2,20 @@ import React, { useEffect, useState } from "react";
 import { DressageTest } from "../requests";
 import ErrorMessage from "../components/error";
 import Search from "../components/Search/search";
+import UseUrlParams from "../components/Search/UseURLParams";
+import { Box, Spinner, Text } from "grommet";
 
 const DressageIndexPage = () => {
   const [tests, setTests] = useState({ dressage_tests: [] });
+  const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     DressageTest.getAll()
       .then((data) => {
         setTests({ dressage_tests: data.dressage_tests });
+        setIsLoading(false);
       })
       .catch((err) => setHasError(true));
   }, []);
@@ -19,18 +24,18 @@ const DressageIndexPage = () => {
 
   return (
     <div className="index main">
-      <Search {...tests} />
-      <div id="testlist">
-        {hasError ? <ErrorMessage /> : ""}
+      {console.log(isLoading)}
+      {hasError ? <ErrorMessage /> : ""}
 
-        {/* <div className="row no-gutters">
-          {tests.dressage_tests.map((test) => (
-            <div className="col-12 col-sm-6">
-              <TestSegmentItem key={test.id} {...test}></TestSegmentItem>
-            </div>
-          ))}
-        </div> */}
-      </div>
+      {isLoading ? (
+        <Box align="center" direction="row" gap="small" pad="small">
+          <Spinner size="large" message="content is loading" />{" "}
+          <Text> Loading...</Text>
+        </Box>
+      ) : (
+        <UseUrlParams tests={tests}> </UseUrlParams>
+      )}
+      {/* <Search {...tests} /> */}
     </div>
   );
 };

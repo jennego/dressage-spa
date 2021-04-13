@@ -1,8 +1,10 @@
-import React from "react";
-import { Card, Paragraph, Text } from "grommet";
+import React, { useContext } from "react";
+import { Card, Paragraph, Text, ResponsiveContext } from "grommet";
 
 const MovesList = (props) => {
   const { moves = [] } = props;
+
+  const size = useContext(ResponsiveContext);
 
   return (
     <div className="MovesList">
@@ -12,11 +14,16 @@ const MovesList = (props) => {
             pad="small"
             margin="xsmall"
             justify="center"
-            width="10rem"
             background="surface"
             elevation="none"
+            className="move-letter"
           >
-            <Text weight="bold" size="xxlarge" textAlign="center">
+            <Text
+              weight="bold"
+              size="xxlarge"
+              textAlign="center"
+              className="move-text"
+            >
               {move.letter}
             </Text>
           </Card>
@@ -27,6 +34,7 @@ const MovesList = (props) => {
             justify="center"
             background="surface"
             elevation="none"
+            className="move-card"
           >
             <Paragraph size="large" margin="none">
               {move.movement}

@@ -21,12 +21,12 @@ const Filters = (props) => {
   const location = useLocation();
 
   const setisCurrent = (e) => {
-    setisCurrentValue(e.target.value);
     if (e.target.name === "Current") {
       setIsDefaultChecked(true);
     } else {
       setIsDefaultChecked(false);
     }
+    setisCurrentValue(e.target.value);
   };
 
   useEffect(() => {

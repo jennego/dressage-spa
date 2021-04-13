@@ -4,10 +4,11 @@ import TestInfo from "../components/ShowTest/TestInfo";
 import MovesList from "../components/ShowTest/MovesList.js";
 import { Box } from "grommet";
 import TestHeading from "../components/ShowTest/TestHeading";
+import { useParams } from "react-router-dom";
 
 const DressageShowPage = (params) => {
   const [testData, setTestData] = useState({});
-  const id = params.match.params.id;
+  const { id } = useParams();
 
   useEffect(() => {
     DressageTest.get(id).then((data) => setTestData({ data }));

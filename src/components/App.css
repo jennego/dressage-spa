@@ -1,4 +1,22 @@
+@media (max-width: 576px) {
+  .move-letter {
+    width: 5rem;
+  }
+  .move-text {
+    font-size: 10px;
+  }
+  /* mobile size */
+}
+
+@media (min-width: 576px) {
+  .move-letter {
+    width: 10.5rem;
+  }
+  /* non mobile size */
+}
+
 /* Position and sizing of burger button */
+
 .bm-burger-button {
   position: relative;
   right: 40px;

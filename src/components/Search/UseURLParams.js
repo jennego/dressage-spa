@@ -1,11 +1,16 @@
 import Filters from "./Filters";
 import Search from "./search";
 
-const UseUrlParams = () => {
+const UseUrlParams = (props) => {
+  console.log(props.tests);
   return (
     <div>
-      <Search></Search>
-      <Filters></Filters>
+      {props.tests === undefined ? (
+        "loading"
+      ) : (
+        <Search {...props.tests}></Search>
+      )}
+      {/* <Filters></Filters> */}
     </div>
   );
 };

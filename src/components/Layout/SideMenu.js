@@ -42,6 +42,7 @@ const SlideMenu = () => {
   };
   return (
     <Menu
+      noOverlay
       styles={sideMenuStyles}
       customBurgerIcon={false}
       onOpen={handleOnOpen}
