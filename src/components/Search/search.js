@@ -16,6 +16,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 import Filters from "./Filters";
 import UseUrlParams from "./UseURLParams";
+import DefaultTests from "../List/DefaultList";
 
 const Search = (props) => {
   // const { dressage_tests = [] } = props;
@@ -34,6 +35,11 @@ const Search = (props) => {
   const [searchValue, setSearchValue] = useState("");
   const { search } = useLocation();
   const { query } = queryString.parse(search);
+  const searchResultsList = searchResults.map(({ item }) => ({
+    label: item.full_name,
+    value: item.id,
+  }));
+  console.log(searchResultsList);
 
   // const setSearchQuery = (query) => {
   //   let results = fuse.search(query);
@@ -81,6 +87,10 @@ const Search = (props) => {
     setSearchQueryfromParams(searchTerm);
   }, [searchTerm, props.dressage_tests]);
 
+  const handleSelectSuggestion = (e) => {
+    history.push(`/tests/${e.suggestion.value}`);
+  };
+
   let location = useLocation();
   let history = useHistory();
 
@@ -108,28 +118,23 @@ const Search = (props) => {
 
   return (
     <div>
-      <div className="container-fluid">
-        <h2> search query: {query} </h2>
-        <Card background="surface" elevation="none" round={false}>
+      <div className="container-fluid d-flex align-items-center flex-column">
+        {query ? <h2> Searching for: {query} </h2> : <h2>Search for tests</h2>}
+        <Card background="surface" elevation="none" round={false} width="large">
           <TextInput
             placeholder="search"
             icon={<SearchIcon />}
             value={searchValue}
             onChange={handleSearch}
-            suggestions={["training", "first"]}
+            width="small"
+            suggestions={searchResultsList}
+            onSuggestionSelect={handleSelectSuggestion}
           />
         </Card>
         <Filters />
       </div>
-      {query === undefined ? (
-        <div className="row no-gutters">
-          <h2>All tests default</h2>
-          {/* {tests.dressage_tests.map((test) => (
-            <div className="col-12 col-sm-6">
-              <TestSegmentItem key={test.id} {...test}></TestSegmentItem>
-            </div>
-          ))} */}
-        </div>
+      {query === undefined || query.length === 0 ? (
+        <DefaultTests tests={props} />
       ) : searchResults.length === 0 ? (
         `There is nothing found for ${query}`
       ) : (

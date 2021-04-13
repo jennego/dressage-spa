@@ -7,6 +7,12 @@ export const theme = {
       height: "normal",
       color: "font",
     },
+    focus: {
+      border: {
+        color: "accent-1",
+        width: "2px",
+      },
+    },
     colors: {
       background: {
         light: "light-4",

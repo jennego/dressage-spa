@@ -47,6 +47,8 @@ const Filters = (props) => {
       <Box>
         Current
         <RadioButtonGroup
+          focusIndicator={true}
+          className="current-radio"
           name="isCurrent"
           options={[
             {

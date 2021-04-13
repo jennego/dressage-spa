@@ -15,6 +15,9 @@
   /* non mobile size */
 }
 
+.current-radio:focus {
+  border: greenyellow 2px solid;
+}
 /* Position and sizing of burger button */
 
 .bm-burger-button {
