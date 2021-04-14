@@ -28,7 +28,13 @@ const DressageIndexPage = () => {
       {hasError ? <ErrorMessage /> : ""}
 
       {isLoading ? (
-        <Box align="center" direction="row" gap="small" pad="small">
+        <Box
+          align="center"
+          justify="center"
+          direction="row"
+          gap="small"
+          pad="small"
+        >
           <Spinner size="large" message="content is loading" />{" "}
           <Text> Loading...</Text>
         </Box>

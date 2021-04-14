@@ -18,8 +18,6 @@ const DressageShowPage = (params) => {
 
   return (
     <div className="show">
-      {console.log(test)}
-
       <div className="row mx-auto">
         <TestHeading {...test}></TestHeading>
       </div>

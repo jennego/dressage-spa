@@ -30,80 +30,78 @@ const Search = (props) => {
     label: item.full_name,
     value: item.id,
   }));
-  // const setSearchQuery = (query) => {
-  //   let results = fuse.search(query);
-  //   // set equivalents
-  //   setSearchResults(results);
-  // };
 
-  // can also try props match?
+  useEffect(() => {
+    const getParams = (query) => {
+      if (query !== undefined) {
+        console.log("grab from url", query);
+        console.log("search term state: ", searchTerm);
+        setSearchTerm(query);
+        setSearchValue(query);
+      } else {
+        setSearchValue("");
+        console.log("we do nothing");
+      }
+    };
+    getParams(query);
+    return console.log("please clean this mess");
+  }, [query]);
 
-  // useEffect(() => {
-  //   const getParams = (query) => {
-  //     if (query !== undefined) {
-  //       console.log("grab from url", query);
-  //       console.log("search term state: ", searchTerm);
-  //       setSearchTerm(query);
-  //       setSearchValue(query);
-  //     } else {
-  //       setSearchValue("");
-  //       console.log("we do nothing");
-  //     }
-  //   };
-  //   getParams(query);
-  //   return console.log("please clean this mess");
-  // }, [query]);
+  useEffect(() => {
+    const setSearchQueryfromParams = (query) => {
+      const options = {
+        keys: ["name", "level", "orgname", "full_name"],
+        threshold: 0.4,
+        includeScore: true,
+        includeMatches: true,
+        minMatchCharLength: 2,
+      };
+      if (
+        searchTerm !== undefined &&
+        props.tests.dressage_tests !== undefined
+      ) {
+        const fuse = new Fuse(props.tests.dressage_tests, options);
+        let results = fuse.search(query);
+        setSearchResults(results);
+        console.log("searching", results);
+      } else {
+        console.log("undefined do not send to search");
+        return;
+      }
+    };
+    setSearchQueryfromParams(searchTerm);
+  }, [searchTerm, props.tests.dressage_tests]);
 
-  // useEffect(() => {
-  //   const setSearchQueryfromParams = (query) => {
-  //     const options = {
-  //       keys: ["name", "level", "orgname", "full_name"],
-  //       threshold: 0.4,
-  //       includeScore: true,
-  //       includeMatches: true,
-  //       minMatchCharLength: 2,
-  //     };
-  //     const fuse = new Fuse(props.tests.dressage_tests, options);
-  //     let results = fuse.search(query);
-  //     if (searchTerm !== undefined) {
-  //       setSearchResults(results);
-  //       console.log("searching", results);
-  //     } else {
-  //       console.log("undefined do nothing");
-  //       return;
-  //     }
-  //   };
-  //   setSearchQueryfromParams(searchTerm);
-  // }, [searchTerm, props.tests.dressage_tests]);
+  console.log("array to search", props.tests);
 
-  // const handleSelectSuggestion = (e) => {
-  //   history.push(`/tests/${e.suggestion.value}`);
-  // };
+  const handleSelectSuggestion = (e) => {
+    history.push(`/tests/${e.suggestion.value}`);
+  };
 
-  // let location = useLocation();
-  // let history = useHistory();
+  let location = useLocation();
+  let history = useHistory();
 
-  // const handleSearch = (e, params) => {
-  //   // console.log(e.target.value);
-  //   setSearchValue(e.target.value);
-  //   setTimeout(() => {
-  //     setSearchTerm(e.target.value);
+  const handleSearch = (e, params) => {
+    // console.log(e.target.value);
+    setSearchValue(e.target.value);
+    setTimeout(() => {
+      setSearchTerm(e.target.value);
 
-  //     const queryParams = queryString.parse(location.search);
-  //     const newQueries = {
-  //       ...queryParams,
-  //       query: e.target.value,
-  //     };
-  //     history.push({ search: queryString.stringify(newQueries) });
+      const queryParams = queryString.parse(location.search);
+      const newQueries = {
+        ...queryParams,
+        query: e.target.value,
+      };
+      history.push({ search: queryString.stringify(newQueries) });
 
-  //     // history.push({
-  //     //   pathname: "/search",
-  //     //   search: `?query=${e.target.value}`,
-  //     // });
+      // history.push({
+      //   pathname: "/search",
+      //   search: `?query=${e.target.value}`,
+      // });
 
-  //     // window.history.pushState("null", "null", `/search/q=${e.target.value}`);
-  //   }, 1000);
-  // };
+      // window.history.pushState("null", "null", `/search/q=${e.target.value}`);
+    }, 1000);
+  };
 
   console.log("filtered tests", props);
 
@@ -120,10 +118,10 @@ const Search = (props) => {
             placeholder="search"
             icon={<SearchIcon />}
             value={searchValue}
-            // onChange={handleSearch}
+            onChange={handleSearch}
             width="small"
             suggestions={searchResultsList}
-            // onSuggestionSelect={handleSelectSuggestion}
+            onSuggestionSelect={handleSelectSuggestion}
             round="10px"
           />
         </Card>

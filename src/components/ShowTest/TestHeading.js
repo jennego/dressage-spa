@@ -41,7 +41,7 @@ const TestHeading = (props) => {
             </Heading>
           </div>
           <div className="col-12 test-toolbar d-flex justify-content-start">
-            <Box direction="row">
+            <Box direction="row" margin={{ bottom: "small" }}>
               <Button icon={<Share />} label="share" pad="none" color="brand" />
               <Button
                 icon={<Download />}
