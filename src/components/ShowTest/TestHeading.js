@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Heading, Button } from "grommet";
+import { Box, Heading, Button, Tip } from "grommet";
 import IsCurrentBadge from "./isCurrentBadge";
 import {
   Share,
@@ -8,12 +8,20 @@ import {
   Star,
   Favorite,
   DocumentPdf,
+  Close,
 } from "grommet-icons";
+import { useLocation, useHistory } from "react-router-dom";
 
 const TestHeading = (props) => {
   const { full_name, current } = props;
+  const history = useHistory();
   return (
-    <Box fill="horizontal" direction="row" margin={{ bottom: "large" }}>
+    <Box
+      fill="horizontal"
+      direction="row"
+      justify="between"
+      margin={{ bottom: "large" }}
+    >
       <Box
         direction="row"
         border={{
@@ -24,7 +32,6 @@ const TestHeading = (props) => {
         }}
       >
         <div className="row">
-          <Box>Go back</Box>
           <div
             className="col-12 d-flex flex-row justify-content-between"
             style={{ paddingBottom: "0" }}
@@ -53,6 +60,16 @@ const TestHeading = (props) => {
           </div>
         </div>
       </Box>
+      <Tip content="Go Back to Tests">
+        <Box
+          alignSelf="start"
+          pad="xsmall"
+          hoverIndicator={true}
+          onClick={() => history.push("/")}
+        >
+          <Close size="large" />
+        </Box>
+      </Tip>
     </Box>
   );
 };

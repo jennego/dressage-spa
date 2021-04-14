@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Main, Box } from "grommet";
+import { Main, Box, Heading } from "grommet";
 
 const About = () => (
   <div className="AboutPage Main">
+    <Heading level="2" margin={{ left: "large" }} pad="large">
+      About
+    </Heading>
     <Main pad="large" background="surface">
-      <h2> About </h2>
       <p>
         Our goal is quick and easy access to dressage tests on all sorts of
         devices. While there's no getting around the fact that "B", "C" and "E"
@@ -15,8 +17,8 @@ const About = () => (
       </p>
       <p>
         We is actually just me. I am web developer who is also an amateur
-        dressage rider. I am also looking for a web dev job to fiance my
-        dressage habit.
+        dressage rider. I am also looking for a remote web dev job (part-time)
+        to fiance my dressage habit.
       </p>
       <p>
         This app is made with React and is using Ruby on Rails for the backend.

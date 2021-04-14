@@ -29,13 +29,20 @@ const Filters = (props) => {
     setisCurrentValue(e.target.value);
   };
 
+  console.log("history", history.location.search);
+
   useEffect(() => {
     const queryParams = queryString.parse(location.search);
     const newQueries = {
       ...queryParams,
       current: isCurrentValue,
     };
-    history.push({ search: queryString.stringify(newQueries) });
+
+    if (history.location.search.length === 0) {
+      history.replace({ search: queryString.stringify(newQueries) });
+    } else {
+      history.push({ search: queryString.stringify(newQueries) });
+    }
   }, [isCurrentValue]);
 
   return (

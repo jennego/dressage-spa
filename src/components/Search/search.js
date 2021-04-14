@@ -31,7 +31,7 @@ const Search = (props) => {
     value: item.id,
   }));
   console.log(searchResultsList);
-
+  console.log("history", history);
   // const setSearchQuery = (query) => {
   //   let results = fuse.search(query);
   //   // set equivalents
@@ -65,7 +65,7 @@ const Search = (props) => {
         includeMatches: true,
         minMatchCharLength: 2,
       };
-      const fuse = new Fuse(props.dressage_tests, options);
+      const fuse = new Fuse(props.tests.dressage_tests, options);
       let results = fuse.search(query);
       if (searchTerm !== undefined) {
         setSearchResults(results);
@@ -76,7 +76,7 @@ const Search = (props) => {
       }
     };
     setSearchQueryfromParams(searchTerm);
-  }, [searchTerm, props.dressage_tests]);
+  }, [searchTerm, props.tests.dressage_tests]);
 
   const handleSelectSuggestion = (e) => {
     history.push(`/tests/${e.suggestion.value}`);
@@ -110,7 +110,11 @@ const Search = (props) => {
   return (
     <div>
       <div className="container-fluid d-flex align-items-center flex-column">
-        {query ? <h2> Searching for: {query} </h2> : <h2>Search for tests</h2>}
+        {query ? (
+          <h2> Searching for: "{query}" </h2>
+        ) : (
+          <h2>Search for tests</h2>
+        )}
         <Card background="surface" elevation="none" round={false} width="large">
           <TextInput
             placeholder="search"
@@ -120,6 +124,7 @@ const Search = (props) => {
             width="small"
             suggestions={searchResultsList}
             onSuggestionSelect={handleSelectSuggestion}
+            round="10px"
           />
         </Card>
         <Filters />
