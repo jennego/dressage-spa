@@ -1,16 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Fuse from "fuse.js";
 import TestSegmentItem from "../List/TestSegmentItem";
-import {
-  TextInput,
-  Card,
-  CheckBox,
-  RadioButtonGroup,
-  Box,
-  CheckBoxGroup,
-  FormField,
-  Button,
-} from "grommet";
+import { TextInput, Card } from "grommet";
 import { Search as SearchIcon } from "grommet-icons";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";

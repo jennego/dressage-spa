@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Heading, Button } from "grommet";
+import IsCurrentBadge from "./isCurrentBadge";
 import {
   Share,
   Download,
@@ -10,7 +11,7 @@ import {
 } from "grommet-icons";
 
 const TestHeading = (props) => {
-  const { full_name } = props;
+  const { full_name, current } = props;
   return (
     <Box fill="horizontal" direction="row" margin={{ bottom: "large" }}>
       <Box
@@ -23,26 +24,32 @@ const TestHeading = (props) => {
         }}
       >
         <div className="row">
-          <div className="col-12" style={{ paddingBottom: "0" }}>
+          <Box>Go back</Box>
+          <div
+            className="col-12 d-flex flex-row justify-content-between"
+            style={{ paddingBottom: "0" }}
+          >
             <Heading level="1" color="brand" margin="medium">
               {full_name}
             </Heading>
           </div>
-
-          <div className="col-12 test-toolbar" x>
-            <Button icon={<Share />} label="share" pad="none" color="brand" />
-            <Button
-              icon={<Download />}
-              label="download"
-              pad="none"
-              color="brand"
-            />
-            <Button
-              icon={<Star />}
-              label="favourite"
-              pad="none"
-              color="brand"
-            />
+          <div className="col-12 test-toolbar d-flex justify-content-start">
+            <Box direction="row">
+              <Button icon={<Share />} label="share" pad="none" color="brand" />
+              <Button
+                icon={<Download />}
+                label="download"
+                pad="none"
+                color="brand"
+              />
+              <Button
+                icon={<Star />}
+                label="favourite"
+                pad="none"
+                color="brand"
+              />
+              <IsCurrentBadge current={current} />
+            </Box>
           </div>
         </div>
       </Box>
