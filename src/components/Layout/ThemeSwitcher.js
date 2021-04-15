@@ -23,6 +23,8 @@ const ThemeSwitcher = (props) => {
             checked={mode === "light" ? true : false}
             offColor="#555555"
             onColor="#F2F2F2"
+            offHandleColor="#6FFFB0"
+            onHandleColor="#6FFFB0"
             checkedIcon={
               <Sun
                 color="dark-1"

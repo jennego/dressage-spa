@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   Anchor,
   Box,
@@ -63,16 +63,21 @@ const NavBar = () => {
               />
             ) : (
               <Nav direction="row">
-                <Anchor as={Link} to="/about" label="About" color="light-1" />
+                <Anchor
+                  as={NavLink}
+                  to="/about"
+                  label="About"
+                  color="light-1"
+                />
                 <Anchor
                   as={Link}
                   to="/roadmap"
                   label="Roadmap"
                   color="light-1"
                 />
-                <Anchor as={Link} to="/" label="Tests" color="light-1" />
+                <Anchor as={NavLink} to="/" label="Tests" color="light-1" />
                 <Anchor
-                  as={Link}
+                  as={NavLink}
                   to="/settings"
                   label="Settings"
                   color="light-1"

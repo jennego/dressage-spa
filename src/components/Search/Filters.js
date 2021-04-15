@@ -20,6 +20,9 @@ const Filters = (props) => {
   const history = useHistory();
   const location = useLocation();
 
+  const { search } = useLocation();
+  const { current } = queryString.parse(search);
+
   const handleDisplayAll = (e) => {
     history.push({ search: "?current=all" });
     setisCurrentValue("all");
@@ -40,10 +43,19 @@ const Filters = (props) => {
   useEffect(() => {
     // what if current is false or all  - allow that string too
     const queryParams = queryString.parse(location.search);
-    const newQueries = {
-      ...queryParams,
-      current: isCurrentValue,
-    };
+    let newQueries = {};
+
+    if (current === "false" || current === "all") {
+      newQueries = {
+        ...queryParams,
+        current: current,
+      };
+    } else {
+      newQueries = {
+        ...queryParams,
+        current: isCurrentValue,
+      };
+    }
 
     if (history.location.search.length === 0) {
       history.replace({ search: queryString.stringify(newQueries) });
