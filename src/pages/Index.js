@@ -4,6 +4,7 @@ import ErrorMessage from "../components/error";
 import Search from "../components/Search/search";
 import UseUrlParams from "../components/Search/UseURLParams";
 import { Box, Spinner, Text } from "grommet";
+import Loading from "../components/loading";
 
 const DressageIndexPage = () => {
   const [tests, setTests] = useState({ dressage_tests: [] });
@@ -30,20 +31,7 @@ const DressageIndexPage = () => {
       {console.log(isLoading)}
       {hasError ? <ErrorMessage /> : ""}
 
-      {isLoading ? (
-        <Box
-          align="center"
-          justify="center"
-          direction="row"
-          gap="small"
-          pad="small"
-        >
-          <Spinner size="large" message="content is loading" />{" "}
-          <Text> Loading...</Text>
-        </Box>
-      ) : (
-        <UseUrlParams tests={tests}> </UseUrlParams>
-      )}
+      {isLoading ? <Loading /> : <UseUrlParams tests={tests}> </UseUrlParams>}
       {/* <Search {...tests} /> */}
     </div>
   );

@@ -20,6 +20,12 @@ const Filters = (props) => {
   const history = useHistory();
   const location = useLocation();
 
+  const handleDisplayAll = (e) => {
+    history.push({ search: "?current=all" });
+    setisCurrentValue("all");
+    setIsDefaultChecked(false);
+  };
+
   const setisCurrent = (e) => {
     if (e.target.name === "Current") {
       setIsDefaultChecked(true);
@@ -73,7 +79,7 @@ const Filters = (props) => {
         />
       </Box>
       <Box>
-        <Button label="Display All"></Button>
+        <Button label="Display All" onClick={handleDisplayAll}></Button>
         <Button label="Reset All"></Button>
       </Box>
     </Box>

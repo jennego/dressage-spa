@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Fuse from "fuse.js";
 import TestSegmentItem from "../List/TestSegmentItem";
-import { TextInput, Card } from "grommet";
+import { TextInput, Card, Box, Text } from "grommet";
 import { Search as SearchIcon } from "grommet-icons";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 import Filters from "./Filters";
 import UseUrlParams from "./UseURLParams";
 import DefaultTests from "../List/DefaultList";
+import Loading from "../loading";
 
 const Search = (props) => {
   // const { dressage_tests = [] } = props;
@@ -26,10 +27,32 @@ const Search = (props) => {
   const [searchValue, setSearchValue] = useState("");
   const { search } = useLocation();
   const { query } = queryString.parse(search);
-  const searchResultsList = searchResults.map(({ item }) => ({
-    label: item.full_name,
-    value: item.id,
-  }));
+
+  const searchResultsList = useMemo(
+    () =>
+      searchResults.map(({ item }) => ({
+        label: (
+          <Box
+            direction="row"
+            align="center"
+            gap="small"
+            pad="small"
+            justify="between"
+          >
+            <Text size="large">{item.full_name}</Text>
+            <Box
+              background={item.current ? "status-ok" : "status-warning"}
+              round="10px"
+              pad="xxsmall"
+            >
+              <Text size="small">{item.current ? "current" : "outdated"}</Text>
+            </Box>
+          </Box>
+        ),
+        value: item.id,
+      })),
+    [searchResults]
+  );
 
   useEffect(() => {
     const getParams = (query) => {
@@ -129,13 +152,15 @@ const Search = (props) => {
       </div>
       {query === undefined || query.length === 0 ? (
         <div className="row no-gutters">
-          {props.tests.dressage_tests === undefined
-            ? "loading"
-            : props.tests.dressage_tests.map((test) => (
-                <div className="col-12 col-sm-6">
-                  <TestSegmentItem key={test.id} {...test}></TestSegmentItem>
-                </div>
-              ))}
+          {props.tests.dressage_tests === undefined ? (
+            <Loading />
+          ) : (
+            props.tests.dressage_tests.map((test) => (
+              <div className="col-12 col-sm-6">
+                <TestSegmentItem key={test.id} {...test}></TestSegmentItem>
+              </div>
+            ))
+          )}
         </div>
       ) : searchResults.length === 0 ? (
         `There is nothing found for ${query}`

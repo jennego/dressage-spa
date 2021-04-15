@@ -30,7 +30,7 @@ const TestSegmentItem = ({
     history.push(`/tests/${id}`);
   };
   return (
-    <div className="TestSegmentItem">
+    <div className="TestSegmentItem" key={id}>
       <ThemeContext.Extend
         value={{
           anchor: {
@@ -56,7 +56,7 @@ const TestSegmentItem = ({
         >
           <CardHeader>
             <Heading level={2} margin="xsmall">
-              {full_name}{" "}
+              {full_name}
             </Heading>
           </CardHeader>
           <CardBody>
