@@ -32,6 +32,7 @@ const Filters = (props) => {
   console.log("history", history.location.search);
 
   useEffect(() => {
+    // what if current is false or all  - allow that string too
     const queryParams = queryString.parse(location.search);
     const newQueries = {
       ...queryParams,

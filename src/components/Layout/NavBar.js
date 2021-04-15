@@ -27,6 +27,9 @@ const NavBar = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll, false);
+    };
   });
 
   // Scrolled: remove title/logo, reduce all menu items to a sidebar toggle? Maybe leave Arena out? Add semi transparency. Full opacity on hover.
@@ -61,6 +64,12 @@ const NavBar = () => {
             ) : (
               <Nav direction="row">
                 <Anchor as={Link} to="/about" label="About" color="light-1" />
+                <Anchor
+                  as={Link}
+                  to="/roadmap"
+                  label="Roadmap"
+                  color="light-1"
+                />
                 <Anchor as={Link} to="/" label="Tests" color="light-1" />
                 <Anchor
                   as={Link}
@@ -68,8 +77,7 @@ const NavBar = () => {
                   label="Settings"
                   color="light-1"
                 />
-                Help Arena
-                <Button onClick={openMenu} label="open slide"></Button>
+                <Button onClick={openMenu} label="Arena"></Button>
                 <ThemeSwitcher />
               </Nav>
             )

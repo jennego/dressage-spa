@@ -17,7 +17,10 @@ const DressageIndexPage = () => {
         setTests({ dressage_tests: data.dressage_tests });
         setIsLoading(false);
       })
-      .catch((err) => setHasError(true));
+      .catch((err) => {
+        setHasError(true);
+        setIsLoading(false);
+      });
   }, []);
 
   // create loading state

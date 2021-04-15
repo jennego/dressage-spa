@@ -20,7 +20,7 @@ Roadmap
 - refactor code to modern react ✔️
 - redesign - in progress ✔️
 - error handling - basic
-- loading states
+- loading states - for index, need to for show too
 - arena pull out - svg for now
 - right click context menu (open, open in new tab, add to favs)
 - switch for dark mode - done

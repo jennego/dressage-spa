@@ -7,6 +7,7 @@ import About from "../pages/About.js";
 import Page404 from "../pages/404.js";
 import Settings from "../pages/Settings.js";
 import Search from "./Search/search.js";
+import Roadmap from "../pages/Roadmap.js";
 
 class Routes extends Component {
   render() {
@@ -14,6 +15,9 @@ class Routes extends Component {
       <Switch>
         <Route exact path="/about">
           <About />
+        </Route>
+        <Route exact path="/roadmap">
+          <Roadmap />
         </Route>
         <Route exact path="/settings">
           <Settings />
