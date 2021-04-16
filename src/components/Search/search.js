@@ -9,6 +9,7 @@ import Filters from "./Filters";
 import UseUrlParams from "./UseURLParams";
 import DefaultTests from "../List/DefaultList";
 import Loading from "../loading";
+import { Highlight } from "react-highlighter-ts/dist/lib";
 
 const Search = (props) => {
   // const { dressage_tests = [] } = props;
@@ -39,13 +40,22 @@ const Search = (props) => {
             pad="small"
             justify="between"
           >
-            <Text size="large">{item.full_name}</Text>
+            <Text size="large">
+              <Highlight
+                search={query}
+                matchStyle={{ fontWeight: "bold", background: "none" }}
+              >
+                {item.full_name}
+              </Highlight>
+            </Text>
             <Box
               background={item.current ? "status-ok" : "status-warning"}
               round="10px"
               pad="xxsmall"
             >
-              <Text size="small">{item.current ? "current" : "outdated"}</Text>
+              <Text weight="bold" color="white" size="small">
+                {item.current ? "current" : "outdated"}
+              </Text>
             </Box>
           </Box>
         ),
