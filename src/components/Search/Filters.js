@@ -14,8 +14,8 @@ import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 
 const Filters = (props) => {
-  const [isCurrentValue, setisCurrentValue] = useState(true);
-  const [isDefaultChecked, setIsDefaultChecked] = useState(true);
+  const [isCurrentValue, setisCurrentValue] = useState();
+  const [isDefaultChecked, setIsDefaultChecked] = useState(true); // use an array of booleans?
 
   const history = useHistory();
   const location = useLocation();
@@ -40,28 +40,45 @@ const Filters = (props) => {
 
   console.log("history", history.location.search);
 
+  // first load
   useEffect(() => {
-    // what if current is false or all  - allow that string too
     const queryParams = queryString.parse(location.search);
     let newQueries = {};
 
-    if (current === "false" || current === "all") {
+    if (current === "false") {
+      setisCurrentValue(false);
       newQueries = {
         ...queryParams,
-        current: current,
+        current: false,
+      };
+    } else if (current === "all") {
+      setisCurrentValue("all");
+      newQueries = {
+        ...queryParams,
+        current: "all",
       };
     } else {
+      setisCurrentValue(true);
       newQueries = {
         ...queryParams,
-        current: isCurrentValue,
+        current: true,
       };
     }
+    history.replace({ search: queryString.stringify(newQueries) });
 
-    if (history.location.search.length === 0) {
-      history.replace({ search: queryString.stringify(newQueries) });
-    } else {
-      history.push({ search: queryString.stringify(newQueries) });
-    }
+    return () => {};
+  }, []);
+
+  useEffect(() => {
+    // what if current is false or all  - allow that string too
+    const queryParams = queryString.parse(location.search);
+
+    let newQueries = {
+      ...queryParams,
+      current: isCurrentValue,
+    };
+
+    history.push({ search: queryString.stringify(newQueries) });
   }, [isCurrentValue]);
 
   return (
