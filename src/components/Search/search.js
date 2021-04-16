@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import Fuse from "fuse.js";
 import TestSegmentItem from "../List/TestSegmentItem";
-import { TextInput, Card, Box, Text } from "grommet";
-import { Search as SearchIcon } from "grommet-icons";
+import { TextInput, Card, Box, Text, Button } from "grommet";
+import { Search as SearchIcon, FormClose } from "grommet-icons";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 import Filters from "./Filters";
@@ -22,7 +22,7 @@ const Search = (props) => {
   //   minMatchCharLength: 2,
   // };
   // const fuse = new Fuse(dressage_tests, options);
-
+  const targetRef = useRef();
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchValue, setSearchValue] = useState("");
@@ -136,6 +136,16 @@ const Search = (props) => {
     }, 1000);
   };
 
+  const removeQuery = () => {
+    setSearchTerm(undefined);
+    setSearchValue("");
+    const queryParams = queryString.parse(location.search);
+    const newQueries = {
+      ...delete queryParams.query,
+    };
+    history.push({ search: queryString.stringify(newQueries) });
+  };
+
   console.log("filtered tests", props);
 
   return (
@@ -146,8 +156,17 @@ const Search = (props) => {
         ) : (
           <h2>Search for tests</h2>
         )}
-        <Card background="surface" elevation="none" round={false} width="large">
+        <Card
+          background="surface"
+          elevation="none"
+          round={false}
+          width="large"
+          direction="row"
+          border
+          ref={targetRef}
+        >
           <TextInput
+            plain
             placeholder="search"
             icon={<SearchIcon />}
             value={searchValue}
@@ -156,7 +175,9 @@ const Search = (props) => {
             suggestions={searchResultsList}
             onSuggestionSelect={handleSelectSuggestion}
             round="10px"
+            dropProps={{ stretch: true, target: targetRef.current }}
           />
+          {query ? <Button icon={<FormClose />} onClick={removeQuery} /> : ""}
         </Card>
         <Filters />
       </div>
