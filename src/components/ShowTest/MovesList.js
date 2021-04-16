@@ -7,7 +7,7 @@ const MovesList = (props) => {
   const size = useContext(ResponsiveContext);
 
   return (
-    <div className="MovesList">
+    <div className="MovesList mb-5">
       {moves.map((move) => (
         <div className="d-flex">
           <Card

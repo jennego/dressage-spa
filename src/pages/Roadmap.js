@@ -10,7 +10,7 @@ const Roadmap = () => {
       <ul>
         <li>Sign in/Out via OAuth (FB, Google, maybe Twitter?)</li>
         <li>Favoriting</li>
-        <li>Save personal notes on test page</li>
+        <li>Save personal notes on test page?</li>
         <li>Basic offline support (Progessive Web App)</li>
         <li> HTML 5 Canvas/Phaser Arena drawing app/game </li>
       </ul>
@@ -25,6 +25,7 @@ const Roadmap = () => {
         <li> Favourites list </li>
         <li> Reduce re-renders / Optimize </li>
         <li> Search equivalent terms (make intro === walk trot) </li>
+        <li> Look into PWA/Offline</li>
       </ul>
 
       <p>What about iPhone/Android app?</p>
