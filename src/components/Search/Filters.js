@@ -15,7 +15,13 @@ import queryString from "query-string";
 
 const Filters = (props) => {
   const [isCurrentValue, setisCurrentValue] = useState();
-  const [isDefaultChecked, setIsDefaultChecked] = useState(true); // use an array of booleans?
+  const [isDefaultChecked, setIsDefaultChecked] = useState(true); // use an array of booleans? [{name: 'Current', checked: true}]
+
+  const [levelChecked, setLevelChecked] = useState([
+    { id: "intro", checked: false },
+    { id: "training", checked: false },
+    { id: "first", checked: false },
+  ]);
 
   const history = useHistory();
   const location = useLocation();
@@ -29,6 +35,8 @@ const Filters = (props) => {
     setIsDefaultChecked(false);
   };
 
+  const handleResetAll = () => {};
+
   const setisCurrent = (e) => {
     if (e.target.name === "Current") {
       setIsDefaultChecked(true);
@@ -38,7 +46,26 @@ const Filters = (props) => {
     setisCurrentValue(e.target.value);
   };
 
-  console.log("history", history.location.search);
+  const handleLevelCheck = (e, item) => {
+    console.log("check", e.target.id, e.target.checked);
+
+    const indexToUpdate = levelChecked.findIndex(
+      (item) => item.id === e.target.id
+    );
+    const updatedArray = [...levelChecked]; // creates a copy of the array
+    updatedArray[indexToUpdate].checked = e.target.checked;
+    setLevelChecked(updatedArray);
+  };
+
+  console.log(levelChecked);
+
+  // map levels to params
+  useEffect(() => {
+    // effect
+    return () => {
+      // cleanup
+    };
+  }, [levelChecked]);
 
   // first load
   useEffect(() => {
@@ -85,7 +112,19 @@ const Filters = (props) => {
     <Box direction="row">
       <Box>
         Level
-        <CheckBoxGroup options={["Intro", "Training", "First"]} />
+        <CheckBoxGroup
+          name="LevelsCheckbox"
+          valueKey="id"
+          options={[
+            { label: "Walk/Trot", id: "intro" },
+            { label: "Training", id: "training" },
+            { label: "First", id: "first" },
+          ]}
+          value={levelChecked
+            .filter((item) => item.checked === true)
+            .map((item) => item.id)}
+          onChange={handleLevelCheck}
+        />
       </Box>
       <Box>
         Current
@@ -109,7 +148,7 @@ const Filters = (props) => {
       </Box>
       <Box>
         <Button label="Display All" onClick={handleDisplayAll}></Button>
-        <Button label="Reset All"></Button>
+        <Button label="Reset All" onClick={handleResetAll}></Button>
       </Box>
     </Box>
   );
