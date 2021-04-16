@@ -140,10 +140,9 @@ const Search = (props) => {
     setSearchTerm(undefined);
     setSearchValue("");
     const queryParams = queryString.parse(location.search);
-    const newQueries = {
-      ...delete queryParams.query,
-    };
-    history.push({ search: queryString.stringify(newQueries) });
+    delete queryParams.query;
+    console.log("what is left", queryParams);
+    history.push({ search: queryString.stringify(queryParams) });
   };
 
   console.log("filtered tests", props);
