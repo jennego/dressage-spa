@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { MenuContext } from "../../contexts/SlideMenuProvider";
 import { Box, Tab, Tabs } from "grommet";
-
+import Small from "../../assets/SMALL.svg";
 // this is probably going to need context
 
 const sideMenuStyles = {
@@ -52,10 +52,21 @@ const SlideMenu = () => {
     >
       <Box background="slide" fill="vertical" pad="small">
         <Tabs pad="none">
-          <Tab title="Arena">Arena Content</Tab>
-          <Tab title="User Settings">Setting content</Tab>
+          <Tab title="Small">
+            20m x 40m
+            <div style={{ objectFit: "contain" }}>
+              <img
+                src={Small}
+                style={{
+                  width: "280px",
+                  backgroundColor: "white",
+                }}
+                alt="20x30 arena"
+              />
+            </div>
+          </Tab>
+          <Tab title="Large"> 20x60</Tab>
         </Tabs>
-        <p>Hello Arena and settings go here!</p>
         {console.log("menu toggle", isOpen)}
       </Box>
     </Menu>

@@ -181,12 +181,12 @@ const Search = (props) => {
         <Filters />
       </div>
       {query === undefined || query.length === 0 ? (
-        <div className="row no-gutters">
+        <div className="row no-gutters mb-4 mt-4">
           {props.tests.dressage_tests === undefined ? (
             <Loading />
           ) : (
             props.tests.dressage_tests.map((test) => (
-              <div className="col-12 col-sm-6">
+              <div className="col-12 col-sm-9 mx-auto">
                 <TestSegmentItem key={test.id} {...test}></TestSegmentItem>
               </div>
             ))
@@ -197,7 +197,7 @@ const Search = (props) => {
       ) : (
         <div className="row no-gutters">
           {searchResults.map(({ item, refIndex }) => (
-            <div className="col-12 col-sm-6">
+            <div className="col-12 col-sm-9">
               <TestSegmentItem key={item.id} {...item}></TestSegmentItem>
             </div>
           ))}

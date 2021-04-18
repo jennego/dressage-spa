@@ -49,7 +49,7 @@ const TestSegmentItem = ({
         <Card
           className="test-card"
           background="surface"
-          margin="medium"
+          margin="xsmall"
           a11yTitle={full_name}
           onClick={() => handleTestClick(id)}
           hoverIndicator={true}
