@@ -4,7 +4,7 @@ import { Main, Box, Heading } from "grommet";
 
 const Roadmap = () => {
   return (
-    <div>
+    <Box pad="medium">
       <h1>Roadmap</h1>
       <p>Features eventually planned:</p>
       <ul>
@@ -36,7 +36,7 @@ const Roadmap = () => {
         dev fee...and this will be a free app so that doesn't really add up (I
         don't have other lucrative iOS app plans either).
       </p>
-    </div>
+    </Box>
   );
 };
 

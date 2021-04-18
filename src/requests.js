@@ -1,5 +1,9 @@
-const BASE_URL = "http://localhost:3000";
+let API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://dressage-tests.herokuapp.com/"
+    : "https//localhost:3000";
 
+let BASE_URL = API_URL;
 // function getJwt() {
 //     return localStorage.getItem('jwt');
 // }
