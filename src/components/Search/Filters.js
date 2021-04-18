@@ -57,11 +57,28 @@ const Filters = (props) => {
     setLevelChecked(updatedArray);
   };
 
-  console.log(levelChecked);
-
   // map levels to params
   useEffect(() => {
-    // effect
+    let levels = levelChecked
+      .filter((item) => item.checked === true)
+      .map((item) => item.id);
+    console.log("levels", levels);
+
+    if (levels.length === 0) {
+      const queryParams = queryString.parse(location.search);
+      delete queryParams.level;
+      history.push({ search: queryString.stringify(queryParams) });
+    } else if (levels !== undefined) {
+      let levelParams = levels.toString();
+      const queryParams = queryString.parse(location.search);
+      console.log("location", queryParams);
+      let newQueries = {
+        ...queryParams,
+        level: levelParams,
+      };
+      history.push({ search: queryString.stringify(newQueries) });
+    }
+
     return () => {
       // cleanup
     };
@@ -96,8 +113,8 @@ const Filters = (props) => {
     return () => {};
   }, []);
 
+  // changes to current
   useEffect(() => {
-    // what if current is false or all  - allow that string too
     const queryParams = queryString.parse(location.search);
 
     let newQueries = {
