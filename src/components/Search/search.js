@@ -1,14 +1,15 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import Fuse from "fuse.js";
 import TestSegmentItem from "../List/TestSegmentItem";
-import { TextInput, Card, Box, Text } from "grommet";
-import { Search as SearchIcon } from "grommet-icons";
+import { TextInput, Card, Box, Text, Button } from "grommet";
+import { Search as SearchIcon, FormClose } from "grommet-icons";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 import Filters from "./Filters";
 import UseUrlParams from "./UseURLParams";
 import DefaultTests from "../List/DefaultList";
 import Loading from "../loading";
+import { Highlight } from "react-highlighter-ts/dist/lib";
 
 const Search = (props) => {
   // const { dressage_tests = [] } = props;
@@ -21,7 +22,7 @@ const Search = (props) => {
   //   minMatchCharLength: 2,
   // };
   // const fuse = new Fuse(dressage_tests, options);
-
+  const targetRef = useRef();
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchValue, setSearchValue] = useState("");
@@ -39,13 +40,22 @@ const Search = (props) => {
             pad="small"
             justify="between"
           >
-            <Text size="large">{item.full_name}</Text>
+            <Text size="large">
+              <Highlight
+                search={query}
+                matchStyle={{ fontWeight: "bold", background: "none" }}
+              >
+                {item.full_name}
+              </Highlight>
+            </Text>
             <Box
               background={item.current ? "status-ok" : "status-warning"}
               round="10px"
               pad="xxsmall"
             >
-              <Text size="small">{item.current ? "current" : "outdated"}</Text>
+              <Text weight="bold" color="white" size="small">
+                {item.current ? "current" : "outdated"}
+              </Text>
             </Box>
           </Box>
         ),
@@ -126,6 +136,15 @@ const Search = (props) => {
     }, 1000);
   };
 
+  const removeQuery = () => {
+    setSearchTerm(undefined);
+    setSearchValue("");
+    const queryParams = queryString.parse(location.search);
+    delete queryParams.query;
+    console.log("what is left", queryParams);
+    history.push({ search: queryString.stringify(queryParams) });
+  };
+
   console.log("filtered tests", props);
 
   return (
@@ -136,8 +155,17 @@ const Search = (props) => {
         ) : (
           <h2>Search for tests</h2>
         )}
-        <Card background="surface" elevation="none" round={false} width="large">
+        <Card
+          background="surface"
+          elevation="none"
+          round={false}
+          width="large"
+          direction="row"
+          border
+          ref={targetRef}
+        >
           <TextInput
+            plain
             placeholder="search"
             icon={<SearchIcon />}
             value={searchValue}
@@ -146,17 +174,19 @@ const Search = (props) => {
             suggestions={searchResultsList}
             onSuggestionSelect={handleSelectSuggestion}
             round="10px"
+            dropProps={{ stretch: true, target: targetRef.current }}
           />
+          {query ? <Button icon={<FormClose />} onClick={removeQuery} /> : ""}
         </Card>
         <Filters />
       </div>
       {query === undefined || query.length === 0 ? (
-        <div className="row no-gutters">
+        <div className="row no-gutters mb-4 mt-4">
           {props.tests.dressage_tests === undefined ? (
             <Loading />
           ) : (
             props.tests.dressage_tests.map((test) => (
-              <div className="col-12 col-sm-6">
+              <div className="col-12 col-sm-9 mx-auto">
                 <TestSegmentItem key={test.id} {...test}></TestSegmentItem>
               </div>
             ))
@@ -167,7 +197,7 @@ const Search = (props) => {
       ) : (
         <div className="row no-gutters">
           {searchResults.map(({ item, refIndex }) => (
-            <div className="col-12 col-sm-6">
+            <div className="col-12 col-sm-9">
               <TestSegmentItem key={item.id} {...item}></TestSegmentItem>
             </div>
           ))}
