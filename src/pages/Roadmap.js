@@ -24,6 +24,7 @@ const Roadmap = () => {
         <li> Sharing links working </li>
         <li> Favourites list </li>
         <li> Reduce re-renders / Optimize </li>
+        <li> Rewrite filtering logic</li>
         <li> Search equivalent terms (make intro === walk trot) </li>
         <li> Look into PWA/Offline</li>
       </ul>

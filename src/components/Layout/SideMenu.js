@@ -65,7 +65,11 @@ const SlideMenu = () => {
               />
             </div>
           </Tab>
-          <Tab title="Large"> 20x60</Tab>
+          <Tab title="Large">
+            20x60
+            <br></br>
+            Coming later.
+          </Tab>
         </Tabs>
         {console.log("menu toggle", isOpen)}
       </Box>
