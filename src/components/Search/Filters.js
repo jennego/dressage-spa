@@ -165,7 +165,7 @@ const Filters = (props) => {
       </Box>
       <Box>
         <Button label="Display All" onClick={handleDisplayAll}></Button>
-        <Button label="Reset All" onClick={handleResetAll}></Button>
+        {/* <Button label="Reset All" onClick={handleResetAll}></Button> */}
       </Box>
     </Box>
   );
