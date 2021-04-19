@@ -133,7 +133,7 @@ const Filters = (props) => {
           name="LevelsCheckbox"
           valueKey="id"
           options={[
-            { label: "Walk/Trot", id: "intro" },
+            // { label: "Walk/Trot", id: "intro" },
             { label: "Training", id: "training" },
             { label: "First", id: "first" },
           ]}

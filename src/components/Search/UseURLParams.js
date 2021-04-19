@@ -74,7 +74,7 @@ const UseUrlParams = (props) => {
       // console.log("array to combine", filteredTestList, trainingFilteredList);
     } else {
       let combined = trainingFilteredList.dressage_tests.filter((item) =>
-        current === "all" ? item : item.current === !!current
+        current === "all" ? item : item.current.toString() === current
       );
       console.log("current param", current);
 
