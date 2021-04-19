@@ -10,42 +10,90 @@ const UseUrlParams = (props) => {
   const location = useLocation();
 
   const { search } = useLocation();
-  const { query } = queryString.parse(search);
   const { current } = queryString.parse(search);
+  const { level } = queryString.parse(search);
 
   const [filteredTestList, setFilteredTestList] = useState([]);
-
-  console.log(current);
+  const [trainingFilteredList, setTrainingFilteredList] = useState([]);
+  const [combinedFilterArr, setCombinedFilterArr] = useState([]);
   let tests = props.tests;
+
+  // filter current based on params
 
   useEffect(() => {
     if (current === "true") {
-      console.log("current is true");
       let filteredTests = tests.dressage_tests.filter(
         (test) => test.current === true
       );
       setFilteredTestList({ dressage_tests: filteredTests });
     } else if (current === "false") {
-      console.log("current is false");
-
       let filteredTests = tests.dressage_tests.filter(
         (test) => test.current === false
       );
       setFilteredTestList({ dressage_tests: filteredTests });
     } else if (current === "all") {
-      console.log("current is all");
-
       setFilteredTestList(tests);
     }
   }, [current]);
 
+  // filter levels based on params
+  console.log("level query param", level);
+
+  useEffect(() => {
+    if (level !== undefined) {
+      let levelArr = level.split(",");
+      let results = tests;
+
+      let trainingFiltered = results.dressage_tests.filter((item) =>
+        levelArr.includes(item.level.toLowerCase())
+      );
+      setTrainingFilteredList({ dressage_tests: trainingFiltered });
+    } else if (level === undefined) {
+      setTrainingFilteredList({ dressage_tests: tests.dressage_tests });
+    }
+    return () => {
+      // cleanup
+    };
+  }, [level]);
+
+  // use separate arrays to filter
+  // then filter again
+  // should put filter params into object later
+
+  useEffect(() => {
+    if (level === undefined) {
+      console.log("current only");
+      setCombinedFilterArr(filteredTestList);
+    } else if (
+      filteredTestList.dressage_tests === undefined &&
+      trainingFilteredList.dressage_tests === undefined
+    ) {
+      console.log("nothing return tests");
+      setCombinedFilterArr({ dressage_tests: tests.dressage_tests });
+
+      // console.log("array to combine", filteredTestList, trainingFilteredList);
+    } else {
+      let combined = trainingFilteredList.dressage_tests.filter((item) =>
+        current === "all" ? item : item.current === !!current
+      );
+      console.log("current param", current);
+
+      console.log("combined arrays", combined);
+      setCombinedFilterArr({ dressage_tests: combined });
+    }
+
+    return () => {
+      //          cleanup
+    };
+  }, [filteredTestList, trainingFilteredList]);
+
   return (
     <div>
-      {console.log("filtered tests", filteredTestList)}
-      {tests === undefined ? (
+      {console.log("combined filter", combinedFilterArr)}
+      {combinedFilterArr === undefined ? (
         "loading"
       ) : (
-        <Search tests={filteredTestList}></Search>
+        <Search tests={combinedFilterArr}></Search>
       )}
       {/* <Filters></Filters> */}
     </div>
