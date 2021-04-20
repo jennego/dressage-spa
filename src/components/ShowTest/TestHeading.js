@@ -21,6 +21,7 @@ import {
   EmailIcon,
   EmailShareButton,
 } from "react-share";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const shareUrl = window.location.href;
 
@@ -29,25 +30,60 @@ const TestHeading = (props) => {
   const history = useHistory();
 
   const [open, setOpen] = useState();
+  const [isCopied, setIsCopy] = useState(false);
   const onOpen = () => {
     setOpen(true);
   };
   const onClose = () => {
     setOpen(false);
   };
+
+  const handleCopyLink = (e) => {};
+
   const DropContent = ({ onClose }) => (
-    <Box pad="small">
-      <Box direction="row" justify="around" align="center">
-        <FacebookShareButton url={shareUrl} quote={full_name}>
+    <Box
+      pad="small"
+      background="background"
+      border={{ color: "brand", size: "2px", side: "bottom" }}
+    >
+      <Box
+        direction="row"
+        justify="around"
+        align="center"
+        pad={{ horizontal: "small" }}
+        margin={{ top: "6px" }}
+      >
+        <FacebookShareButton
+          url={shareUrl}
+          quote={full_name}
+          className="social-share"
+        >
           <FacebookIcon size={32} round />
         </FacebookShareButton>
-        <TwitterShareButton url={shareUrl} title={full_name}>
+        <TwitterShareButton
+          url={shareUrl}
+          title={full_name}
+          className="social-share"
+        >
           <TwitterIcon size={32} round />
         </TwitterShareButton>
-        <EmailShareButton url={shareUrl} subject={full_name}>
+        <EmailShareButton
+          url={shareUrl}
+          subject={full_name}
+          className="social-share"
+        >
           <EmailIcon size={32} round />
         </EmailShareButton>
-        <Link /> Copy Link
+        <CopyToClipboard text={shareUrl}>
+          <Button
+            icon={<Link size="20px" />}
+            size="small"
+            primary
+            plain
+            style={{ padding: "5px", marginBottom: "10px" }}
+            className="social-share"
+          />
+        </CopyToClipboard>
       </Box>
     </Box>
   );
