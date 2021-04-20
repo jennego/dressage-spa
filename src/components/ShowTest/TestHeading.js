@@ -86,6 +86,7 @@ const TestHeading = (props) => {
           <Button
             icon={isCopied ? <Copy size="20px" /> : <Link size="20px" />}
             primary
+            color={isCopied ? "light-1" : "brand"}
             plain
             style={{ padding: "5px", marginBottom: "10px" }}
             className="social-share"

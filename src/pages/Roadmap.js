@@ -15,6 +15,11 @@ const Roadmap = () => {
         <li> HTML 5 Canvas/Phaser Arena drawing app/game </li>
       </ul>
 
+      <h2>This Week's Update</h2>
+      <ul>
+        <li> sharing </li>
+      </ul>
+
       <h2> Next Release</h2>
       <ul>
         <li>API: Admin interface / sign in </li>
