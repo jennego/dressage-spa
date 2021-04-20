@@ -19,6 +19,7 @@ const UseUrlParams = (props) => {
   let tests = props.tests;
 
   // filter current based on params
+  // combine with the other filters?
 
   useEffect(() => {
     if (current === "true") {

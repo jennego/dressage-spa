@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Heading, Button, Tip } from "grommet";
+import React, { useState } from "react";
+import { Box, Heading, Button, DropButton, Tip, Text, Anchor } from "grommet";
 import IsCurrentBadge from "./isCurrentBadge";
 import {
   Share,
@@ -9,12 +9,48 @@ import {
   Favorite,
   DocumentPdf,
   Close,
+  Link,
+  Copy,
 } from "grommet-icons";
 import { useLocation, useHistory } from "react-router-dom";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  TwitterShareButton,
+  EmailIcon,
+  EmailShareButton,
+} from "react-share";
+
+const shareUrl = window.location.href;
 
 const TestHeading = (props) => {
   const { full_name, current } = props;
   const history = useHistory();
+
+  const [open, setOpen] = useState();
+  const onOpen = () => {
+    setOpen(true);
+  };
+  const onClose = () => {
+    setOpen(false);
+  };
+  const DropContent = ({ onClose }) => (
+    <Box pad="small">
+      <Box direction="row" justify="around" align="center">
+        <FacebookShareButton url={shareUrl} quote={full_name}>
+          <FacebookIcon size={32} round />
+        </FacebookShareButton>
+        <TwitterShareButton url={shareUrl} title={full_name}>
+          <TwitterIcon size={32} round />
+        </TwitterShareButton>
+        <EmailShareButton url={shareUrl} subject={full_name}>
+          <EmailIcon size={32} round />
+        </EmailShareButton>
+        <Link /> Copy Link
+      </Box>
+    </Box>
+  );
   return (
     <Box
       fill="horizontal"
@@ -42,7 +78,16 @@ const TestHeading = (props) => {
           </div>
           <div className="col-12 test-toolbar d-flex justify-content-start">
             <Box direction="row" margin={{ bottom: "small" }}>
-              <Button icon={<Share />} label="share" pad="none" color="brand" />
+              <DropButton
+                color="brand"
+                icon={<Share />}
+                label="Share"
+                open={open}
+                onOpen={onOpen}
+                onClose={onClose}
+                dropContent={<DropContent onClose={onClose} />}
+                dropProps={{ align: { top: "bottom" } }}
+              />
               <Button
                 icon={<Download />}
                 label="download"
