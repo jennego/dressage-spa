@@ -1,5 +1,14 @@
-import React, { useState } from "react";
-import { Box, Heading, Button, DropButton, Tip, Text, Anchor } from "grommet";
+import React, { useState, useRef } from "react";
+import {
+  Box,
+  Heading,
+  Button,
+  DropButton,
+  Tip,
+  Text,
+  Anchor,
+  Drop,
+} from "grommet";
 import IsCurrentBadge from "./isCurrentBadge";
 import {
   Share,
@@ -31,14 +40,13 @@ const TestHeading = (props) => {
 
   const [open, setOpen] = useState();
   const [isCopied, setIsCopy] = useState(false);
+  const targetRef = useRef();
   const onOpen = () => {
     setOpen(true);
   };
   const onClose = () => {
     setOpen(false);
   };
-
-  const handleCopyLink = (e) => {};
 
   const DropContent = ({ onClose }) => (
     <Box
@@ -74,17 +82,33 @@ const TestHeading = (props) => {
         >
           <EmailIcon size={32} round />
         </EmailShareButton>
-        <CopyToClipboard text={shareUrl}>
+        <CopyToClipboard text={shareUrl} onCopy={() => setIsCopy(true)}>
           <Button
-            icon={<Link size="20px" />}
-            size="small"
+            icon={isCopied ? <Copy size="20px" /> : <Link size="20px" />}
             primary
             plain
             style={{ padding: "5px", marginBottom: "10px" }}
             className="social-share"
-          />
+          ></Button>
         </CopyToClipboard>
       </Box>
+
+      {isCopied ? (
+        <Drop
+          target={targetRef.current}
+          align={{ top: "bottom", left: "right" }}
+          margin={{ left: "20px", top: "10px" }}
+          background="background"
+          onClickOutside={() => setIsCopy(false)}
+          onEsc={() => setIsCopy(false)}
+        >
+          <Box pad="small">
+            <Text>Link Copied!</Text>
+          </Box>
+        </Drop>
+      ) : (
+        ""
+      )}
     </Box>
   );
   return (
@@ -123,7 +147,9 @@ const TestHeading = (props) => {
                 onClose={onClose}
                 dropContent={<DropContent onClose={onClose} />}
                 dropProps={{ align: { top: "bottom" } }}
+                ref={targetRef}
               />
+
               <Button
                 icon={<Download />}
                 label="download"
