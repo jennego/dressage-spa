@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Main, Box, Heading } from "grommet";
+import { Main, Box, Heading, Anchor } from "grommet";
 
 const About = () => (
   <div className="AboutPage Main">
@@ -20,9 +20,16 @@ const About = () => (
         dressage rider. I am also looking for a remote web dev job (part-time)
         to fiance my dressage habit.
       </p>
+      <p> I ride lower levels. </p>
       <p>
         This app is made with React and is using Ruby on Rails for the backend.
-        Code is on Github.
+        Code is on{" "}
+        <Anchor
+          href="https://github.com/jennego/dressage-spa"
+          target="_blank"
+          label="Github"
+        />
+        .
       </p>
     </Main>
   </div>

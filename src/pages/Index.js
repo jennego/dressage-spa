@@ -3,7 +3,7 @@ import { DressageTest } from "../requests";
 import ErrorMessage from "../components/error";
 import Search from "../components/Search/search";
 import UseUrlParams from "../components/Search/UseURLParams";
-import { Box, Spinner, Text } from "grommet";
+import { Box, Paragraph, Spinner, Text } from "grommet";
 import Loading from "../components/loading";
 
 const DressageIndexPage = () => {
@@ -31,7 +31,17 @@ const DressageIndexPage = () => {
       {console.log(isLoading)}
       {hasError ? <ErrorMessage /> : ""}
 
-      {isLoading ? <Loading /> : <UseUrlParams tests={tests}> </UseUrlParams>}
+      {isLoading ? (
+        <Box justify="center">
+          <Loading />
+          <Paragraph fill size="large" textAlign="center">
+            Please Wait. It may take a few seconds on the first load as the data
+            is on a free Heroku account.
+          </Paragraph>
+        </Box>
+      ) : (
+        <UseUrlParams tests={tests}> </UseUrlParams>
+      )}
       {/* <Search {...tests} /> */}
     </div>
   );

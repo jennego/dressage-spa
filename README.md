@@ -4,27 +4,27 @@ This is the React SPA version of the dressage test listing app. API is running o
 
 Don't forget your dressage test or learn the wrong one!
 
+https://dressagetests.netlify.app
+
+Front end on Netlify, back end on Heroku.
+
+API REPO: https://github.com/jennego/dressage
+
+---
+
 TO DO
 
 ASAP
 
-- contexts for slide menu ✔️
-- filter current
-- do something about the css/grommet/styled variables - colors
 - optimize responsive design
 - fix colours
-- make sure it is usable in light and dark modes
+- clean up unneeded files and packages
+- fix radio button when changed programmatically or set by url
+- fix checkboxes when changed programmatically or set by url
 
 Roadmap
 
-- refactor code to modern react ✔️
-- redesign - in progress ✔️
-- error handling - basic
-- loading states - for index, need to for show too
-- arena pull out - svg for now
 - right click context menu (open, open in new tab, add to favs)
-- switch for dark mode - done
-- secure api? Or leave as public API?
 - user settings (theme mode, arena setting) - local storage unless user is logged in
 
 Next release
@@ -45,12 +45,14 @@ Index page
 
 This is a React SPA using
 
-- React, obviously - with functional components and hooks
+- React, obviously - with functional components and hooks, context when needed
 - Grommet (UI Components) / Bootstrap 4 grid only
-- React-Burger-Menu
-- Fuse.js (search, I was going to use Algolia but that seemed overkill)
+- React-Burger-Menu for offCanvas slide-out
+- Fuse.js for search (I was going to use Algolia but that seemed overkill)
 
-With a Ruby on Rails/Postgres backend.
+With a Ruby on Rails/PostgreSQL backend (REST API).
+
+---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

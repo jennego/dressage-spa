@@ -8,9 +8,11 @@ import {
   Menu,
   ResponsiveContext,
   Button,
+  Text,
 } from "grommet";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { MenuContext } from "../../contexts/SlideMenuProvider";
+import AnchorNavLink from "../../global/AnchorNavLink";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -44,50 +46,55 @@ const NavBar = () => {
         <Box direction="row" align="center" gap="small">
           <h3>Dressage Tests</h3>
         </Box>
-        <ResponsiveContext.Consumer>
-          {(responsive) =>
-            responsive === "small" ? (
-              <Menu
-                label="Menu"
-                items={[
-                  {
-                    label: "About",
-                    href: "/about",
-                  },
-                  {
-                    label: "Tests",
-                    href: "/tests",
-                  },
-                  { label: "Home", onClick: () => {} },
-                ]}
-              />
-            ) : (
-              <Nav direction="row">
-                <Anchor
-                  as={NavLink}
-                  to="/about"
-                  label="About"
-                  color="light-1"
+
+        <Box direction="row">
+          <ResponsiveContext.Consumer>
+            {(responsive) =>
+              responsive === "small" ? (
+                <Menu
+                  label="Menu"
+                  items={[
+                    {
+                      label: "About",
+                      href: "/about",
+                    },
+                    {
+                      label: "Tests",
+                      href: "/tests",
+                    },
+                    { label: "Home", onClick: () => {} },
+                  ]}
                 />
-                <Anchor
-                  as={Link}
-                  to="/roadmap"
-                  label="Roadmap"
-                  color="light-1"
-                />
-                <Anchor as={NavLink} to="/" label="Tests" color="light-1" />
-                <Anchor
-                  as={NavLink}
-                  to="/settings"
-                  label="Settings"
-                  color="light-1"
-                />
-                <Button onClick={openMenu} label="Arena"></Button>
-                <ThemeSwitcher />
-              </Nav>
-            )
-          }
-        </ResponsiveContext.Consumer>
+              ) : (
+                <Nav direction="row">
+                  <AnchorNavLink color="light-1" label="About" url="/about" />
+
+                  <AnchorNavLink
+                    color="light-1"
+                    label="Roadmap"
+                    url="/roadmap"
+                  />
+
+                  <AnchorNavLink
+                    color="light-1"
+                    label="Settings"
+                    url="/settings"
+                  />
+
+                  <AnchorNavLink color="light-1" label="Tests" url="/" />
+                </Nav>
+              )
+            }
+          </ResponsiveContext.Consumer>
+          <Nav
+            direction="row"
+            margin={{ left: "medium" }}
+            alignContent="center"
+          >
+            <Button onClick={openMenu} label="Arena"></Button>
+            <ThemeSwitcher />
+          </Nav>
+        </Box>
       </Header>
     </div>
   );
