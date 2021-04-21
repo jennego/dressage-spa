@@ -18,3 +18,22 @@
 .social-share:hover {
   opacity: 0.6;
 }
+
+.nav-link {
+  text-decoration: none;
+}
+.nav-link:focus-visible {
+  outline: none;
+  border: #6fffb0 2px solid;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+  text-decoration-color: white;
+}
+
+.nav-link-current {
+  text-decoration: underline;
+  text-decoration-color: white;
+  pointer-events: none;
+}

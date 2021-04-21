@@ -33,6 +33,7 @@ import {
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const shareUrl = window.location.href;
+console.log(shareUrl);
 
 const TestHeading = (props) => {
   const { full_name, current } = props;
