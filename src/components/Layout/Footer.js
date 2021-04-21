@@ -1,5 +1,6 @@
 import React from "react";
 import { Footer, Text, Box, Anchor } from "grommet";
+import { Facebook, Instagram, Linkedin } from "grommet-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 const FooterSection = (props) => (
@@ -20,9 +21,23 @@ const FooterSection = (props) => (
         Site Copy Admin
       </Text>
     </Box>
-    <Box direction="row">
-      <FontAwesomeIcon icon={faFacebook} className="sm-icon" />
-      <FontAwesomeIcon icon={faInstagram} className="sm-icon" />
+    <Box direction="row" justif>
+      <a
+        href="https://www.facebook.com/jennego"
+        rel="noreferrer"
+        target="_blank"
+        className="social-share m-1"
+      >
+        <Facebook />
+      </a>
+      <a
+        href="https://www.instagram.com/thejennego"
+        rel="noreferrer"
+        target="_blank"
+        className="social-share m-1"
+      >
+        <Instagram />
+      </a>
     </Box>
   </Footer>
 );
