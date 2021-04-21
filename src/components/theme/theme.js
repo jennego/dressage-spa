@@ -42,6 +42,10 @@ export const theme = {
         light: "light-3",
         dark: "dark-1",
       },
+      hoverIndicator: {
+        light: "light-3",
+        dark: "dark-4",
+      },
     },
   },
 };

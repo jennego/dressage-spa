@@ -25,6 +25,10 @@ import { useLocation, useHistory } from "react-router-dom";
 import {
   FacebookShareButton,
   FacebookIcon,
+  FacebookMessengerShareButton,
+  FacebookMessengerIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
   TwitterIcon,
   TwitterShareButton,
   EmailIcon,
@@ -33,7 +37,6 @@ import {
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const shareUrl = window.location.href;
-console.log(shareUrl);
 
 const TestHeading = (props) => {
   const { full_name, current } = props;
@@ -69,6 +72,20 @@ const TestHeading = (props) => {
         >
           <FacebookIcon size={32} round />
         </FacebookShareButton>
+        <FacebookMessengerShareButton
+          url={shareUrl}
+          appId="936287190463514"
+          className="social-share"
+        >
+          <FacebookMessengerIcon size={32} round />
+        </FacebookMessengerShareButton>
+        <WhatsappShareButton
+          className="social-share"
+          url={shareUrl}
+          title={full_name}
+        >
+          <WhatsappIcon round size={32} />
+        </WhatsappShareButton>
         <TwitterShareButton
           url={shareUrl}
           title={full_name}
@@ -169,11 +186,11 @@ const TestHeading = (props) => {
           </div>
         </div>
       </Box>
-      <Tip content="Go Back to Tests">
+      <Tip content={<Text size="medium"> Go Back to Tests </Text>}>
         <Box
           alignSelf="start"
           pad="xsmall"
-          hoverIndicator={true}
+          hoverIndicator={{ background: "hoverIndicator" }}
           onClick={() => history.push("/")}
         >
           <Close size="large" />

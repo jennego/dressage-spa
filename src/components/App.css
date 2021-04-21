@@ -15,6 +15,10 @@
   /* non mobile size */
 }
 
+.fill-height {
+  min-height: 80vh;
+}
+
 .social-share:hover {
   opacity: 0.6;
 }

@@ -18,9 +18,9 @@ ASAP
 
 - optimize responsive design
 - fix colours
-- rewrite filter logic
-- get social links to work
 - clean up unneeded files and packages
+- fix radio button when changed programmatically or set by url
+- fix checkboxes when changed programmatically or set by url
 
 Roadmap
 
