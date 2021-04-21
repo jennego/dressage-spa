@@ -54,15 +54,16 @@ const NavBar = () => {
                 <Menu
                   label="Menu"
                   items={[
+                    { label: "Arena", onClick: openMenu },
+                    { label: "Tests", href: "/" },
                     {
                       label: "About",
                       href: "/about",
                     },
                     {
-                      label: "Tests",
-                      href: "/tests",
+                      label: "Settings",
+                      href: "/settings",
                     },
-                    { label: "Home", onClick: () => {} },
                   ]}
                 />
               ) : (
@@ -82,6 +83,7 @@ const NavBar = () => {
                   />
 
                   <AnchorNavLink color="light-1" label="Tests" url="/" />
+                  <Button onClick={openMenu} label="Arena"></Button>
                 </Nav>
               )
             }
@@ -91,7 +93,6 @@ const NavBar = () => {
             margin={{ left: "medium" }}
             alignContent="center"
           >
-            <Button onClick={openMenu} label="Arena"></Button>
             <ThemeSwitcher />
           </Nav>
         </Box>

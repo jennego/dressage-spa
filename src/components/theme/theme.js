@@ -3,7 +3,7 @@ export const theme = {
     background: "background",
     font: {
       family: "Poppins",
-      size: "24px",
+      size: "20px",
       height: "normal",
       color: "font",
     },

@@ -126,8 +126,8 @@ const Filters = (props) => {
   }, [isCurrentValue]);
 
   return (
-    <Box direction="row">
-      <Box>
+    <div className="row align-content-center">
+      <div className="col">
         Level
         <CheckBoxGroup
           name="LevelsCheckbox"
@@ -142,8 +142,8 @@ const Filters = (props) => {
             .map((item) => item.id)}
           onChange={handleLevelCheck}
         />
-      </Box>
-      <Box>
+      </div>
+      <div className="col">
         Current
         <RadioButtonGroup
           focusIndicator={true}
@@ -162,12 +162,22 @@ const Filters = (props) => {
           // checked={isCurrentValue ? 1 : 0}
           onChange={setisCurrent}
         />
-      </Box>
-      <Box>
-        <Button label="Display All" onClick={handleDisplayAll}></Button>
-        <Button label="Reset All" onClick={handleResetAll}></Button>
-      </Box>
-    </Box>
+      </div>
+      <div className="col-md col-12 pt-4">
+        <div style={{ float: "right" }}>
+          <Button
+            label="Display All"
+            onClick={handleDisplayAll}
+            margin={{ bottom: "xsmall" }}
+          ></Button>
+          <Button
+            label="Reset All"
+            margin={{ bottom: "xsmall" }}
+            onClick={handleResetAll}
+          ></Button>
+        </div>
+      </div>
+    </div>
   );
 };
 
