@@ -4,7 +4,7 @@ import { Alert } from "grommet-icons";
 
 const IsCurrentBadge = ({ current }) => {
   return (
-    <div>
+    <>
       {current ? (
         ""
       ) : (
@@ -29,7 +29,7 @@ const IsCurrentBadge = ({ current }) => {
           <Text>Outdated</Text>
         </Box>
       )}
-    </div>
+    </>
   );
 };
 

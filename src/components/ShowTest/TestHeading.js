@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import {
   Box,
   Heading,
@@ -8,6 +8,7 @@ import {
   Text,
   Anchor,
   Drop,
+  ResponsiveContext,
 } from "grommet";
 import IsCurrentBadge from "./isCurrentBadge";
 import {
@@ -39,6 +40,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 const shareUrl = window.location.href;
 
 const TestHeading = (props) => {
+  const size = useContext(ResponsiveContext);
   const { full_name, current } = props;
   const history = useHistory();
 
@@ -70,39 +72,39 @@ const TestHeading = (props) => {
           quote={full_name}
           className="social-share"
         >
-          <FacebookIcon size={32} round />
+          <FacebookIcon size={42} round />
         </FacebookShareButton>
         <FacebookMessengerShareButton
           url={shareUrl}
           appId="936287190463514"
           className="social-share"
         >
-          <FacebookMessengerIcon size={32} round />
+          <FacebookMessengerIcon size={42} round />
         </FacebookMessengerShareButton>
         <WhatsappShareButton
           className="social-share"
           url={shareUrl}
           title={full_name}
         >
-          <WhatsappIcon round size={32} />
+          <WhatsappIcon round size={42} />
         </WhatsappShareButton>
         <TwitterShareButton
           url={shareUrl}
           title={full_name}
           className="social-share"
         >
-          <TwitterIcon size={32} round />
+          <TwitterIcon size={42} round />
         </TwitterShareButton>
         <EmailShareButton
           url={shareUrl}
           subject={full_name}
           className="social-share"
         >
-          <EmailIcon size={32} round />
+          <EmailIcon size={42} round />
         </EmailShareButton>
         <CopyToClipboard text={shareUrl} onCopy={() => setIsCopy(true)}>
           <Button
-            icon={isCopied ? <Copy size="20px" /> : <Link size="20px" />}
+            icon={isCopied ? <Copy size="30px" /> : <Link size="30px" />}
             primary
             color={isCopied ? "light-1" : "brand"}
             plain
@@ -156,30 +158,48 @@ const TestHeading = (props) => {
             </Heading>
           </div>
           <div className="col-12 test-toolbar d-flex justify-content-start">
-            <Box direction="row" margin={{ bottom: "small" }}>
+            <Box direction="row" margin={{ bottom: "small" }} justify="center">
               <DropButton
                 color="brand"
                 icon={<Share />}
-                label="Share"
+                label={size !== "small" ? "Share" : ""}
                 open={open}
                 onOpen={onOpen}
                 onClose={onClose}
                 dropContent={<DropContent onClose={onClose} />}
                 dropProps={{ align: { top: "bottom" } }}
                 ref={targetRef}
+                margin="2px"
+                style={
+                  size === "small"
+                    ? { border: "2px  solid", borderRadius: "10px" }
+                    : {}
+                }
               />
 
               <Button
                 icon={<Download />}
-                label="download"
+                label={size !== "small" ? "Download" : ""}
                 pad="none"
                 color="brand"
+                margin="2px"
+                style={
+                  size === "small"
+                    ? { border: "2px  solid", borderRadius: "10px" }
+                    : {}
+                }
               />
               <Button
                 icon={<Star />}
-                label="favourite"
+                label={size !== "small" ? "Favourite" : ""}
                 pad="none"
                 color="brand"
+                margin="2px"
+                style={
+                  size === "small"
+                    ? { border: "2px  solid", borderRadius: "10px" }
+                    : {}
+                }
               />
               <IsCurrentBadge current={current} />
             </Box>
@@ -190,10 +210,11 @@ const TestHeading = (props) => {
         <Box
           alignSelf="start"
           pad="xsmall"
+          margin={size !== "small" ? "xsmall" : "medium"}
           hoverIndicator={{ background: "hoverIndicator" }}
           onClick={() => history.push("/")}
         >
-          <Close size="large" />
+          <Close size={size !== "small" ? "large" : "32px"} />
         </Box>
       </Tip>
     </Box>

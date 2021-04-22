@@ -43,7 +43,11 @@ const Search = (props) => {
             <Text size="large">
               <Highlight
                 search={query}
-                matchStyle={{ fontWeight: "bold", background: "none" }}
+                matchStyle={{
+                  fontWeight: "bold",
+                  background: "none",
+                  color: "#097de3",
+                }}
               >
                 {item.full_name}
               </Highlight>
@@ -186,7 +190,7 @@ const Search = (props) => {
             <Loading />
           ) : (
             props.tests.dressage_tests.map((test) => (
-              <div className="col-12 col-sm-9 mx-auto">
+              <div className="col-12 col-md-9 mx-auto">
                 <TestSegmentItem key={test.id} {...test}></TestSegmentItem>
               </div>
             ))
@@ -195,9 +199,9 @@ const Search = (props) => {
       ) : searchResults.length === 0 ? (
         `There is nothing found for ${query}`
       ) : (
-        <div className="row no-gutters">
+        <div className="row no-gutter mb-4 mt-4">
           {searchResults.map(({ item, refIndex }) => (
-            <div className="col-12 col-sm-9">
+            <div className="col-12 col-md-9 mx-auto">
               <TestSegmentItem key={item.id} {...item}></TestSegmentItem>
             </div>
           ))}
