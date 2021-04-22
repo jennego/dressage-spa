@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import {
   Box,
   Heading,
@@ -8,6 +8,7 @@ import {
   Text,
   Anchor,
   Drop,
+  ResponsiveContext,
 } from "grommet";
 import IsCurrentBadge from "./isCurrentBadge";
 import {
@@ -39,6 +40,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 const shareUrl = window.location.href;
 
 const TestHeading = (props) => {
+  const size = useContext(ResponsiveContext);
   const { full_name, current } = props;
   const history = useHistory();
 
@@ -160,26 +162,44 @@ const TestHeading = (props) => {
               <DropButton
                 color="brand"
                 icon={<Share />}
-                label="Share"
+                label={size !== "small" ? "Share" : ""}
                 open={open}
                 onOpen={onOpen}
                 onClose={onClose}
                 dropContent={<DropContent onClose={onClose} />}
                 dropProps={{ align: { top: "bottom" } }}
                 ref={targetRef}
+                margin="2px"
+                style={
+                  size === "small"
+                    ? { border: "2px  solid", borderRadius: "10px" }
+                    : {}
+                }
               />
 
               <Button
                 icon={<Download />}
-                label="download"
+                label={size !== "small" ? "Download" : ""}
                 pad="none"
                 color="brand"
+                margin="2px"
+                style={
+                  size === "small"
+                    ? { border: "2px  solid", borderRadius: "10px" }
+                    : {}
+                }
               />
               <Button
                 icon={<Star />}
-                label="favourite"
+                label={size !== "small" ? "Favourite" : ""}
                 pad="none"
                 color="brand"
+                margin="2px"
+                style={
+                  size === "small"
+                    ? { border: "2px  solid", borderRadius: "10px" }
+                    : {}
+                }
               />
               <IsCurrentBadge current={current} />
             </Box>
