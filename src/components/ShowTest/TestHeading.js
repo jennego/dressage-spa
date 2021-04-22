@@ -72,39 +72,39 @@ const TestHeading = (props) => {
           quote={full_name}
           className="social-share"
         >
-          <FacebookIcon size={32} round />
+          <FacebookIcon size={42} round />
         </FacebookShareButton>
         <FacebookMessengerShareButton
           url={shareUrl}
           appId="936287190463514"
           className="social-share"
         >
-          <FacebookMessengerIcon size={32} round />
+          <FacebookMessengerIcon size={42} round />
         </FacebookMessengerShareButton>
         <WhatsappShareButton
           className="social-share"
           url={shareUrl}
           title={full_name}
         >
-          <WhatsappIcon round size={32} />
+          <WhatsappIcon round size={42} />
         </WhatsappShareButton>
         <TwitterShareButton
           url={shareUrl}
           title={full_name}
           className="social-share"
         >
-          <TwitterIcon size={32} round />
+          <TwitterIcon size={42} round />
         </TwitterShareButton>
         <EmailShareButton
           url={shareUrl}
           subject={full_name}
           className="social-share"
         >
-          <EmailIcon size={32} round />
+          <EmailIcon size={42} round />
         </EmailShareButton>
         <CopyToClipboard text={shareUrl} onCopy={() => setIsCopy(true)}>
           <Button
-            icon={isCopied ? <Copy size="20px" /> : <Link size="20px" />}
+            icon={isCopied ? <Copy size="30px" /> : <Link size="30px" />}
             primary
             color={isCopied ? "light-1" : "brand"}
             plain
@@ -158,7 +158,7 @@ const TestHeading = (props) => {
             </Heading>
           </div>
           <div className="col-12 test-toolbar d-flex justify-content-start">
-            <Box direction="row" margin={{ bottom: "small" }}>
+            <Box direction="row" margin={{ bottom: "small" }} justify="center">
               <DropButton
                 color="brand"
                 icon={<Share />}
@@ -210,10 +210,11 @@ const TestHeading = (props) => {
         <Box
           alignSelf="start"
           pad="xsmall"
+          margin={size !== "small" ? "xsmall" : "medium"}
           hoverIndicator={{ background: "hoverIndicator" }}
           onClick={() => history.push("/")}
         >
-          <Close size="large" />
+          <Close size={size !== "small" ? "large" : "32px"} />
         </Box>
       </Tip>
     </Box>

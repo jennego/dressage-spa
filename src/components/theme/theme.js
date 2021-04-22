@@ -1,3 +1,45 @@
+const breakpoints = {
+  xsmall: {
+    value: 500,
+  },
+  small: {
+    value: 568,
+    edgeSize: {
+      none: "0px",
+      small: "6px",
+      medium: "12px",
+      large: "24px",
+    },
+  },
+  medium: {
+    value: 992,
+    edgeSize: {
+      none: "0px",
+      small: "12px",
+      medium: "24px",
+      large: "48px",
+    },
+  },
+  large: {
+    value: 1024,
+    edgeSize: {
+      none: "0px",
+      small: "12px",
+      medium: "24px",
+      large: "48px",
+    },
+  },
+  xlarge: {
+    value: 1366,
+    edgeSize: {
+      none: "0px",
+      small: "12px",
+      medium: "24px",
+      large: "48px",
+    },
+  },
+};
+
 export const theme = {
   global: {
     background: "background",

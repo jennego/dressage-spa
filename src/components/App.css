@@ -1,18 +1,24 @@
 @media (max-width: 576px) {
   .move-letter {
-    width: 5rem;
+    width: 8rem;
   }
-  .move-text {
-    font-size: 10px;
+  .move-letter-text {
+    font-size: 22px !important;
+    line-height: normal !important;
   }
+
   /* mobile size */
 }
 
 @media (min-width: 576px) {
   .move-letter {
-    width: 10.5rem;
+    width: 12rem;
   }
   /* non mobile size */
+}
+
+.move-group:hover {
+  background-color: lightblue;
 }
 
 .fill-height {

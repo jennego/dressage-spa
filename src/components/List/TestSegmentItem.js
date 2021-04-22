@@ -49,17 +49,17 @@ const TestSegmentItem = ({
         <Card
           className="test-card"
           background="surface"
-          margin="xsmall"
+          margin="small"
           a11yTitle={full_name}
           onClick={() => handleTestClick(id)}
           hoverIndicator={true}
         >
-          <CardHeader>
+          <CardHeader pad={{ horizontal: "small" }}>
             <Heading level={2} margin="xsmall">
               {full_name}
             </Heading>
           </CardHeader>
-          <CardBody>
+          <CardBody pad={{ horizontal: "medium" }}>
             <Text size="small">
               Organization: {orgname} Level: {level} Test: {name} Year: {year}
             </Text>
@@ -67,13 +67,15 @@ const TestSegmentItem = ({
 
           {current ? (
             <Box background="status-ok">
-              {" "}
-              <Text size="small">Current</Text>
+              <Text textAlign="end" margin={{ right: "small" }} size="small">
+                Current
+              </Text>
             </Box>
           ) : (
             <Box background="status-warning">
-              {" "}
-              <Text size="small">Outdated</Text>
+              <Text textAlign="end" margin={{ right: "small" }} size="small">
+                Outdated
+              </Text>
             </Box>
           )}
         </Card>

@@ -43,7 +43,11 @@ const Search = (props) => {
             <Text size="large">
               <Highlight
                 search={query}
-                matchStyle={{ fontWeight: "bold", background: "none" }}
+                matchStyle={{
+                  fontWeight: "bold",
+                  background: "none",
+                  color: "#097de3",
+                }}
               >
                 {item.full_name}
               </Highlight>
