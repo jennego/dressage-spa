@@ -16,8 +16,8 @@ TO DO
 
 ASAP
 
-- optimize responsive design
-- fix colours
+- optimize responsive design - mostly done
+- fix colours - mostly done
 - clean up unneeded files and packages
 - fix radio button when changed programmatically or set by url
 - fix checkboxes when changed programmatically or set by url

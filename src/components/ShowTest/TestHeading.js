@@ -36,6 +36,7 @@ import {
   EmailShareButton,
 } from "react-share";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { BrowserView, MobileView } from "react-device-detect";
 
 const shareUrl = window.location.href;
 
@@ -54,9 +55,17 @@ const TestHeading = (props) => {
     setOpen(false);
   };
 
+  const handleMobileFBMessage = () => {
+    window.location.href =
+      "fb-messenger://share?link=" +
+      encodeURIComponent(shareUrl) +
+      "&app_id=" +
+      encodeURIComponent(936287190463514);
+  };
+
   const DropContent = ({ onClose }) => (
     <Box
-      pad="small"
+      pad="medium"
       background="background"
       border={{ color: "brand", size: "2px", side: "bottom" }}
     >
@@ -64,7 +73,6 @@ const TestHeading = (props) => {
         direction="row"
         justify="around"
         align="center"
-        pad={{ horizontal: "small" }}
         margin={{ top: "6px" }}
       >
         <FacebookShareButton
@@ -74,13 +82,21 @@ const TestHeading = (props) => {
         >
           <FacebookIcon size={42} round />
         </FacebookShareButton>
-        <FacebookMessengerShareButton
-          url={shareUrl}
-          appId="936287190463514"
-          className="social-share"
-        >
-          <FacebookMessengerIcon size={42} round />
-        </FacebookMessengerShareButton>
+        <BrowserView>
+          <FacebookMessengerShareButton
+            url={shareUrl}
+            appId="936287190463514"
+            className="social-share"
+            onClick={handleMobileFBMessage}
+          >
+            <FacebookMessengerIcon size={42} round />
+          </FacebookMessengerShareButton>
+        </BrowserView>
+        <MobileView>
+          <Box onClick={handleMobileFBMessage} margin={{ bottom: "8px" }}>
+            <FacebookMessengerIcon size={42} round className="social-share" />
+          </Box>
+        </MobileView>
         <WhatsappShareButton
           className="social-share"
           url={shareUrl}
@@ -166,7 +182,7 @@ const TestHeading = (props) => {
                 open={open}
                 onOpen={onOpen}
                 onClose={onClose}
-                dropContent={<DropContent onClose={onClose} />}
+                dropContent={<DropContent />}
                 dropProps={{ align: { top: "bottom" } }}
                 ref={targetRef}
                 margin="2px"

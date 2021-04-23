@@ -29,7 +29,7 @@ const DressageShowPage = (params) => {
   const test = testData.data;
 
   return (
-    <div className="show">
+    <div className="show fill-height">
       {isLoading ? (
         <Loading />
       ) : (
