@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { DressageTest } from "../requests";
 import ErrorMessage from "../components/error";
-import Search from "../components/Search/search";
-import UseUrlParams from "../components/Search/UseURLParams";
+// import UseUrlParams from "../components/Search/UseURLParams";
 import { Box, Paragraph, Spinner, Text } from "grommet";
 import Loading from "../components/loading";
+
+import loadable from "@loadable/component";
+
+const UseUrlParams = loadable((props) =>
+  import("../components/Search/UseURLParams")
+);
 
 const DressageIndexPage = () => {
   const [tests, setTests] = useState({ dressage_tests: [] });

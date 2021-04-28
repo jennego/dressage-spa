@@ -41,6 +41,11 @@ Index page
 - Results component (same page as index)
 - Show full list, current only as default
 
+Long term
+
+- html5/canvas/phaser drawing arena app (integrated)
+- detect country (if there are many tests from different countries) - geo ip
+
 ---
 
 This is a React SPA using
