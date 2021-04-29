@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { DressageTest } from "../requests";
 import TestInfo from "../components/ShowTest/TestInfo";
-import MovesList from "../components/ShowTest/MovesList.js";
 import { Box } from "grommet";
 import TestHeading from "../components/ShowTest/TestHeading";
 import { useParams } from "react-router-dom";
 import Loading from "../components/loading";
+
+import loadable from "@loadable/component";
+let MovesList = loadable((props) => import("../components/ShowTest/MovesList"));
 
 const DressageShowPage = (params) => {
   const [testData, setTestData] = useState({});
@@ -27,6 +29,7 @@ const DressageShowPage = (params) => {
   }, []);
 
   const test = testData.data;
+  console.log(id);
 
   return (
     <div className="show fill-height">
