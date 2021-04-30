@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Filters from "./Filters";
 import Search from "./search";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 
 const UseUrlParams = (props) => {
   const history = useHistory();
@@ -13,8 +11,6 @@ const UseUrlParams = (props) => {
   const { current } = queryString.parse(search);
   const { level } = queryString.parse(search);
 
-  const [filteredTestList, setFilteredTestList] = useState([]);
-  const [trainingFilteredList, setTrainingFilteredList] = useState([]);
   const [combinedFilterArr, setCombinedFilterArr] = useState([]);
   let tests = props.tests;
 
@@ -47,7 +43,6 @@ const UseUrlParams = (props) => {
       ) : (
         <Search tests={combinedFilterArr}></Search>
       )}
-      {/* <Filters></Filters> */}
     </div>
   );
 };

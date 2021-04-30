@@ -27,7 +27,9 @@ const Filters = (props) => {
   const location = useLocation();
 
   const { search } = useLocation();
+
   const { current } = queryString.parse(search);
+  const { level } = queryString.parse(search);
 
   const handleDisplayAll = (e) => {
     history.push({ search: "?current=all" });
@@ -59,6 +61,10 @@ const Filters = (props) => {
 
   // map levels to params
   useEffect(() => {
+    //   setLevelChecked({ id: level, checked: true });
+
+    // console.log("level checked", levelChecked);
+
     let levels = levelChecked
       .filter((item) => item.checked === true)
       .map((item) => item.id);
@@ -84,7 +90,7 @@ const Filters = (props) => {
     };
   }, [levelChecked]);
 
-  // first load
+  // first load for current
   useEffect(() => {
     const queryParams = queryString.parse(location.search);
     let newQueries = {};
@@ -109,6 +115,18 @@ const Filters = (props) => {
       };
     }
     history.replace({ search: queryString.stringify(newQueries) });
+
+    if (level !== undefined) {
+      let levelArr = level.split(",");
+
+      let newlevelState = levelChecked.map((level) => {
+        if (levelArr.includes(level.id)) {
+          return { id: level.id, checked: true };
+        } else return { id: level.id, checked: level.checked };
+      });
+
+      setLevelChecked(newlevelState);
+    }
 
     return () => {};
   }, []);
@@ -149,12 +167,12 @@ const Filters = (props) => {
           focusIndicator={true}
           className="current-radio"
           name="isCurrent"
+          value={isCurrentValue}
           options={[
             {
               name: "Current",
               label: "Current",
               value: true,
-              checked: isDefaultChecked,
             },
             { name: "Historical", label: "Historical", value: false },
             { name: "All", label: "All", value: "all" },

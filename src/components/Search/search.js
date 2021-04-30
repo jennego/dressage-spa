@@ -6,12 +6,10 @@ import { Search as SearchIcon, FormClose } from "grommet-icons";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 import Filters from "./Filters";
-import UseUrlParams from "./UseURLParams";
 import Loading from "../loading";
 import { Highlight } from "react-highlighter-ts/dist/lib";
 import Fuse from "fuse.js";
-
-import loadable from "@loadable/component";
+// import loadable from "@loadable/component";
 
 // import DefaultTests from "DefaultTests";
 
