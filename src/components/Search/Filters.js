@@ -1,21 +1,11 @@
 // filters for test will go here once I figure the logic from a single prop level
 import React, { useState, useEffect } from "react";
-import {
-  TextInput,
-  Card,
-  CheckBox,
-  RadioButtonGroup,
-  Box,
-  CheckBoxGroup,
-  FormField,
-  Button,
-} from "grommet";
+import { RadioButtonGroup, CheckBoxGroup, Button } from "grommet";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 
 const Filters = (props) => {
-  const [isCurrentValue, setisCurrentValue] = useState();
-  const [isDefaultChecked, setIsDefaultChecked] = useState(true); // use an array of booleans? [{name: 'Current', checked: true}]
+  const [isCurrentValue, setisCurrentValue] = useState("true");
 
   const [levelChecked, setLevelChecked] = useState([
     { id: "intro", checked: false },
@@ -27,24 +17,30 @@ const Filters = (props) => {
   const location = useLocation();
 
   const { search } = useLocation();
-
   const { current } = queryString.parse(search);
   const { level } = queryString.parse(search);
 
   const handleDisplayAll = (e) => {
     history.push({ search: "?current=all" });
     setisCurrentValue("all");
-    setIsDefaultChecked(false);
+
+    let newlevelState = levelChecked.map((level) => {
+      return { id: level.id, checked: false };
+    });
+    setLevelChecked(newlevelState);
   };
 
-  const handleResetAll = () => {};
+  const handleResetAll = () => {
+    history.push({ search: "?current=true" });
+    setisCurrentValue("all");
 
-  const setisCurrent = (e) => {
-    if (e.target.name === "Current") {
-      setIsDefaultChecked(true);
-    } else {
-      setIsDefaultChecked(false);
-    }
+    let newlevelState = levelChecked.map((level) => {
+      return { id: level.id, checked: false };
+    });
+    setLevelChecked(newlevelState);
+  };
+
+  const handleCurrent = (e) => {
     setisCurrentValue(e.target.value);
   };
 
@@ -61,10 +57,6 @@ const Filters = (props) => {
 
   // map levels to params
   useEffect(() => {
-    //   setLevelChecked({ id: level, checked: true });
-
-    // console.log("level checked", levelChecked);
-
     let levels = levelChecked
       .filter((item) => item.checked === true)
       .map((item) => item.id);
@@ -90,31 +82,13 @@ const Filters = (props) => {
     };
   }, [levelChecked]);
 
-  // first load for current
+  // first load for filters
   useEffect(() => {
-    const queryParams = queryString.parse(location.search);
-    let newQueries = {};
-
-    if (current === "false") {
-      setisCurrentValue(false);
-      newQueries = {
-        ...queryParams,
-        current: false,
-      };
-    } else if (current === "all") {
-      setisCurrentValue("all");
-      newQueries = {
-        ...queryParams,
-        current: "all",
-      };
+    if (current !== undefined) {
+      setisCurrentValue(current);
     } else {
-      setisCurrentValue(true);
-      newQueries = {
-        ...queryParams,
-        current: true,
-      };
+      setisCurrentValue("true");
     }
-    history.replace({ search: queryString.stringify(newQueries) });
 
     if (level !== undefined) {
       let levelArr = level.split(",");
@@ -124,14 +98,12 @@ const Filters = (props) => {
           return { id: level.id, checked: true };
         } else return { id: level.id, checked: level.checked };
       });
-
       setLevelChecked(newlevelState);
     }
-
     return () => {};
   }, []);
 
-  // changes to current
+  // params changes when current value changes
   useEffect(() => {
     const queryParams = queryString.parse(location.search);
 
@@ -172,13 +144,12 @@ const Filters = (props) => {
             {
               name: "Current",
               label: "Current",
-              value: true,
+              value: "true",
             },
-            { name: "Historical", label: "Historical", value: false },
+            { name: "Historical", label: "Historical", value: "false" },
             { name: "All", label: "All", value: "all" },
           ]}
-          // checked={isCurrentValue ? 1 : 0}
-          onChange={setisCurrent}
+          onChange={handleCurrent}
         />
       </div>
       <div className="col-md col-12 pt-4">
