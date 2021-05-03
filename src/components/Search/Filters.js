@@ -1,4 +1,3 @@
-// filters for test will go here once I figure the logic from a single prop level
 import React, { useState, useEffect } from "react";
 import { RadioButtonGroup, CheckBoxGroup, Button } from "grommet";
 import { useLocation, useHistory } from "react-router-dom";

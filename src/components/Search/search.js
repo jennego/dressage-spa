@@ -11,19 +11,7 @@ import { Highlight } from "react-highlighter-ts/dist/lib";
 import Fuse from "fuse.js";
 // import loadable from "@loadable/component";
 
-// import DefaultTests from "DefaultTests";
-
 const Search = (props) => {
-  // const { dressage_tests = [] } = props;
-
-  // const options = {
-  //   keys: ["name", "level", "orgname", "full_name"],
-  //   threshold: 0.4,
-  //   includeScore: true,
-  //   includeMatches: true,
-  //   minMatchCharLength: 2,
-  // };
-  // const fuse = new Fuse(dressage_tests, options);
   const targetRef = useRef();
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");

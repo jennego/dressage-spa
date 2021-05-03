@@ -4,8 +4,8 @@ import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 
 const UseUrlParams = (props) => {
-  const history = useHistory();
-  const location = useLocation();
+  // const history = useHistory();
+  // const location = useLocation();
 
   const { search } = useLocation();
   const { current } = queryString.parse(search);
