@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import loadable from "@loadable/component";
 import Login from "../pages/login";
+import Profile from "../pages/profile";
+import ProtectedRoute from "../auth/protected-route";
 const DressageIndexPage = loadable(() => import("../pages/Index"));
 const DressageShowPage = loadable(() => import("../pages/Show"));
 const About = loadable(() => import("../pages/About"));
@@ -22,6 +24,7 @@ class Routes extends Component {
   render() {
     return (
       <Switch>
+        <ProtectedRoute path="/profile" component={Profile} />
         <Route exact path="/about">
           <About />
         </Route>
@@ -31,6 +34,7 @@ class Routes extends Component {
         <Route exact path="/roadmap">
           <Roadmap />
         </Route>
+
         <Route exact path="/settings">
           <Settings />
         </Route>
