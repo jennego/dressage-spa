@@ -13,6 +13,7 @@ import {
 import ThemeSwitcher from "./ThemeSwitcher";
 import { MenuContext } from "../../contexts/SlideMenuProvider";
 import AnchorNavLink from "../../global/AnchorNavLink";
+import AuthenticationButton from "../Auth/auth-button";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -83,6 +84,7 @@ const NavBar = () => {
                   />
 
                   <AnchorNavLink color="light-1" label="Tests" url="/" />
+                  <AuthenticationButton />
                   <Button onClick={openMenu} label="Arena"></Button>
                 </Nav>
               )
