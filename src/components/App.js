@@ -30,7 +30,7 @@ const App = () => {
   }
 
   if (isLoading) {
-    return "loading";
+    return <Loading />;
   }
 
   return (

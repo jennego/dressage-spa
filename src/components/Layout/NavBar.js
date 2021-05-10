@@ -61,26 +61,16 @@ const NavBar = () => {
                       label: "About",
                       href: "/about",
                     },
-                    {
-                      label: "Settings",
-                      href: "/settings",
-                    },
                   ]}
                 />
               ) : (
-                <Nav direction="row">
+                <Nav direction="row" align="center">
                   <AnchorNavLink color="light-1" label="About" url="/about" />
 
                   <AnchorNavLink
                     color="light-1"
                     label="Roadmap"
                     url="/roadmap"
-                  />
-
-                  <AnchorNavLink
-                    color="light-1"
-                    label="Settings"
-                    url="/settings"
                   />
 
                   <AnchorNavLink color="light-1" label="Tests" url="/" />
@@ -90,11 +80,7 @@ const NavBar = () => {
               )
             }
           </ResponsiveContext.Consumer>
-          <Nav
-            direction="row"
-            margin={{ left: "medium" }}
-            alignContent="center"
-          >
+          <Nav direction="row" margin={{ left: "medium" }} align="center">
             <ThemeSwitcher />
           </Nav>
         </Box>
