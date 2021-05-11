@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { Avatar } from "grommet";
 import { useAuth0 } from "@auth0/auth0-react";
 import ExternalApi from "../components/Auth/protected-api";
 
@@ -11,68 +11,38 @@ const Profile = () => {
     getAccessTokenWithPopup,
   } = useAuth0();
   const [userMetadata, setUserMetadata] = useState(null);
-  const { name, picture, email } = user;
 
-  // cannot be on localhost?
-  // useEffect(() => {
-  //   const getUserMetadata = async () => {
-  //     const domain = "dev-e6ihx-v9.us.auth0.com";
+  const userRole = user["https://dressage-tests.herokuapp.com/roles"];
 
-  //     try {
-  //       const accessToken = await getAccessTokenWithPopup({
-  //         audience: `https://${domain}/api/v2/`,
-  //         scope: "read:current_user",
-  //       });
-
-  //       const userDetailsByIdUrl = `https://${domain}/api/v2/users/${user.sub}`;
-
-  //       const metadataResponse = await fetch(userDetailsByIdUrl, {
-  //         headers: {
-  //           Authorization: `Bearer ${accessToken}`,
-  //         },
-  //       });
-
-  //       const { user_metadata } = await metadataResponse.json();
-
-  //       setUserMetadata(user_metadata);
-  //     } catch (e) {
-  //       console.log(e.message);
-  //     }
-  //   };
-
-  //   getUserMetadata();
-  // }, []);
-
-  // console.log(userMetadata);
+  console.log(user);
 
   return (
-    <div>
-      <ExternalApi />
-      {userMetadata}
-      <div className="row align-items-center profile-header">
-        <div className="col-md-2 mb-3">
-          <img
-            src={picture}
-            alt="Profile"
-            className="rounded-circle img-fluid profile-picture mb-3 mb-md-0"
-          />
+    <div className="fill-height">
+      <div className="container-fluid">
+        <div className="row">
+          <div
+            className="col align-self-center"
+            style={{ maxWidth: "130px", minWidth: "110px" }}
+          >
+            <Avatar src={user.picture} size="xlarge" />
+          </div>
+          <div className="col">
+            Nickname: {user.nickname} <br />
+            Name: {user.name} <br />
+            Email: {user.email} <br />
+            {userRole ? userRole : ""}
+          </div>
         </div>
-        <div className="col-md text-center text-md-left">
-          <h2>{name}</h2>
-          <p className="lead text-muted">{email}</p>
-        </div>
-      </div>
-      <div className="row">
-        <pre className="col-12 text-light bg-dark p-4">
-          {JSON.stringify(user, null, 2)}
-        </pre>
+        <p>
+          Sorry, you cannot yet change your profile info. It is planned for the
+          future.{" "}
+        </p>
+        <p>
+          To change your password (if you are not logged in via Google or
+          Facebook), log out, click log in and click "forget your password".
+        </p>
 
-        <h3>User Metadata</h3>
-        {userMetadata ? (
-          <pre>{JSON.stringify(userMetadata, null, 2)}</pre>
-        ) : (
-          "No user metadata defined"
-        )}
+        {userRole.includes("Admin") ? <a> Go here to the Admin Site </a> : ""}
       </div>
     </div>
   );
