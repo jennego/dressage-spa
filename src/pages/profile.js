@@ -4,14 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import ExternalApi from "../components/Auth/protected-api";
 
 const Profile = () => {
-  const {
-    user,
-    isAuthenticated,
-    getAccessTokenSilently,
-    getAccessTokenWithPopup,
-  } = useAuth0();
-  const [userMetadata, setUserMetadata] = useState(null);
-
+  const { user } = useAuth0();
   const userRole = user["https://dressage-tests.herokuapp.com/roles"];
 
   console.log(user);
@@ -43,6 +36,7 @@ const Profile = () => {
         </p>
 
         {userRole.includes("Admin") ? <a> Go here to the Admin Site </a> : ""}
+        <ExternalApi />
       </div>
     </div>
   );

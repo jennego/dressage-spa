@@ -4,27 +4,15 @@ import { useAuth0 } from "@auth0/auth0-react";
 const ExternalApi = () => {
   const [message, setMessage] = useState("");
   const serverUrl = process.env.REACT_APP_SERVER_URL;
+  const clientId = process.env.REACT_APP_AUTH0_API_CLIENT_ID;
 
-  const { getAccessTokenSilently } = useAuth0();
-
-  const callApi = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:3000/api/v1/dressage_tests`
-      );
-
-      const responseData = await response.json();
-
-      setMessage(responseData.message);
-    } catch (error) {
-      setMessage(error.message);
-    }
-  };
+  const { getAccessTokenSilently, getAccessTokenWithPopup } = useAuth0();
 
   const callSecureApi = async () => {
     try {
       const token = await getAccessTokenSilently({
         audience: "https://rails-secure-api",
+        clientId: { clientId },
       });
       console.log(token);
 
@@ -36,7 +24,6 @@ const ExternalApi = () => {
           },
         }
       );
-
       const responseData = await response.json();
       console.log(responseData);
 
@@ -48,20 +35,11 @@ const ExternalApi = () => {
 
   return (
     <div className="container">
-      <h1>External API</h1>
-      <p>
-        Use these buttons to call an external API. The protected API call has an
-        access token in its authorization header. The API server will validate
-        the access token using the Auth0 Audience value.
-      </p>
       <div
         className="btn-group mt-5"
         role="group"
         aria-label="External API Requests Examples"
       >
-        <button type="button" className="btn btn-primary" onClick={callApi}>
-          Get Public Message
-        </button>
         <button
           type="button"
           className="btn btn-primary"
