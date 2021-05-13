@@ -13,6 +13,7 @@ import {
 import ThemeSwitcher from "./ThemeSwitcher";
 import { MenuContext } from "../../contexts/SlideMenuProvider";
 import AnchorNavLink from "../../global/AnchorNavLink";
+import AuthenticationButton from "../Auth/auth-button";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -60,14 +61,10 @@ const NavBar = () => {
                       label: "About",
                       href: "/about",
                     },
-                    {
-                      label: "Settings",
-                      href: "/settings",
-                    },
                   ]}
                 />
               ) : (
-                <Nav direction="row">
+                <Nav direction="row" align="center">
                   <AnchorNavLink color="light-1" label="About" url="/about" />
 
                   <AnchorNavLink
@@ -76,23 +73,14 @@ const NavBar = () => {
                     url="/roadmap"
                   />
 
-                  <AnchorNavLink
-                    color="light-1"
-                    label="Settings"
-                    url="/settings"
-                  />
-
                   <AnchorNavLink color="light-1" label="Tests" url="/" />
+                  <AuthenticationButton />
                   <Button onClick={openMenu} label="Arena"></Button>
                 </Nav>
               )
             }
           </ResponsiveContext.Consumer>
-          <Nav
-            direction="row"
-            margin={{ left: "medium" }}
-            alignContent="center"
-          >
+          <Nav direction="row" margin={{ left: "medium" }} align="center">
             <ThemeSwitcher />
           </Nav>
         </Box>

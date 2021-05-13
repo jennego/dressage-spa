@@ -33,9 +33,6 @@ const DressageIndexPage = () => {
 
   return (
     <div className="index main">
-      {console.log(isLoading)}
-      {hasError ? <ErrorMessage /> : ""}
-
       {isLoading ? (
         <Box justify="center">
           <Loading />
@@ -47,7 +44,7 @@ const DressageIndexPage = () => {
       ) : (
         <UseUrlParams tests={tests}> </UseUrlParams>
       )}
-      {/* <Search {...tests} /> */}
+      {hasError ? <ErrorMessage /> : ""}
     </div>
   );
 };

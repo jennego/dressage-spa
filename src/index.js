@@ -5,13 +5,21 @@ import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import AppProvider from "./contexts/ThemeToggleProvider";
 import MenuProvider from "./contexts/SlideMenuProvider";
+import Auth0ProviderWithHistory from "./auth/auth-provider-with-history";
+import { Auth0Provider } from "@auth0/auth0-react";
 
 ReactDOM.render(
-  <AppProvider>
-    <MenuProvider>
-      <App />
-    </MenuProvider>
-  </AppProvider>,
+  <Auth0Provider
+    domain={process.env.REACT_APP_AUTH0_DOMAIN}
+    clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
+    redirectUri={window.location.origin}
+  >
+    <AppProvider>
+      <MenuProvider>
+        <App />
+      </MenuProvider>
+    </AppProvider>
+  </Auth0Provider>,
   document.getElementById("root")
 );
 

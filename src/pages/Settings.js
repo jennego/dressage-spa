@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import { Box, Main, Heading, Header } from "grommet";
 import ThemeSwitcher from "../components/Layout/ThemeSwitcher";
 import { AppContext } from "../contexts/ThemeToggleProvider";
+import LoginButton from "../components/Auth/login-button";
+import LogoutButton from "../components/Auth/logout-button";
+import SignupButton from "../components/Auth/signup-button";
 
 const Settings = () => {
   const { mode } = useContext(AppContext);
@@ -11,6 +14,9 @@ const Settings = () => {
       <Heading margin={{ left: "medium" }}>Settings</Heading>
       <Main background="surface" pad="large">
         <div className="row">
+          <LoginButton />
+          <LogoutButton />
+          <SignupButton />
           <Box
             pad="small"
             border={{ side: "bottom", style: "dotted" }}
