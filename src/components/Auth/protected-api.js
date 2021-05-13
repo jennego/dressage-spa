@@ -45,7 +45,7 @@ const ExternalApi = () => {
           className="btn btn-primary"
           onClick={callSecureApi}
         >
-          Get Protected Message
+          Get secured api
         </button>
       </div>
       {message && (
