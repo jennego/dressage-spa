@@ -15,23 +15,13 @@ const Roadmap = () => {
         <li> HTML 5 Canvas/Phaser Arena drawing app/game </li>
       </ul>
 
-      <h2>This Week's Update</h2>
-      <ul>
-        <li> sharing </li>
-      </ul>
-
       <h2> Next Release</h2>
       <ul>
-        <li>API: Admin interface / sign in </li>
+        <li> Context menu on right click and long press </li>
+        <li> API/SPA: Favourites list, favourite tests </li>
         <li>API: PDF links / SPA: download PDF </li>
-        <li> API: user / admin user accounts </li>
-        <li> SPA and API: OAuth</li>
-        <li> Sharing links working </li>
-        <li> Favourites list </li>
-        <li> Reduce re-renders / Optimize </li>
-        <li> Rewrite filtering logic</li>
-        <li> Search equivalent terms (make intro === walk trot) </li>
         <li> Look into PWA/Offline</li>
+        <li> Nicer preloading screen </li>
       </ul>
 
       <p>What about iPhone/Android app?</p>
