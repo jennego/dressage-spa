@@ -35,6 +35,12 @@ export const DressageTest = {
       // headers: { 'Authorization': `JWT ${getJwt()}` }
     }).then((res) => res.json());
   },
+  getWithUser(id, user) {
+    return fetch(
+      `${BASE_URL}/api/v1/dressage_tests/${id}?user=${user}`,
+      {}
+    ).then((res) => res.json());
+  },
 };
 
 // export const Token = {

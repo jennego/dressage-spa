@@ -9,7 +9,7 @@ const MovesList = (props) => {
   return (
     <div className="MovesList mb-5">
       {moves.map((move) => (
-        <div className="row d-flex no-gutters move-group">
+        <div className="row d-flex no-gutters move-group" key={move.id}>
           <div className="col-4 d-flex justify-content-end">
             <Card
               pad="small"
@@ -41,7 +41,7 @@ const MovesList = (props) => {
               <Paragraph
                 size="large"
                 margin="none"
-                class="move-detail-text"
+                className="move-detail-text"
                 style={{ breakWord: "break-word" }}
               >
                 {move.movement}

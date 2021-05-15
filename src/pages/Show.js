@@ -5,6 +5,7 @@ import { Box } from "grommet";
 import TestHeading from "../components/ShowTest/TestHeading";
 import { useParams } from "react-router-dom";
 import Loading from "../components/loading";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import loadable from "@loadable/component";
 let MovesList = loadable((props) => import("../components/ShowTest/MovesList"));
@@ -14,18 +15,32 @@ const DressageShowPage = (params) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const { id } = useParams();
+  const { user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
     setIsLoading(true);
-    DressageTest.get(id)
-      .then((data) => {
-        setTestData({ data });
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setHasError(true);
-        setIsLoading(false);
-      });
+
+    if (isAuthenticated) {
+      DressageTest.getWithUser(id, user.sub)
+        .then((data) => {
+          setTestData({ data });
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setHasError(true);
+          setIsLoading(false);
+        });
+    } else {
+      DressageTest.get(id)
+        .then((data) => {
+          setTestData({ data });
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setHasError(true);
+          setIsLoading(false);
+        });
+    }
   }, []);
 
   const test = testData.data;

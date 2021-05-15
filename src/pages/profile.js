@@ -36,7 +36,7 @@ const Profile = () => {
         </p>
 
         {userRole.includes("Admin") ? <a> Go here to the Admin Site </a> : ""}
-        {/* <ExternalApi /> */}
+        <ExternalApi />
       </div>
     </div>
   );

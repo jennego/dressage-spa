@@ -37,6 +37,7 @@ import {
 } from "react-share";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { BrowserView, MobileView } from "react-device-detect";
+import FavouriteButton from "./favourite-button";
 
 const shareUrl = window.location.href;
 
@@ -205,17 +206,9 @@ const TestHeading = (props) => {
                     : {}
                 }
               />
-              <Button
-                icon={<Star />}
-                label={size !== "small" ? "Favourite" : ""}
-                pad="none"
-                color="brand"
-                margin="2px"
-                style={
-                  size === "small"
-                    ? { border: "2px  solid", borderRadius: "10px" }
-                    : {}
-                }
+              <FavouriteButton
+                isFaved={props.is_faved}
+                favourite={props.favourites}
               />
               <IsCurrentBadge current={current} />
             </Box>
