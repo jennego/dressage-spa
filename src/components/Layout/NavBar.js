@@ -12,7 +12,7 @@ import {
 } from "grommet";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { MenuContext } from "../../contexts/SlideMenuProvider";
-import AnchorNavLink from "../../global/AnchorNavLink";
+import AnchorNavLink from "../Global/AnchorNavLink";
 import AuthenticationButton from "../Auth/auth-button";
 
 const NavBar = () => {
