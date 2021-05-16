@@ -209,6 +209,8 @@ const TestHeading = (props) => {
               <FavouriteButton
                 isFaved={props.is_faved}
                 favourite={props.favourites}
+                testId={props.id}
+                setTestData={props.setTestData}
               />
               <IsCurrentBadge current={current} />
             </Box>

@@ -53,7 +53,7 @@ const DressageShowPage = (params) => {
       ) : (
         <>
           <div className="row mx-auto">
-            <TestHeading {...test}></TestHeading>
+            <TestHeading setTestData={setTestData} {...test}></TestHeading>
           </div>
           <div className="row mx-auto d-flex justify-content-center">
             <div className="col-lg-7 col-12 d-flex">
