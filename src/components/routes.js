@@ -5,6 +5,7 @@ import loadable from "@loadable/component";
 import Login from "../pages/login";
 import Profile from "../pages/profile";
 import ProtectedRoute from "../auth/protected-route";
+import FavProvider from "../contexts/favouritesProvider";
 const DressageIndexPage = loadable(() => import("../pages/Index"));
 const DressageShowPage = loadable(() => import("../pages/Show"));
 const About = loadable(() => import("../pages/About"));

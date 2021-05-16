@@ -37,14 +37,12 @@ const App = () => {
     <div>
       <Grommet theme={theme} themeMode={mode}>
         <Router>
-          <Auth0ProviderWithHistory>
-            <div className="App">
-              <SlideMenu />
-              <NavBar></NavBar>
-              <Routes></Routes>
-            </div>
-            <FooterSection></FooterSection>
-          </Auth0ProviderWithHistory>
+          <div className="App">
+            <SlideMenu />
+            <NavBar></NavBar>
+            <Routes></Routes>
+          </div>
+          <FooterSection></FooterSection>
         </Router>
       </Grommet>
     </div>

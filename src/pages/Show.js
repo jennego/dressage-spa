@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { DressageTest } from "../requests";
 import TestInfo from "../components/ShowTest/TestInfo";
-import { Box } from "grommet";
+import { Box, Button } from "grommet";
 import TestHeading from "../components/ShowTest/TestHeading";
 import { useParams } from "react-router-dom";
 import Loading from "../components/loading";
 import { useAuth0 } from "@auth0/auth0-react";
+import FavProvider from "../contexts/favouritesProvider";
+import { FavContext } from "../contexts/favouritesProvider";
 
 import loadable from "@loadable/component";
 let MovesList = loadable((props) => import("../components/ShowTest/MovesList"));
 
-const DressageShowPage = (params) => {
+const Show = (params) => {
   const [testData, setTestData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const { id } = useParams();
   const { user, isAuthenticated } = useAuth0();
+  const { favTrigger, setFavTrigger } = useContext(FavContext);
 
   useEffect(() => {
     setIsLoading(true);
@@ -41,10 +44,10 @@ const DressageShowPage = (params) => {
           setIsLoading(false);
         });
     }
-  }, []);
+  }, [favTrigger, setFavTrigger]);
 
   const test = testData.data;
-  console.log(id);
+  // console.log("fav trigger from show", favTrigger);
 
   return (
     <div className="show fill-height">
@@ -62,6 +65,7 @@ const DressageShowPage = (params) => {
               </Box>
             </div>
             <div className="col-lg-4 col-12">
+              <Button onClick={() => setFavTrigger("hi")} label="set reload?" />
               <Box background="surface" pad="small">
                 <TestInfo {...test}></TestInfo>
               </Box>
@@ -72,5 +76,11 @@ const DressageShowPage = (params) => {
     </div>
   );
 };
+
+const DressageShowPage = () => (
+  <FavProvider>
+    <Show />
+  </FavProvider>
+);
 
 export default DressageShowPage;

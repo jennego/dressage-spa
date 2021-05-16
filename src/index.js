@@ -7,6 +7,7 @@ import AppProvider from "./contexts/ThemeToggleProvider";
 import MenuProvider from "./contexts/SlideMenuProvider";
 import Auth0ProviderWithHistory from "./auth/auth-provider-with-history";
 import { Auth0Provider } from "@auth0/auth0-react";
+import FavProvider from "./contexts/favouritesProvider";
 
 ReactDOM.render(
   <Auth0Provider
