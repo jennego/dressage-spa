@@ -9,14 +9,14 @@ import { Notification } from "../Global/Notice";
 import { useAuth0 } from "@auth0/auth0-react";
 import { FavContext } from "../../contexts/favouritesProvider";
 
-const FavouriteButton = ({ isFaved, favourite, testId }) => {
+const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
   const size = useContext(ResponsiveContext);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("hello");
   const { isAuthenticated, loginWithRedirect, user, getAccessTokenSilently } =
     useAuth0();
   const clientId = process.env.REACT_APP_AUTH0_API_CLIENT_ID;
-  const { favTrigger, addFav, deleteFav, setFavTrigger } =
+  const { favTrigger, setFavTrigger, isFaved, setIsFaved } =
     useContext(FavContext);
 
   let favId = favourite ? favourite.id : 0;
@@ -39,7 +39,7 @@ const FavouriteButton = ({ isFaved, favourite, testId }) => {
         }
       );
       const responseData = await response.json();
-      setFavTrigger(testId);
+      setIsFaved(true);
       favId = responseData.id;
       console.log(responseData);
     } catch (error) {
@@ -66,38 +66,48 @@ const FavouriteButton = ({ isFaved, favourite, testId }) => {
       );
       const responseData = await response.json();
       console.log(responseData);
-      setFavTrigger(0);
+      setIsFaved(false);
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  const onOpen = () => {
+  const onOpenNotice = (message) => {
     setOpen(true);
+    setMessage(message);
     setTimeout(() => {
       setOpen(false);
-    }, 5000);
+    }, 3000);
   };
   const onClose = () => setOpen(false);
 
   const handleDeleteClick = () => {
-    DeleteFavourite(favId);
-
-    setTimeout(() => {
-      setFavTrigger(0);
-    }, 1000);
+    // setTimeout(() => {
+    //   setFavTrigger(0);
+    // }, 1000);
   };
 
   const handleFavClick = () => {
-    if (favTrigger !== testId) {
-      CreateFavourite();
-      setFavTrigger(testId);
-      console.log("from fav button", favTrigger);
+    if (isAuthenticated) {
+      if (isFaved) {
+        setIsFaved(false);
+        DeleteFavourite(favId);
+        onOpenNotice("Favourite deleted!");
+      } else {
+        setIsFaved(true);
+        CreateFavourite();
+        onOpenNotice("Favourite added!");
+      }
     }
-    console.log(favTrigger);
+
+    // if (favTrigger !== testId) {
+    //   setFavTrigger(testId);
+    //   console.log("from fav button", favTrigger);
+    // }
+    // console.log(favTrigger);
 
     if (!isAuthenticated) {
-      setMessage(
+      onOpenNotice(
         <div>
           You need to
           <Anchor
@@ -107,24 +117,20 @@ const FavouriteButton = ({ isFaved, favourite, testId }) => {
           to set favourited tests
         </div>
       );
-      onOpen();
     }
   };
 
   const StarIcon = () => {
-    if (favTrigger === testId || isFaved) {
+    if (isFaved) {
       return <Star color="yellow" />;
-    } else if (favTrigger !== testId) {
+    } else if (!isFaved) {
       return <Star />;
     }
   };
 
   return (
     <div>
-      <Button
-        onClick={() => setFavTrigger()}
-        label="set reload from fav component?"
-      />
+      <h1>{isFaved.toString()}</h1>
 
       <Button
         icon={<StarIcon />}
@@ -133,18 +139,6 @@ const FavouriteButton = ({ isFaved, favourite, testId }) => {
         color="brand"
         margin="2px"
         onClick={() => handleFavClick()}
-        style={
-          size === "small" ? { border: "2px  solid", borderRadius: "10px" } : {}
-        }
-      />
-
-      <Button
-        icon={<StarIcon />}
-        label={size !== "small" ? "UnFavourite" : ""}
-        pad="none"
-        color="brand"
-        margin="2px"
-        onClick={() => handleDeleteClick()}
         style={
           size === "small" ? { border: "2px  solid", borderRadius: "10px" } : {}
         }

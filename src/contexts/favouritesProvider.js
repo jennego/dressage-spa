@@ -8,7 +8,7 @@ export const FavContext = createContext();
 
 const FavProvider = ({ children }) => {
   const [favTrigger, setFavTrigger] = useState(null);
-
+  const [isFaved, setIsFaved] = useState(false);
   // favouritesId, testId, isFaved
 
   const addFav = () => {
@@ -26,6 +26,8 @@ const FavProvider = ({ children }) => {
         addFav,
         deleteFav,
         setFavTrigger,
+        isFaved,
+        setIsFaved,
       }}
     >
       {children}

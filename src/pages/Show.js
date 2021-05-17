@@ -8,6 +8,7 @@ import Loading from "../components/loading";
 import { useAuth0 } from "@auth0/auth0-react";
 import FavProvider from "../contexts/favouritesProvider";
 import { FavContext } from "../contexts/favouritesProvider";
+import { Notification } from "../components/Global/Notice";
 
 import loadable from "@loadable/component";
 let MovesList = loadable((props) => import("../components/ShowTest/MovesList"));
@@ -18,7 +19,8 @@ const Show = (params) => {
   const [hasError, setHasError] = useState(false);
   const { id } = useParams();
   const { user, isAuthenticated } = useAuth0();
-  const { favTrigger, setFavTrigger } = useContext(FavContext);
+  const { favTrigger, setFavTrigger, setIsFaved, isFaved } =
+    useContext(FavContext);
 
   useEffect(() => {
     setIsLoading(true);
@@ -28,6 +30,7 @@ const Show = (params) => {
         .then((data) => {
           setTestData({ data });
           setIsLoading(false);
+          setIsFaved(data.is_faved);
         })
         .catch((err) => {
           setHasError(true);
@@ -46,8 +49,23 @@ const Show = (params) => {
     }
   }, [favTrigger, setFavTrigger]);
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      DressageTest.getWithUser(id, user.sub)
+        .then((data) => {
+          setTestData({ data });
+          setIsLoading(false);
+          setIsFaved(data.is_faved);
+        })
+        .catch((err) => {
+          setHasError(true);
+          setIsLoading(false);
+        });
+    }
+  }, [isFaved]);
+
   const test = testData.data;
-  // console.log("fav trigger from show", favTrigger);
+  console.log("is faved from show", isFaved);
 
   return (
     <div className="show fill-height">
@@ -56,6 +74,9 @@ const Show = (params) => {
       ) : (
         <>
           <div className="row mx-auto">
+            {/* Put in layout and use context? */}
+            <Notification message={"hi"} open={false} />
+
             <TestHeading setTestData={setTestData} {...test}></TestHeading>
           </div>
           <div className="row mx-auto d-flex justify-content-center">
