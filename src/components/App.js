@@ -14,6 +14,8 @@ import { theme } from "./theme/theme";
 import Auth0ProviderWithHistory from "../auth/auth-provider-with-history";
 import { useAuth0, Auth0Provider } from "@auth0/auth0-react";
 import Loading from "./loading";
+import ScrollToTop from "./scrollToTop";
+import ScrollRestoration from "react-scroll-restoration";
 
 const App = () => {
   const { mode } = useContext(AppContext);
@@ -34,20 +36,16 @@ const App = () => {
   }
 
   return (
-    <div>
-      <Grommet theme={theme} themeMode={mode}>
-        <Router>
-          <Auth0ProviderWithHistory>
-            <div className="App">
-              <SlideMenu />
-              <NavBar></NavBar>
-              <Routes></Routes>
-            </div>
-            <FooterSection></FooterSection>
-          </Auth0ProviderWithHistory>
-        </Router>
-      </Grommet>
-    </div>
+    <Grommet theme={theme} themeMode={mode}>
+      <Auth0ProviderWithHistory>
+        <div className="App">
+          <SlideMenu />
+          <NavBar></NavBar>
+          <Routes></Routes>
+        </div>
+        <FooterSection></FooterSection>
+      </Auth0ProviderWithHistory>
+    </Grommet>
   );
 };
 
