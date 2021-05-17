@@ -19,7 +19,7 @@ ReactDOM.render(
     <AppProvider>
       <MenuProvider>
         <Router>
-          {/* <ScrollToTop /> */}
+          <ScrollToTop />
           <App />
         </Router>
       </MenuProvider>

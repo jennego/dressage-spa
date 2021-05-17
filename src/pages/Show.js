@@ -16,10 +16,6 @@ const DressageShowPage = (params) => {
   const [hasError, setHasError] = useState(false);
   const { id } = useParams();
 
-  function scroll() {
-    return document.body.scrollTo(0, 0);
-  }
-
   useEffect(() => {
     setIsLoading(true);
     DressageTest.get(id)
@@ -54,7 +50,7 @@ const DressageShowPage = (params) => {
             <div className="col-lg-4 col-12">
               <Box background="surface" pad="small">
                 <TestInfo {...test}></TestInfo>
-                <Button label="scroll" onClick={scroll}></Button>
+                <Button label="scroll"></Button>
               </Box>
             </div>
           </div>
