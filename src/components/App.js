@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import "bootstrap-4-grid/css/grid.css";
 
 import "./App.css";
@@ -14,8 +13,6 @@ import { theme } from "./theme/theme";
 import Auth0ProviderWithHistory from "../auth/auth-provider-with-history";
 import { useAuth0, Auth0Provider } from "@auth0/auth0-react";
 import Loading from "./loading";
-import ScrollToTop from "./scrollToTop";
-import ScrollRestoration from "react-scroll-restoration";
 
 const App = () => {
   const { mode } = useContext(AppContext);

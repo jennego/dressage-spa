@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { DressageTest } from "../requests";
 import TestInfo from "../components/ShowTest/TestInfo";
-import { Box, Button } from "grommet";
+import { Box } from "grommet";
 import TestHeading from "../components/ShowTest/TestHeading";
 import { useParams } from "react-router-dom";
 import Loading from "../components/loading";
 
 import loadable from "@loadable/component";
-import ScrollToTop from "../components/scrollToTop";
 let MovesList = loadable((props) => import("../components/ShowTest/MovesList"));
 
 const DressageShowPage = (params) => {
@@ -50,7 +49,6 @@ const DressageShowPage = (params) => {
             <div className="col-lg-4 col-12">
               <Box background="surface" pad="small">
                 <TestInfo {...test}></TestInfo>
-                <Button label="scroll"></Button>
               </Box>
             </div>
           </div>
