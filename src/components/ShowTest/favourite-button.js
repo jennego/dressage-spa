@@ -8,6 +8,7 @@ import { Star } from "grommet-icons";
 import { Notification } from "../Global/Notice";
 import { useAuth0 } from "@auth0/auth0-react";
 import { DressageTest } from "../../requests";
+import Loading from "../loading";
 
 const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
   const size = useContext(ResponsiveContext);
@@ -37,7 +38,8 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
             setFavId(fav_data.favourites.id);
           })
           .catch((err) => {
-            console.log("error");
+            setFavId(0);
+            console.log(err);
           });
       }
     }
@@ -145,17 +147,35 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
     <div>
       <h1>{isFaved.toString()}</h1>
 
-      <Button
-        icon={<StarIcon />}
-        label={size !== "small" ? "Favourite" : ""}
-        pad="none"
-        color="brand"
-        margin="2px"
-        onClick={() => handleFavClick()}
-        style={
-          size === "small" ? { border: "2px  solid", borderRadius: "10px" } : {}
-        }
-      />
+      {isLoading ? (
+        <Button
+          icon={<StarIcon />}
+          label={size !== "small" ? "Favourite" : ""}
+          pad="none"
+          color="brand"
+          margin="2px"
+          disabled
+          style={
+            size === "small"
+              ? { border: "2px  solid", borderRadius: "10px" }
+              : {}
+          }
+        />
+      ) : (
+        <Button
+          icon={<StarIcon />}
+          label={size !== "small" ? "Favourite" : ""}
+          pad="none"
+          color="brand"
+          margin="2px"
+          onClick={() => handleFavClick()}
+          style={
+            size === "small"
+              ? { border: "2px  solid", borderRadius: "10px" }
+              : {}
+          }
+        />
+      )}
       <Notification message={message} open={open} onClose={onClose} />
     </div>
   );
