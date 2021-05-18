@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import "bootstrap-4-grid/css/grid.css";
 
 import "./App.css";
@@ -34,18 +33,16 @@ const App = () => {
   }
 
   return (
-    <div>
-      <Grommet theme={theme} themeMode={mode}>
-        <Router>
-          <div className="App">
-            <SlideMenu />
-            <NavBar></NavBar>
-            <Routes></Routes>
-          </div>
-          <FooterSection></FooterSection>
-        </Router>
-      </Grommet>
-    </div>
+    <Grommet theme={theme} themeMode={mode}>
+      <Auth0ProviderWithHistory>
+        <div className="App">
+          <SlideMenu />
+          <NavBar></NavBar>
+          <Routes></Routes>
+        </div>
+        <FooterSection></FooterSection>
+      </Auth0ProviderWithHistory>
+    </Grommet>
   );
 };
 
