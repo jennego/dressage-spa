@@ -15,57 +15,30 @@ let MovesList = loadable((props) => import("../components/ShowTest/MovesList"));
 
 const Show = (params) => {
   const [testData, setTestData] = useState({});
+  const [favData, setFavData] = useState({});
+
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const { id } = useParams();
   const { user, isAuthenticated } = useAuth0();
-  const { favTrigger, setFavTrigger, setIsFaved, isFaved } =
-    useContext(FavContext);
+  // const { favTrigger, setFavTrigger, setIsFaved, isFaved, favId } =
+  //   useContext(FavContext);
 
   useEffect(() => {
     setIsLoading(true);
 
-    if (isAuthenticated) {
-      DressageTest.getWithUser(id, user.sub)
-        .then((data) => {
-          setTestData({ data });
-          setIsLoading(false);
-          setIsFaved(data.is_faved);
-        })
-        .catch((err) => {
-          setHasError(true);
-          setIsLoading(false);
-        });
-    } else {
-      DressageTest.get(id)
-        .then((data) => {
-          setTestData({ data });
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          setHasError(true);
-          setIsLoading(false);
-        });
-    }
-  }, [favTrigger, setFavTrigger]);
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      DressageTest.getWithUser(id, user.sub)
-        .then((data) => {
-          setTestData({ data });
-          setIsLoading(false);
-          setIsFaved(data.is_faved);
-        })
-        .catch((err) => {
-          setHasError(true);
-          setIsLoading(false);
-        });
-    }
-  }, [isFaved]);
+    DressageTest.get(id)
+      .then((data) => {
+        setTestData({ data });
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setHasError(true);
+        setIsLoading(false);
+      });
+  }, []);
 
   const test = testData.data;
-  console.log("is faved from show", isFaved);
 
   return (
     <div className="show fill-height">
@@ -86,7 +59,6 @@ const Show = (params) => {
               </Box>
             </div>
             <div className="col-lg-4 col-12">
-              <Button onClick={() => setFavTrigger("hi")} label="set reload?" />
               <Box background="surface" pad="small">
                 <TestInfo {...test}></TestInfo>
               </Box>

@@ -7,19 +7,43 @@ import { Button, Box, ResponsiveContext, Anchor } from "grommet";
 import { Star } from "grommet-icons";
 import { Notification } from "../Global/Notice";
 import { useAuth0 } from "@auth0/auth0-react";
-import { FavContext } from "../../contexts/favouritesProvider";
+import { DressageTest } from "../../requests";
 
 const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
   const size = useContext(ResponsiveContext);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("hello");
-  const { isAuthenticated, loginWithRedirect, user, getAccessTokenSilently } =
-    useAuth0();
+  const {
+    isAuthenticated,
+    loginWithRedirect,
+    user,
+    getAccessTokenSilently,
+    isLoading,
+  } = useAuth0();
   const clientId = process.env.REACT_APP_AUTH0_API_CLIENT_ID;
-  const { favTrigger, setFavTrigger, isFaved, setIsFaved } =
-    useContext(FavContext);
 
-  let favId = favourite ? favourite.id : 0;
+  const [isFaved, setIsFaved] = useState(false);
+  const [favId, setFavId] = useState(0);
+  const [favData, setFavData] = useState({});
+
+  useEffect(() => {
+    console.log("is loading", isLoading);
+    if (isLoading === false) {
+      if (isAuthenticated) {
+        DressageTest.getWithUser(testId, user.sub)
+          .then((fav_data) => {
+            setFavData(fav_data);
+            setIsFaved(fav_data.is_faved);
+            setFavId(fav_data.favourites.id);
+          })
+          .catch((err) => {
+            console.log("error");
+          });
+      }
+    }
+  }, [isLoading, isFaved, favId]);
+
+  console.log(isFaved, favId);
 
   const CreateFavourite = async () => {
     try {
@@ -40,7 +64,7 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
       );
       const responseData = await response.json();
       setIsFaved(true);
-      favId = responseData.id;
+      setFavId(responseData.id);
       console.log(responseData);
     } catch (error) {
       console.log(error.message);
@@ -67,6 +91,7 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
       const responseData = await response.json();
       console.log(responseData);
       setIsFaved(false);
+      setFavId(0);
     } catch (error) {
       console.log(error.message);
     }
@@ -81,12 +106,6 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
   };
   const onClose = () => setOpen(false);
 
-  const handleDeleteClick = () => {
-    // setTimeout(() => {
-    //   setFavTrigger(0);
-    // }, 1000);
-  };
-
   const handleFavClick = () => {
     if (isAuthenticated) {
       if (isFaved) {
@@ -99,12 +118,6 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
         onOpenNotice("Favourite added!");
       }
     }
-
-    // if (favTrigger !== testId) {
-    //   setFavTrigger(testId);
-    //   console.log("from fav button", favTrigger);
-    // }
-    // console.log(favTrigger);
 
     if (!isAuthenticated) {
       onOpenNotice(
@@ -122,7 +135,7 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
 
   const StarIcon = () => {
     if (isFaved) {
-      return <Star color="yellow" />;
+      return <Star color="#e6c525" />;
     } else if (!isFaved) {
       return <Star />;
     }

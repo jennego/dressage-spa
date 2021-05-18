@@ -16,7 +16,6 @@ const TestInfo = (props) => {
     current,
     full_name,
   } = props;
-  console.log(props);
 
   return (
     <div className="TestInfo">
