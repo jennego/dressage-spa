@@ -22,6 +22,7 @@ export const Notification = ({ message, open, onClose, icon }) => {
           modal={false}
           margin={{ vertical: "medium", horizontal: "small" }}
           onEsc={onClose}
+          onClickOutside={onClose}
           responsive={false}
           plain
         >
@@ -30,10 +31,11 @@ export const Notification = ({ message, open, onClose, icon }) => {
             direction="row"
             gap="small"
             justify="between"
-            round="medium"
-            elevation="medium"
-            pad={{ vertical: "xsmall", horizontal: "small" }}
             background="surface"
+            round="small"
+            elevation="medium"
+            margin={{ top: "10rem" }}
+            pad={{ vertical: "small", horizontal: "medium" }}
           >
             {icon}
             <Box align="center" direction="row" gap="xsmall">

@@ -3,8 +3,8 @@
 // need to fetch favourites id on create too
 
 import React, { useContext, useState, useEffect } from "react";
-import { Button, Box, ResponsiveContext, Anchor } from "grommet";
-import { Star } from "grommet-icons";
+import { Button, Box, ResponsiveContext, Anchor, Text } from "grommet";
+import { Star, Trash } from "grommet-icons";
 import { Notification } from "../Global/Notice";
 import { useAuth0 } from "@auth0/auth0-react";
 import { DressageTest } from "../../requests";
@@ -14,6 +14,8 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
   const size = useContext(ResponsiveContext);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("hello");
+  const [noticeIcon, setNoticeIcon] = useState("");
+
   const {
     isAuthenticated,
     loginWithRedirect,
@@ -25,15 +27,12 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
 
   const [isFaved, setIsFaved] = useState(false);
   const [favId, setFavId] = useState(0);
-  const [favData, setFavData] = useState({});
 
   useEffect(() => {
-    console.log("is loading", isLoading);
     if (isLoading === false) {
       if (isAuthenticated) {
         DressageTest.getWithUser(testId, user.sub)
           .then((fav_data) => {
-            setFavData(fav_data);
             setIsFaved(fav_data.is_faved);
             setFavId(fav_data.favourites.id);
           })
@@ -65,7 +64,6 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
         }
       );
       const responseData = await response.json();
-      setIsFaved(true);
       setFavId(responseData.id);
       console.log(responseData);
     } catch (error) {
@@ -92,16 +90,16 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
       );
       const responseData = await response.json();
       console.log(responseData);
-      setIsFaved(false);
       setFavId(0);
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  const onOpenNotice = (message) => {
+  const onOpenNotice = (message, icon) => {
     setOpen(true);
     setMessage(message);
+    setNoticeIcon(icon);
     setTimeout(() => {
       setOpen(false);
     }, 3000);
@@ -113,11 +111,11 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
       if (isFaved) {
         setIsFaved(false);
         DeleteFavourite(favId);
-        onOpenNotice("Favourite deleted!");
+        onOpenNotice("Favourite deleted!", <Trash size="large" />);
       } else {
         setIsFaved(true);
         CreateFavourite();
-        onOpenNotice("Favourite added!");
+        onOpenNotice("Favourite added!", <Star size="large" />);
       }
     }
 
@@ -145,7 +143,7 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
 
   return (
     <div>
-      <h1>{isFaved.toString()}</h1>
+      {/* <h1>{isFaved.toString()}</h1> */}
 
       {isLoading ? (
         <Button
@@ -154,6 +152,7 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
           pad="none"
           color="brand"
           margin="2px"
+          focusIndicator={false}
           disabled
           style={
             size === "small"
@@ -165,6 +164,7 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
         <Button
           icon={<StarIcon />}
           label={size !== "small" ? "Favourite" : ""}
+          className="fav-active"
           pad="none"
           color="brand"
           margin="2px"
@@ -176,7 +176,12 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
           }
         />
       )}
-      <Notification message={message} open={open} onClose={onClose} />
+      <Notification
+        message={message}
+        open={open}
+        onClose={onClose}
+        icon={noticeIcon}
+      />
     </div>
   );
 };
