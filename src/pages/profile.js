@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Avatar } from "grommet";
+import { Avatar, Anchor } from "grommet";
 import { useAuth0 } from "@auth0/auth0-react";
 import ExternalApi from "../components/Auth/protected-api";
 
@@ -20,10 +20,14 @@ const Profile = () => {
             <Avatar src={user.picture} size="xlarge" />
           </div>
           <div className="col">
-            Nickname: {user.nickname} <br />
-            Name: {user.name} <br />
-            Email: {user.email} <br />
-            {userRole ? userRole : ""}
+            <strong>Nickname</strong>: {user.nickname} <br />
+            <strong>Name</strong>: {user.name} <br />
+            <strong>Email</strong>: {user.email} <br />
+            <strong>User ID</strong>: {user.sub} <br />
+            {userRole ? `You are an ${userRole}` : ""}
+            {userRole.includes("Admin") && (
+              <Anchor> Go here to the Admin Site </Anchor>
+            )}
           </div>
         </div>
         <p>
@@ -33,9 +37,16 @@ const Profile = () => {
         <p>
           To change your password (if you are not logged in via Google or
           Facebook), log out, click log in and click "forget your password".
+          Authorization and authentication is handled by{" "}
+          <Anchor
+            href="https://auth0.com/Auth0"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Auth0.
+          </Anchor>
         </p>
 
-        {userRole.includes("Admin") ? <a> Go here to the Admin Site </a> : ""}
         {/* <ExternalApi /> */}
       </div>
     </div>
