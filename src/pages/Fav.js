@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Heading, Card } from "grommet";
+import { Box, Heading } from "grommet";
 import { Favourite } from "../requests";
 import { useAuth0 } from "@auth0/auth0-react";
 import TestSegmentItem from "../components/List/TestSegmentItem";
@@ -25,9 +25,10 @@ const FavouritedTests = () => {
     org_name + " " + year.toString() + " " + level + " " + name;
 
   return (
-    <div className="fill-height container-fluid">
+    <div className="fill-height container-fluid mb-3">
       <Box pad={{ horizontal: "medium" }}>
         <Heading level={2}>Favourited Tests</Heading>
+        <p>To add a test, click the star button on a test.</p>
         {favData.map((fav) => (
           <div>
             <TestSegmentItem
@@ -39,6 +40,7 @@ const FavouritedTests = () => {
                 fav.test.name
               )}
               {...fav.test}
+              deleteButton={true}
             ></TestSegmentItem>
           </div>
         ))}

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Trash } from "grommet-icons";
 import {
@@ -12,6 +12,7 @@ import {
   CardFooter,
   Heading,
   Tip,
+  ResponsiveContext,
 } from "grommet";
 import { useHistory } from "react-router-dom";
 
@@ -29,6 +30,7 @@ const TestSegmentItem = ({
   deleteHandler,
 }) => {
   const history = useHistory();
+  const size = useContext(ResponsiveContext);
 
   const handleTestClick = (id) => {
     history.push(`/tests/${id}`);
@@ -95,25 +97,39 @@ const TestSegmentItem = ({
               )}
             </Card>
           </div>
-          <div className="col-1">
-            <Tip content="Delete from favourites list" background="black">
-              <Card
-                background="surface"
-                a11yTitle={"delete test from favourites"}
-                hoverIndicator={true}
-                margin={{ top: "12px" }}
-                pad={{ horizontal: "xsmall", vertical: "small" }}
-                flex
+          {deleteButton && (
+            <div className="col-1 flex align-content-center">
+              <Tip
                 plain
-                onClick={() => {}}
-                className="align-items-center"
-                tip={{ content: "Delete from Favourites List" }}
+                content={
+                  <Box background="background" pad="small" round="small">
+                    <Text size="medium">Delete from favourites list</Text>
+                  </Box>
+                }
               >
-                <Trash />
-                Delete
-              </Card>
-            </Tip>
-          </div>
+                <Card
+                  a11yTitle={"delete test from favourites"}
+                  elevation="none"
+                  border={{ color: "status-critical" }}
+                  hoverIndicator={true}
+                  margin={{ top: "12px" }}
+                  pad={size !== "small" ? "small" : "medium"}
+                  flex
+                  plain
+                  onClick={() => {}}
+                  className="align-items-center"
+                  tip={{ content: "Delete from Favourites List" }}
+                >
+                  <Trash color="status-critical" />
+                  {size === "small" ? (
+                    ""
+                  ) : (
+                    <Text color="status-critical">Delete</Text>
+                  )}
+                </Card>
+              </Tip>
+            </div>
+          )}
           {/* </Anchor> */}
         </ThemeContext.Extend>
       </div>
