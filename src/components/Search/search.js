@@ -77,7 +77,7 @@ const Search = (props) => {
   useEffect(() => {
     const setSearchQueryfromParams = (query) => {
       const options = {
-        keys: ["name", "level", "orgname", "full_name"],
+        keys: ["name", "level", "org_name", "full_name"],
         threshold: 0.4,
         includeScore: true,
         includeMatches: true,

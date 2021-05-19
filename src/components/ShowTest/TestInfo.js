@@ -2,7 +2,7 @@ import React from "react";
 
 const TestInfo = (props) => {
   const {
-    orgname,
+    org_name,
     name,
     level,
     year,
@@ -36,7 +36,7 @@ const TestInfo = (props) => {
           </li>
           <li>
             <span className="info"> Organization: </span>
-            {orgname}
+            {org_name}
           </li>
         </ul>
       </div>

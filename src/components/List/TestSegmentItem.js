@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Trash } from "grommet-icons";
 import {
   Anchor,
   Card,
@@ -10,6 +11,7 @@ import {
   CardBody,
   CardFooter,
   Heading,
+  Tip,
 } from "grommet";
 import { useHistory } from "react-router-dom";
 
@@ -19,10 +21,12 @@ const TestSegmentItem = ({
   name,
   current,
   level,
-  orgname,
+  org_name,
   year,
   full_name,
   id,
+  deleteButton,
+  deleteHandler,
 }) => {
   const history = useHistory();
 
@@ -31,56 +35,88 @@ const TestSegmentItem = ({
   };
   return (
     <div className="TestSegmentItem" key={id}>
-      <ThemeContext.Extend
-        value={{
-          anchor: {
-            hover: {
-              textDecoration: "none",
+      <div className="row no-gutters">
+        <ThemeContext.Extend
+          value={{
+            anchor: {
+              hover: {
+                textDecoration: "none",
+              },
             },
-          },
-        }}
-      >
-        {/* <Anchor
+          }}
+        >
+          {/* <Anchor
           className="test-card-link"
           as={Link}
           color="brand"
           to={`/tests/${id}`}
         > */}
-        <Card
-          className="test-card"
-          background="surface"
-          margin="small"
-          a11yTitle={full_name}
-          onClick={() => handleTestClick(id)}
-          hoverIndicator={true}
-        >
-          <CardHeader pad={{ horizontal: "small" }}>
-            <Heading level={2} margin="xsmall">
-              {full_name}
-            </Heading>
-          </CardHeader>
-          <CardBody pad={{ horizontal: "medium" }}>
-            <Text size="small">
-              Organization: {orgname} Level: {level} Test: {name} Year: {year}
-            </Text>
-          </CardBody>
+          <div className="col">
+            <Card
+              className="test-card"
+              background="surface"
+              margin="small"
+              a11yTitle={full_name}
+              onClick={() => handleTestClick(id)}
+              hoverIndicator={true}
+            >
+              <CardHeader pad={{ horizontal: "small" }}>
+                <Heading level={2} margin="xsmall">
+                  {full_name}
+                </Heading>
+              </CardHeader>
+              <CardBody pad={{ horizontal: "medium" }}>
+                <Text size="small">
+                  Organization: {org_name} Level: {level} Test: {name} Year:{" "}
+                  {year}
+                </Text>
+              </CardBody>
 
-          {current ? (
-            <Box background="status-ok">
-              <Text textAlign="end" margin={{ right: "small" }} size="small">
-                Current
-              </Text>
-            </Box>
-          ) : (
-            <Box background="status-warning">
-              <Text textAlign="end" margin={{ right: "small" }} size="small">
-                Outdated
-              </Text>
-            </Box>
-          )}
-        </Card>
-        {/* </Anchor> */}
-      </ThemeContext.Extend>
+              {current ? (
+                <Box background="status-ok">
+                  <Text
+                    textAlign="end"
+                    margin={{ right: "small" }}
+                    size="small"
+                  >
+                    Current
+                  </Text>
+                </Box>
+              ) : (
+                <Box background="status-warning">
+                  <Text
+                    textAlign="end"
+                    margin={{ right: "small" }}
+                    size="small"
+                  >
+                    Outdated
+                  </Text>
+                </Box>
+              )}
+            </Card>
+          </div>
+          <div className="col-1">
+            <Tip content="Delete from favourites list" background="black">
+              <Card
+                background="surface"
+                a11yTitle={"delete test from favourites"}
+                hoverIndicator={true}
+                margin={{ top: "12px" }}
+                pad={{ horizontal: "xsmall", vertical: "small" }}
+                flex
+                plain
+                onClick={() => {}}
+                className="align-items-center"
+                tip={{ content: "Delete from Favourites List" }}
+              >
+                <Trash />
+                Delete
+              </Card>
+            </Tip>
+          </div>
+          {/* </Anchor> */}
+        </ThemeContext.Extend>
+      </div>
     </div>
   );
 };

@@ -10,11 +10,16 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { DressageTest } from "../../requests";
 import Loading from "../loading";
 
-const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
+const baseUrl = process.env.REACT_APP_SERVER_BASE;
+const clientId = process.env.REACT_APP_AUTH0_API_CLIENT_ID;
+
+const FavouriteButton = ({ testId }, props) => {
   const size = useContext(ResponsiveContext);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("hello");
   const [noticeIcon, setNoticeIcon] = useState("");
+  const [favAni, setFavAni] = useState("");
+  const [unFavAni, setUnFavAni] = useState("");
 
   const {
     isAuthenticated,
@@ -23,7 +28,6 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
     getAccessTokenSilently,
     isLoading,
   } = useAuth0();
-  const clientId = process.env.REACT_APP_AUTH0_API_CLIENT_ID;
 
   const [isFaved, setIsFaved] = useState(false);
   const [favId, setFavId] = useState(0);
@@ -45,8 +49,11 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
   }, [isLoading, isFaved, favId]);
 
   console.log(isFaved, favId);
+  console.log(`${baseUrl}/api/v1/favourites/${favId}`);
 
   const CreateFavourite = async () => {
+    setIsFaved(true);
+
     try {
       const token = await getAccessTokenSilently({
         audience: "https://rails-secure-api",
@@ -55,7 +62,7 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
       console.log(token);
 
       const response = await fetch(
-        `http://localhost:3000/api/v1/dressage_tests/${testId}/favourites/?user=${user.sub}`,
+        `${baseUrl}/api/v1/dressage_tests/${testId}/favourites/?user=${user.sub}`,
         {
           method: "POST",
           headers: {
@@ -65,6 +72,7 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
       );
       const responseData = await response.json();
       setFavId(responseData.id);
+
       console.log(responseData);
     } catch (error) {
       console.log(error.message);
@@ -79,15 +87,12 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
       });
       console.log(token);
 
-      const response = await fetch(
-        `http://localhost:3000/api/v1/favourites/${favId}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(`${baseUrl}/api/v1/favourites/${favId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const responseData = await response.json();
       console.log(responseData);
       setFavId(0);
@@ -109,11 +114,9 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
   const handleFavClick = () => {
     if (isAuthenticated) {
       if (isFaved) {
-        setIsFaved(false);
         DeleteFavourite(favId);
         onOpenNotice("Favourite deleted!", <Trash size="large" />);
       } else {
-        setIsFaved(true);
         CreateFavourite();
         onOpenNotice("Favourite added!", <Star size="large" />);
       }
@@ -135,9 +138,17 @@ const FavouriteButton = ({ favourite, testId, is_faved }, props) => {
 
   const StarIcon = () => {
     if (isFaved) {
-      return <Star color="#e6c525" />;
+      return (
+        <Box animation={favAni}>
+          <Star color="#e6c525" />
+        </Box>
+      );
     } else if (!isFaved) {
-      return <Star />;
+      return (
+        <Box animation={unFavAni}>
+          <Star />
+        </Box>
+      );
     }
   };
 
