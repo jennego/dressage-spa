@@ -59,7 +59,7 @@ const FavouriteButton = ({ testId }, props) => {
           });
       }
     }
-  }, [isLoading, isFaved, favId]);
+  }, [isLoading, favId]);
 
   console.log(isFaved, favId);
 
