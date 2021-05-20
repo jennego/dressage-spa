@@ -59,6 +59,9 @@ const FavProvider = ({ children }) => {
       console.log(favId + responseData);
     } catch (error) {
       console.log(error.message);
+    } finally {
+      setFavId("delete" + favId);
+      console.log(favId);
     }
   };
 

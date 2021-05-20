@@ -40,9 +40,9 @@ const FavouritedTests = () => {
 
   const handleDelete = (id) => {
     DeleteFavourite(id);
-    setTimeout(() => {
-      setFavId("delete" + id);
-    }, 1000);
+    // DeleteFavourite(id).then((val) => {
+    //   setFavId("delete" + id);
+    // });
   };
 
   const fullName = (org_name, year, level, name) =>
