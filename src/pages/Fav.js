@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Box, Heading, Button } from "grommet";
+import { Star, Trash } from "grommet-icons";
 import { Favourite } from "../requests";
 import { useAuth0 } from "@auth0/auth0-react";
 import TestSegmentItem from "../components/List/TestSegmentItem";
 import { FavContext } from "../contexts/favouritesProvider";
+import { Notification } from "../components/Global/Notice";
 
 const NoFavourites = () => (
   <p>
@@ -16,7 +18,9 @@ const FavouritedTests = () => {
   let baseUrl = process.env.REACT_APP_SERVER_BASE;
   const { user } = useAuth0();
   const [favData, setFavData] = useState([]);
-  const [trig, setSetTrig] = useState("");
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("hello");
+  const [noticeIcon, setNoticeIcon] = useState("");
   const {
     isFaved,
     setIsFaved,
@@ -39,18 +43,35 @@ const FavouritedTests = () => {
   console.log("fav page", favData, favId);
 
   const handleDelete = (id) => {
+    onOpenNotice("Favourite deleting!", <Trash size="large" />);
     DeleteFavourite(id);
-    // DeleteFavourite(id).then((val) => {
-    //   setFavId("delete" + id);
-    // });
   };
 
   const fullName = (org_name, year, level, name) =>
     org_name + " " + year.toString() + " " + level + " " + name;
 
+  const onOpenNotice = (message, icon) => {
+    setOpen(true);
+    setMessage(message);
+    setNoticeIcon(icon);
+    setTimeout(() => {
+      setOpen(false);
+    }, 3000);
+  };
+  const onClose = () => setOpen(false);
+
   return (
     <div className="fill-height container-fluid mb-3">
-      <Heading level={2}>Favourited Tests</Heading>
+      <Notification
+        message={message}
+        open={open}
+        onClose={onClose}
+        icon={noticeIcon}
+      />
+      <Heading level={2}>
+        {" "}
+        <Star /> Favourited Tests
+      </Heading>
       {favData.length === 0 ? (
         <NoFavourites />
       ) : (
