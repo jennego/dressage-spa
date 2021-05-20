@@ -56,7 +56,6 @@ const FavouritedTests = () => {
       ) : (
         <Box pad={{ horizontal: "medium" }}>
           <p>To add a test, click the star button on a test.</p>
-          <Button label="trigger" onClick={() => setFavId("bob")} />
           {favData.map((fav) => (
             <div>
               <TestSegmentItem

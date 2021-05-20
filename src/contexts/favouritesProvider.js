@@ -16,7 +16,6 @@ const FavProvider = ({ children }) => {
 
   const CreateFavourite = async (testId, user) => {
     setIsFaved(true);
-
     try {
       const token = await getAccessTokenSilently({
         audience: "https://rails-secure-api",
@@ -35,7 +34,6 @@ const FavProvider = ({ children }) => {
       );
       const responseData = await response.json();
       setFavId(responseData.id);
-
       console.log(responseData);
     } catch (error) {
       console.log(error.message);
