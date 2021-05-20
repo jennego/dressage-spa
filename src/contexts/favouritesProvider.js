@@ -4,13 +4,78 @@
 //  ONE source of truth so they don't clash or get confused
 
 import React, { createContext, useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 export const FavContext = createContext();
+const baseUrl = process.env.REACT_APP_SERVER_BASE;
+const clientId = process.env.REACT_APP_AUTH0_API_CLIENT_ID;
 
 const FavProvider = ({ children }) => {
-  const [isFaved, setIsFaved] = useState(false);
-  const [favId, setFavId] = useState(0);
+  const { getAccessTokenSilently } = useAuth0();
+  const [isFaved, setIsFaved] = useState();
+  const [favId, setFavId] = useState("no fav set");
 
-  return <FavContext.Provider value={{}}>{children}</FavContext.Provider>;
+  const CreateFavourite = async (testId, user) => {
+    setIsFaved(true);
+
+    try {
+      const token = await getAccessTokenSilently({
+        audience: "https://rails-secure-api",
+        clientId: { clientId },
+      });
+      console.log(token);
+
+      const response = await fetch(
+        `${baseUrl}/api/v1/dressage_tests/${testId}/favourites/?user=${user}`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const responseData = await response.json();
+      setFavId(responseData.id);
+
+      console.log(responseData);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const DeleteFavourite = async (favId) => {
+    try {
+      const token = await getAccessTokenSilently({
+        audience: "https://rails-secure-api",
+      });
+      console.log(token);
+
+      const response = await fetch(`${baseUrl}/api/v1/favourites/${favId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const responseData = await response.json();
+      console.log(favId + responseData);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  return (
+    <FavContext.Provider
+      value={{
+        favId,
+        isFaved,
+        setFavId,
+        setIsFaved,
+        DeleteFavourite,
+        CreateFavourite,
+      }}
+    >
+      {children}
+    </FavContext.Provider>
+  );
 };
 
 export default FavProvider;

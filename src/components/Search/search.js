@@ -109,7 +109,6 @@ const Search = (props) => {
   let history = useHistory();
 
   const handleSearch = (e, params) => {
-    // console.log(e.target.value);
     setSearchValue(e.target.value);
     setTimeout(() => {
       setSearchTerm(e.target.value);
@@ -181,7 +180,7 @@ const Search = (props) => {
           ) : (
             props.tests.dressage_tests.map((test) => (
               <div className="col-12 col-md-9 mx-auto">
-                <TestSegmentItem key={test.id} {...test}></TestSegmentItem>
+                <TestSegmentItem id={test.id} {...test}></TestSegmentItem>
               </div>
             ))
           )}
@@ -192,7 +191,7 @@ const Search = (props) => {
         <div className="row no-gutter mb-4 mt-4">
           {searchResults.map(({ item, refIndex }) => (
             <div className="col-12 col-md-9 mx-auto">
-              <TestSegmentItem key={item.id} {...item}></TestSegmentItem>
+              <TestSegmentItem id={item.id} {...item}></TestSegmentItem>
             </div>
           ))}
         </div>

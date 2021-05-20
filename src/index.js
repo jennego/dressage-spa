@@ -9,6 +9,7 @@ import Auth0ProviderWithHistory from "./auth/auth-provider-with-history";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { BrowserRouter as Router } from "react-router-dom";
 import ScrollToTop from "./components/scrollToTop";
+import FavProvider from "./contexts/favouritesProvider";
 
 ReactDOM.render(
   <Auth0Provider
@@ -18,10 +19,12 @@ ReactDOM.render(
   >
     <AppProvider>
       <MenuProvider>
-        <Router>
-          <ScrollToTop />
-          <App />
-        </Router>
+        <FavProvider>
+          <Router>
+            <ScrollToTop />
+            <App />
+          </Router>
+        </FavProvider>
       </MenuProvider>
     </AppProvider>
   </Auth0Provider>,
