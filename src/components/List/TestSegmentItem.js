@@ -108,6 +108,7 @@ const TestSegmentItem = ({
                 }
               >
                 <Card
+                  onClick={deleteHandler}
                   a11yTitle={"delete test from favourites"}
                   elevation="none"
                   border={{ color: "status-critical" }}
@@ -116,7 +117,6 @@ const TestSegmentItem = ({
                   pad={size !== "small" ? "small" : "medium"}
                   flex
                   plain
-                  onClick={() => {}}
                   className="align-items-center"
                   tip={{ content: "Delete from Favourites List" }}
                 >
