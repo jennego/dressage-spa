@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Trash } from "grommet-icons";
+import { Trash, Star } from "grommet-icons";
 import {
   Anchor,
   Card,
@@ -18,17 +18,22 @@ import { useHistory } from "react-router-dom";
 
 // need to figure out how to style card on hover
 
-const TestSegmentItem = ({
-  name,
-  current,
-  level,
-  org_name,
-  year,
-  full_name,
-  id,
-  deleteButton,
-  deleteHandler,
-}) => {
+const TestSegmentItem = (
+  {
+    name,
+    current,
+    level,
+    org_name,
+    year,
+    full_name,
+    id,
+    is_faved,
+    deleteButton,
+    deleteHandler,
+    index,
+  },
+  props
+) => {
   const history = useHistory();
   const size = useContext(ResponsiveContext);
 
@@ -61,11 +66,18 @@ const TestSegmentItem = ({
               a11yTitle={full_name}
               onClick={() => handleTestClick(id)}
               hoverIndicator={true}
+              animation={{
+                type: "fadeIn",
+                delay: index * 200,
+              }}
             >
+              {console.log(index)}
               <CardHeader pad={{ horizontal: "small" }}>
                 <Heading level={2} margin="xsmall">
                   {full_name}
                 </Heading>
+
+                {is_faved === true ? <Star /> : ""}
               </CardHeader>
               <CardBody pad={{ horizontal: "medium" }}>
                 <Text size="small">

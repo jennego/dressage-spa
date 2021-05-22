@@ -4,6 +4,7 @@ import ErrorMessage from "../components/error";
 // import UseUrlParams from "../components/Search/UseURLParams";
 import { Box, Paragraph, Spinner, Text } from "grommet";
 import Loading from "../components/loading";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import loadable from "@loadable/component";
 
@@ -13,27 +14,42 @@ const UseUrlParams = loadable((props) =>
 
 const DressageIndexPage = () => {
   const [tests, setTests] = useState({ dressage_tests: [] });
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingData, setIsLoadingData] = useState(true);
   const [hasError, setHasError] = useState(false);
 
+  const { user, isLoading, isAuthenticated } = useAuth0();
+
   useEffect(() => {
-    setIsLoading(true);
-    DressageTest.getAll()
-      .then((data) => {
-        setTests({ dressage_tests: data.dressage_tests });
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setHasError(true);
-        setIsLoading(false);
-      });
+    if (isAuthenticated) {
+      setIsLoadingData(true);
+      DressageTest.getAll(user.sub)
+        .then((data) => {
+          setTests({ dressage_tests: data.dressage_tests });
+          setIsLoadingData(false);
+        })
+        .catch((err) => {
+          setHasError(true);
+          setIsLoadingData(false);
+        });
+    } else {
+      setIsLoadingData(true);
+      DressageTest.getAll()
+        .then((data) => {
+          setTests({ dressage_tests: data.dressage_tests });
+          setIsLoadingData(false);
+        })
+        .catch((err) => {
+          setHasError(true);
+          setIsLoadingData(false);
+        });
+    }
   }, []);
 
   // create loading state
 
   return (
     <div className="index main">
-      {isLoading ? (
+      {isLoadingData ? (
         <Box justify="center">
           <Loading />
           <Paragraph fill size="large" textAlign="center">

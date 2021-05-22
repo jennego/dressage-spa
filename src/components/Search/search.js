@@ -178,9 +178,13 @@ const Search = (props) => {
           {props.tests.dressage_tests === undefined ? (
             <Loading />
           ) : (
-            props.tests.dressage_tests.map((test) => (
+            props.tests.dressage_tests.map((test, refIndex) => (
               <div className="col-12 col-md-9 mx-auto">
-                <TestSegmentItem id={test.id} {...test}></TestSegmentItem>
+                <TestSegmentItem
+                  id={test.id}
+                  {...test}
+                  index={refIndex}
+                ></TestSegmentItem>
               </div>
             ))
           )}
@@ -189,9 +193,13 @@ const Search = (props) => {
         `There is nothing found for ${query}`
       ) : (
         <div className="row no-gutter mb-4 mt-4">
-          {searchResults.map(({ item, refIndex }) => (
+          {searchResults.map(({ item }, refIndex) => (
             <div className="col-12 col-md-9 mx-auto">
-              <TestSegmentItem id={item.id} {...item}></TestSegmentItem>
+              <TestSegmentItem
+                id={item.id}
+                {...item}
+                index={refIndex}
+              ></TestSegmentItem>
             </div>
           ))}
         </div>
