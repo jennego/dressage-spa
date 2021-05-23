@@ -38,6 +38,7 @@ import {
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { BrowserView, MobileView } from "react-device-detect";
 import FavouriteButton from "./favourite-button";
+import DownloadButton from "./download-button";
 
 const shareUrl = window.location.href;
 
@@ -194,18 +195,8 @@ const TestHeading = (props) => {
                 }
               />
 
-              <Button
-                icon={<Download />}
-                label={size !== "small" ? "Download" : ""}
-                pad="none"
-                color="brand"
-                margin="2px"
-                style={
-                  size === "small"
-                    ? { border: "2px  solid", borderRadius: "10px" }
-                    : {}
-                }
-              />
+              <DownloadButton />
+
               <FavouriteButton
                 is_faved={props.is_faved}
                 favourite={props.favourites}
