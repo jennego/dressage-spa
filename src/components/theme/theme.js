@@ -55,6 +55,13 @@ export const theme = {
         width: "2px",
       },
     },
+    tip: {
+      content: {
+        background: "black",
+        text: "medium",
+      },
+    },
+
     colors: {
       background: {
         light: "light-4",

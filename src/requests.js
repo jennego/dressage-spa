@@ -1,10 +1,5 @@
-let API_URL =
-  process.env.NODE_ENV === "production"
-    ? "https://dressage-tests.herokuapp.com"
-    : "http://localhost:3000";
+let BASE_URL = process.env.REACT_APP_SERVER_BASE;
 
-console.log(API_URL);
-let BASE_URL = API_URL;
 // function getJwt() {
 //     return localStorage.getItem('jwt');
 // }
@@ -24,8 +19,8 @@ export const DressageTest = {
   //     ).then(res => res.json())
   // },
 
-  getAll() {
-    return fetch(`${BASE_URL}/api/v1/dressage_tests`, {
+  getAll(user) {
+    return fetch(`${BASE_URL}/api/v1/dressage_tests?user=${user}`, {
       // headers: { 'Authorization': `JWT ${getJwt()}` }
     }).then((res) => res.json());
   },
@@ -34,6 +29,20 @@ export const DressageTest = {
     return fetch(`${BASE_URL}/api/v1/dressage_tests/${id}`, {
       // headers: { 'Authorization': `JWT ${getJwt()}` }
     }).then((res) => res.json());
+  },
+  getWithUser(id, user) {
+    return fetch(
+      `${BASE_URL}/api/v1/dressage_tests/${id}?user=${user}`,
+      {}
+    ).then((res) => res.json());
+  },
+};
+
+export const Favourite = {
+  getAllByUser(user) {
+    return fetch(`${BASE_URL}/api/v1/favourites?user=${user}`, {}).then((res) =>
+      res.json()
+    );
   },
 };
 

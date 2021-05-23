@@ -77,7 +77,7 @@ const Search = (props) => {
   useEffect(() => {
     const setSearchQueryfromParams = (query) => {
       const options = {
-        keys: ["name", "level", "orgname", "full_name"],
+        keys: ["name", "level", "org_name", "full_name"],
         threshold: 0.4,
         includeScore: true,
         includeMatches: true,
@@ -109,7 +109,6 @@ const Search = (props) => {
   let history = useHistory();
 
   const handleSearch = (e, params) => {
-    // console.log(e.target.value);
     setSearchValue(e.target.value);
     setTimeout(() => {
       setSearchTerm(e.target.value);
@@ -179,9 +178,13 @@ const Search = (props) => {
           {props.tests.dressage_tests === undefined ? (
             <Loading />
           ) : (
-            props.tests.dressage_tests.map((test) => (
+            props.tests.dressage_tests.map((test, refIndex) => (
               <div className="col-12 col-md-9 mx-auto">
-                <TestSegmentItem key={test.id} {...test}></TestSegmentItem>
+                <TestSegmentItem
+                  id={test.id}
+                  {...test}
+                  index={refIndex}
+                ></TestSegmentItem>
               </div>
             ))
           )}
@@ -190,9 +193,13 @@ const Search = (props) => {
         `There is nothing found for ${query}`
       ) : (
         <div className="row no-gutter mb-4 mt-4">
-          {searchResults.map(({ item, refIndex }) => (
+          {searchResults.map(({ item }, refIndex) => (
             <div className="col-12 col-md-9 mx-auto">
-              <TestSegmentItem key={item.id} {...item}></TestSegmentItem>
+              <TestSegmentItem
+                id={item.id}
+                {...item}
+                index={refIndex}
+              ></TestSegmentItem>
             </div>
           ))}
         </div>

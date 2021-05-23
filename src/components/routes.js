@@ -5,6 +5,8 @@ import loadable from "@loadable/component";
 import Login from "../pages/login";
 import Profile from "../pages/profile";
 import ProtectedRoute from "../auth/protected-route";
+import FavProvider from "../contexts/favouritesProvider";
+import FavouritedTests from "../pages/Fav";
 const DressageIndexPage = loadable(() => import("../pages/Index"));
 const DressageShowPage = loadable(() => import("../pages/Show"));
 const About = loadable(() => import("../pages/About"));
@@ -25,6 +27,8 @@ class Routes extends Component {
     return (
       <Switch>
         <ProtectedRoute path="/profile" component={Profile} />
+        <ProtectedRoute path="/favourited-tests" component={FavouritedTests} />
+
         <Route exact path="/about">
           <About />
         </Route>

@@ -4,6 +4,7 @@ import {
   User as UserIcon,
   SettingsOption,
   Logout as LogoutIcon,
+  Star,
 } from "grommet-icons";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -20,6 +21,15 @@ const LoggedInMenu = () => {
           </Box>
         }
         items={[
+          {
+            icon: (
+              <Box margin="xsmall">
+                <Star />
+              </Box>
+            ),
+            label: "Favourited List",
+            href: "/favourited-tests",
+          },
           {
             icon: (
               <Box margin="xsmall">
