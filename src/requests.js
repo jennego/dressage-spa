@@ -19,7 +19,13 @@ export const DressageTest = {
   //     ).then(res => res.json())
   // },
 
-  getAll(user) {
+  getAll() {
+    return fetch(`${BASE_URL}/api/v1/dressage_tests`, {
+      // headers: { 'Authorization': `JWT ${getJwt()}` }
+    }).then((res) => res.json());
+  },
+
+  getAllwiithUser(user) {
     return fetch(`${BASE_URL}/api/v1/dressage_tests?user=${user}`, {
       // headers: { 'Authorization': `JWT ${getJwt()}` }
     }).then((res) => res.json());

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { DressageTest } from "../requests";
 import ErrorMessage from "../components/error";
 // import UseUrlParams from "../components/Search/UseURLParams";
@@ -7,6 +7,7 @@ import Loading from "../components/loading";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import loadable from "@loadable/component";
+import { FavContext } from "../contexts/favouritesProvider";
 
 const UseUrlParams = loadable((props) =>
   import("../components/Search/UseURLParams")
@@ -19,36 +20,41 @@ const DressageIndexPage = () => {
 
   const { user, isLoading, isAuthenticated } = useAuth0();
 
+  const { favId } = useContext(FavContext);
+
   useEffect(() => {
-    if (isAuthenticated) {
-      setIsLoadingData(true);
-      DressageTest.getAll(user.sub)
-        .then((data) => {
-          setTests({ dressage_tests: data.dressage_tests });
-          setIsLoadingData(false);
-        })
-        .catch((err) => {
-          setHasError(true);
-          setIsLoadingData(false);
-        });
-    } else {
-      setIsLoadingData(true);
-      DressageTest.getAll()
-        .then((data) => {
-          setTests({ dressage_tests: data.dressage_tests });
-          setIsLoadingData(false);
-        })
-        .catch((err) => {
-          setHasError(true);
-          setIsLoadingData(false);
-        });
+    if (!isLoading) {
+      if (isAuthenticated) {
+        setIsLoadingData(true);
+        DressageTest.getWithUser(user.sub)
+          .then((data) => {
+            setTests({ dressage_tests: data.dressage_tests });
+            setIsLoadingData(false);
+          })
+          .catch((err) => {
+            setHasError(true);
+            setIsLoadingData(false);
+          });
+      } else  {
+        setIsLoadingData(true);
+        DressageTest.getAll()
+          .then((data) => {
+            setTests({ dressage_tests: data.dressage_tests });
+            setIsLoadingData(false);
+          })
+          .catch((err) => {
+            setHasError(true);
+            setIsLoadingData(false);
+          });
+      }
     }
-  }, []);
+  }, [favId]);
 
-  // create loading state
-
+  console.log(tests);
   return (
     <div className="index main">
+      <h1>hello</h1>
+      {isAuthenticated.toString()}
       {isLoadingData ? (
         <Box justify="center">
           <Loading />
