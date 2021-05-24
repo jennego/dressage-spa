@@ -35,7 +35,7 @@ const DressageIndexPage = () => {
             setHasError(true);
             setIsLoadingData(false);
           });
-      } else  {
+      } else {
         setIsLoadingData(true);
         DressageTest.getAll()
           .then((data) => {
@@ -53,8 +53,6 @@ const DressageIndexPage = () => {
   console.log(tests);
   return (
     <div className="index main">
-      <h1>hello</h1>
-      {isAuthenticated.toString()}
       {isLoadingData ? (
         <Box justify="center">
           <Loading />
