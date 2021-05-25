@@ -9,6 +9,7 @@ import Filters from "./Filters";
 import Loading from "../loading";
 import { Highlight } from "react-highlighter-ts/dist/lib";
 import Fuse from "fuse.js";
+import TableView from "../List/TableView";
 // import loadable from "@loadable/component";
 
 const Search = (props) => {
@@ -18,6 +19,7 @@ const Search = (props) => {
   const [searchValue, setSearchValue] = useState("");
   const { search } = useLocation();
   const { query } = queryString.parse(search);
+  const [view, setView] = useState("list");
 
   const searchResultsList = useMemo(
     () =>
@@ -142,6 +144,8 @@ const Search = (props) => {
 
   return (
     <div>
+      <Button label="table" onClick={() => setView("table")} />
+      <Button label="list" onClick={() => setView("list")} />
       <div className="container-fluid d-flex align-items-center flex-column">
         {query ? (
           <h2> Searching for: "{query}" </h2>
@@ -173,6 +177,7 @@ const Search = (props) => {
         </Card>
         <Filters />
       </div>
+      <TableView {...props} />
       {query === undefined || query.length === 0 ? (
         <div className="row no-gutters mb-4 mt-4">
           {props.tests.dressage_tests === undefined ? (
