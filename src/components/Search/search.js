@@ -177,12 +177,11 @@ const Search = (props) => {
         </Card>
         <Filters />
       </div>
-      <TableView {...props} />
       {query === undefined || query.length === 0 ? (
         <div className="row no-gutters mb-4 mt-4">
           {props.tests.dressage_tests === undefined ? (
             <Loading />
-          ) : (
+          ) : view === "list" ? (
             props.tests.dressage_tests.map((test, refIndex) => (
               <div className="col-12 col-md-9 mx-auto">
                 <TestSegmentItem
@@ -192,21 +191,27 @@ const Search = (props) => {
                 ></TestSegmentItem>
               </div>
             ))
+          ) : (
+            <TableView data={props.tests.dressage_tests} />
           )}
         </div>
       ) : searchResults.length === 0 ? (
         `There is nothing found for ${query}`
       ) : (
         <div className="row no-gutter mb-4 mt-4">
-          {searchResults.map(({ item }, refIndex) => (
-            <div className="col-12 col-md-9 mx-auto">
-              <TestSegmentItem
-                id={item.id}
-                {...item}
-                index={refIndex}
-              ></TestSegmentItem>
-            </div>
-          ))}
+          {view === "list" ? (
+            searchResults.map(({ item }, refIndex) => (
+              <div className="col-12 col-md-9 mx-auto">
+                <TestSegmentItem
+                  id={item.id}
+                  {...item}
+                  index={refIndex}
+                ></TestSegmentItem>
+              </div>
+            ))
+          ) : (
+            <TableView data={searchResults} />
+          )}
         </div>
       )}
     </div>

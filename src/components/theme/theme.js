@@ -61,6 +61,12 @@ export const theme = {
         text: "medium",
       },
     },
+    hover: {
+      background: {
+        color: "hoverBackground",
+        opacity: "strong",
+      },
+    },
 
     colors: {
       background: {
@@ -94,6 +100,10 @@ export const theme = {
       hoverIndicator: {
         light: "light-3",
         dark: "dark-4",
+      },
+      hoverBackground: {
+        light: "light-3",
+        dark: "dark-2",
       },
     },
   },

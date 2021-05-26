@@ -1,18 +1,9 @@
-import React from "react";
-import { Grommet, Box, DataTable, CheckBox } from "grommet";
+import React, { useState } from "react";
+import { Grommet, Box, DataTable, CheckBox, Text } from "grommet";
 
-const TableView = (props) => {
+const TableView = ({ data }, props) => {
+  const [selectedRow, setSelectedRow] = useState([]);
   const columns = [
-    {
-      property: "checkbox",
-      render: (datum) => (
-        <CheckBox
-        // key={datum.name}
-        // checked={checked.indexOf(datum.name) !== -1}
-        // onChange={e => onCheck(e, datum.name)}
-        />
-      ),
-    },
     { property: "id", primary: true },
     { property: "org_name", header: "Organization" },
     {
@@ -30,28 +21,48 @@ const TableView = (props) => {
     {
       property: "current",
       header: "Current",
-      render: (datum) => (true ? "Yes" : "No"),
+      render: (datum) =>
+        true ? (
+          <Text color="status-ok">Yes</Text>
+        ) : (
+          <Text color="status-warning">No</Text>
+        ),
     },
     {
       property: "Go to Test",
       render: (datum) => "go to test",
     },
   ];
-  console.log(props);
+  console.log("table data", data);
+
+  const selectHandler = (row) => {
+    setSelectedRow(row);
+  };
+
+  let styleSelectedRows = selectedRow.reduce(function (allRows, row) {
+    allRows[row] = { background: "hoverBackground" };
+    return allRows;
+  }, {});
+
+  console.log(styleSelectedRows);
+
   return (
     <div className="container-fluid">
       <h1>Table View</h1>
-      <DataTable
-        columns={columns}
-        data={props.tests.dressage_tests}
-        sortable
-        background={{
-          header: "brand",
-          body: ["background", "surface"],
-        }}
-        pad="small"
-        onClickRow={(event) => console.log(event.datum)}
-      />
+      <Box background="surface">
+        <DataTable
+          className="test-table"
+          background={{ select: "light-1" }}
+          columns={columns}
+          data={data}
+          sortable
+          pad="small"
+          select={selectedRow}
+          onClickRow={(event) => console.log(event.datum)}
+          onSelect={(row) => selectHandler(row)}
+          rowProps={styleSelectedRows}
+        />
+      </Box>
     </div>
   );
 };
