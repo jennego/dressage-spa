@@ -22,11 +22,13 @@ const DressageIndexPage = () => {
 
   const { favId } = useContext(FavContext);
 
+  console.log(user);
+
   useEffect(() => {
     if (!isLoading) {
-      if (isAuthenticated) {
+      if (isAuthenticated && user.sub !== undefined) {
         setIsLoadingData(true);
-        DressageTest.getWithUser(user.sub)
+        DressageTest.getAllWithUser(user.sub)
           .then((data) => {
             setTests({ dressage_tests: data.dressage_tests });
             setIsLoadingData(false);
