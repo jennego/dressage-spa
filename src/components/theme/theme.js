@@ -71,7 +71,7 @@ export const theme = {
     colors: {
       background: {
         light: "light-4",
-        dark: "#000",
+        dark: "#d4d4d4",
       },
       font: {
         light: "#000",
@@ -97,12 +97,12 @@ export const theme = {
         light: "light-3",
         dark: "dark-1",
       },
-      hoverIndicator: {
-        light: "light-3",
-        dark: "dark-4",
+      accentSubtle: {
+        light: "light-2",
+        dark: "dark-2",
       },
       hoverBackground: {
-        light: "light-3",
+        light: "light-4",
         dark: "dark-2",
       },
     },

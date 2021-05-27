@@ -210,7 +210,7 @@ const Search = (props) => {
               </div>
             ))
           ) : (
-            <TableView data={searchResults} />
+            <TableView data={searchResults} search={true} />
           )}
         </div>
       )}

@@ -1,9 +1,18 @@
 import React, { useState } from "react";
-import { Grommet, Box, DataTable, CheckBox, Text } from "grommet";
-
-const TableView = ({ data }, props) => {
+import { Grommet, Box, DataTable, CheckBox, Text, grommet } from "grommet";
+import { Star } from "grommet-icons";
+const TableView = ({ data, search }, props) => {
   const [selectedRow, setSelectedRow] = useState([]);
   const columns = [
+    {
+      property: "is_faved",
+      render: (datum) =>
+        datum.is_faved === true ? (
+          <Star />
+        ) : (
+          <Star color="surface" border="red" />
+        ),
+    },
     { property: "id", primary: true },
     { property: "org_name", header: "Organization" },
     {
@@ -20,6 +29,37 @@ const TableView = ({ data }, props) => {
     },
     {
       property: "current",
+      header: "Current",
+      render: (datum) =>
+        datum.current === true ? (
+          <Text color="status-ok">Yes</Text>
+        ) : (
+          <Text color="status-warning">No</Text>
+        ),
+    },
+    {
+      property: "Go to Test",
+      render: (datum) => "go to test",
+    },
+  ];
+
+  const resultColumns = [
+    { property: "item.id", primary: true },
+    { property: "item.org_name", header: "Organization" },
+    {
+      property: "item.level",
+      header: "Level",
+    },
+    {
+      property: "item.name",
+      header: "Name",
+    },
+    {
+      property: "item.year",
+      header: "Year",
+    },
+    {
+      property: "item.current",
       header: "Current",
       render: (datum) =>
         true ? (
@@ -53,7 +93,7 @@ const TableView = ({ data }, props) => {
         <DataTable
           className="test-table"
           background={{ select: "light-1" }}
-          columns={columns}
+          columns={search ? resultColumns : columns}
           data={data}
           sortable
           pad="small"
