@@ -70,8 +70,8 @@ export const theme = {
 
     colors: {
       background: {
-        light: "light-4",
-        dark: "#d4d4d4",
+        light: "#d4d4d4",
+        dark: "#000",
       },
       font: {
         light: "#000",
