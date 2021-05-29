@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Grommet, Box, DataTable, CheckBox, Text, grommet } from "grommet";
-import { Star } from "grommet-icons";
+import { Star, View } from "grommet-icons";
 const TableView = ({ data, search }, props) => {
   const [selectedRow, setSelectedRow] = useState([]);
   const columns = [
@@ -39,7 +39,12 @@ const TableView = ({ data, search }, props) => {
     },
     {
       property: "Go to Test",
-      render: (datum) => "go to test",
+      render: () => (
+        <Box flex align="center">
+          <View />
+          <Text>View</Text>
+        </Box>
+      ),
     },
   ];
 

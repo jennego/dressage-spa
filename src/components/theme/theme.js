@@ -41,6 +41,22 @@ const breakpoints = {
 };
 
 export const theme = {
+  button: {
+    padding: {
+      horizontal: "13px",
+    },
+    size: {
+      small: {
+        border: {
+          radius: "6px",
+          size: "xsmall",
+        },
+        pad: {
+          horizontal: "10px",
+        },
+      },
+    },
+  },
   global: {
     background: "background",
     font: {

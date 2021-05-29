@@ -175,10 +175,11 @@ const Search = (props) => {
         </Card>
         <Filters />
       </div>
-      <div class="view-control container">
+      <div class="view-control container-fluid">
         <Box flex direction="row" justify="end">
           <Button
             size="small"
+            margin={{ horizontal: "0.3rem" }}
             label="list"
             icon={<List />}
             gap="xsmall"
@@ -189,6 +190,7 @@ const Search = (props) => {
             size="small"
             label="table"
             gap="xsmall"
+            margin={{ horizontal: "0.3rem" }}
             icon={<Table />}
             primary={view === "table" ? true : false}
             onClick={() => setView("table")}
