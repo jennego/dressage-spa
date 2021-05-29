@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 
 import TestSegmentItem from "../List/TestSegmentItem";
-import { TextInput, Card, Box, Text, Button } from "grommet";
+import { TextInput, Card, Box, Text, Button, Grommet } from "grommet";
 import { Search as SearchIcon, FormClose } from "grommet-icons";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
@@ -144,8 +144,6 @@ const Search = (props) => {
 
   return (
     <div>
-      <Button label="table" onClick={() => setView("table")} />
-      <Button label="list" onClick={() => setView("list")} />
       <div className="container-fluid d-flex align-items-center flex-column">
         {query ? (
           <h2> Searching for: "{query}" </h2>
@@ -176,6 +174,22 @@ const Search = (props) => {
           {query ? <Button icon={<FormClose />} onClick={removeQuery} /> : ""}
         </Card>
         <Filters />
+      </div>
+      <div class="view-control container">
+        <Box flex direction="row" justify="end">
+          <Button
+            size="small"
+            label="table"
+            primary={view === "table" ? true : false}
+            onClick={() => setView("table")}
+          />
+          <Button
+            size="small"
+            label="list"
+            primary={view === "list" ? true : false}
+            onClick={() => setView("list")}
+          />
+        </Box>
       </div>
       {query === undefined || query.length === 0 ? (
         <div className="row no-gutters mb-4 mt-4">

@@ -67,7 +67,6 @@ export const theme = {
         opacity: "strong",
       },
     },
-
     colors: {
       background: {
         light: "#d4d4d4",
