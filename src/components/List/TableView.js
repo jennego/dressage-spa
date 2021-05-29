@@ -88,7 +88,6 @@ const TableView = ({ data, search }, props) => {
 
   return (
     <div className="container-fluid">
-      <h1>Table View</h1>
       <Box background="surface">
         <DataTable
           className="test-table"

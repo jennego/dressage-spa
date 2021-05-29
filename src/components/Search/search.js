@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 
 import TestSegmentItem from "../List/TestSegmentItem";
 import { TextInput, Card, Box, Text, Button, Grommet } from "grommet";
-import { Search as SearchIcon, FormClose } from "grommet-icons";
+import { Search as SearchIcon, FormClose, List, Table } from "grommet-icons";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 import Filters from "./Filters";
@@ -179,15 +179,19 @@ const Search = (props) => {
         <Box flex direction="row" justify="end">
           <Button
             size="small"
-            label="table"
-            primary={view === "table" ? true : false}
-            onClick={() => setView("table")}
+            label="list"
+            icon={<List />}
+            gap="xsmall"
+            primary={view === "list" ? true : false}
+            onClick={() => setView("list")}
           />
           <Button
             size="small"
-            label="list"
-            primary={view === "list" ? true : false}
-            onClick={() => setView("list")}
+            label="table"
+            gap="xsmall"
+            icon={<Table />}
+            primary={view === "table" ? true : false}
+            onClick={() => setView("table")}
           />
         </Box>
       </div>
