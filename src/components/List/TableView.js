@@ -13,7 +13,6 @@ const TableView = ({ data, search }, props) => {
           <Star color="surface" border="red" />
         ),
     },
-    { property: "id", primary: true },
     { property: "org_name", header: "Organization" },
     {
       property: "level",
@@ -49,7 +48,6 @@ const TableView = ({ data, search }, props) => {
   ];
 
   const resultColumns = [
-    { property: "item.id", primary: true },
     { property: "item.org_name", header: "Organization" },
     {
       property: "item.level",
@@ -105,6 +103,7 @@ const TableView = ({ data, search }, props) => {
           onClickRow={(event) => console.log(event.datum)}
           onSelect={(row) => selectHandler(row)}
           rowProps={styleSelectedRows}
+          primaryKey="id"
         />
       </Box>
     </div>
