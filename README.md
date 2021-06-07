@@ -14,32 +14,31 @@ API REPO: https://github.com/jennego/dressage
 
 TO DO
 
-ASAP
+- FIX LOADING ISSUE ON FIRST LOAD FOR AUTHED USERS (seems to be fine for user not logged in, probably an Auth0 loading issue)
 
-- optimize responsive design - mostly done
-- fix colours - mostly done
-- clean up unneeded files and packages
-- fix radio button when changed programmatically or set by url
-- fix checkboxes when changed programmatically or set by url
+Table functions
+
+- sort
+- bulk fav / delete fav
+- add own social keys to auth0
+- add throttle to favourite create/delete clicks
+- test mobile again
 
 Roadmap
 
+- add pdf data to the new data thing
 - right click context menu (open, open in new tab, add to favs)
-- user settings (theme mode, arena setting) - local storage unless user is logged in
+- user settings to user metadata
+- allow user editing
+- improve Auth0 and server loading
+- clean up code
+- enable/set up pwa - use workbox?
+  - favs need to be able to be accessed offline, others optional
 
-Next release
+Maybe
 
 - app tour / help
-- Auth via Api/OAuth - next release?
 - move textual content to headless CMS
-- offline mode (after when things are done)
-
-Index page
-
-- Filter by year, org, level (asc and dsc later)
-- Filter by current or not
-- Results component (same page as index)
-- Show full list, current only as default
 
 Long term
 
@@ -54,6 +53,7 @@ This is a React SPA using
 - Grommet (UI Components) / Bootstrap 4 grid only
 - React-Burger-Menu for offCanvas slide-out
 - Fuse.js for search (I was going to use Algolia but that seemed overkill)
+- Auth0 for authentication and authorization
 
 With a Ruby on Rails/PostgreSQL backend (REST API).
 

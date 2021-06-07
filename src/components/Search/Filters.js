@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { RadioButtonGroup, CheckBoxGroup, Button } from "grommet";
+import { Refresh, View } from "grommet-icons";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 
@@ -31,7 +32,7 @@ const Filters = (props) => {
 
   const handleResetAll = () => {
     history.push({ search: "?current=true" });
-    setisCurrentValue("all");
+    setisCurrentValue("true");
 
     let newlevelState = levelChecked.map((level) => {
       return { id: level.id, checked: false };
@@ -154,12 +155,16 @@ const Filters = (props) => {
       <div className="col-md col-12 pt-4">
         <div style={{ float: "right" }}>
           <Button
+            icon={<View />}
             label="Display All"
             onClick={handleDisplayAll}
+            gap="xsmall"
             margin={{ bottom: "xsmall" }}
           ></Button>
           <Button
+            icon={<Refresh />}
             label="Reset All"
+            gap="xsmall"
             margin={{ bottom: "xsmall" }}
             onClick={handleResetAll}
           ></Button>

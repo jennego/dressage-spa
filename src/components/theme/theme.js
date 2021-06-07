@@ -41,6 +41,22 @@ const breakpoints = {
 };
 
 export const theme = {
+  button: {
+    padding: {
+      horizontal: "13px",
+    },
+    size: {
+      small: {
+        border: {
+          radius: "6px",
+          size: "xsmall",
+        },
+        pad: {
+          horizontal: "10px",
+        },
+      },
+    },
+  },
   global: {
     background: "background",
     font: {
@@ -61,10 +77,15 @@ export const theme = {
         text: "medium",
       },
     },
-
+    hover: {
+      background: {
+        color: "hoverBackground",
+        opacity: "strong",
+      },
+    },
     colors: {
       background: {
-        light: "light-4",
+        light: "#d4d4d4",
         dark: "#000",
       },
       font: {
@@ -91,9 +112,13 @@ export const theme = {
         light: "light-3",
         dark: "dark-1",
       },
-      hoverIndicator: {
-        light: "light-3",
-        dark: "dark-4",
+      accentSubtle: {
+        light: "light-2",
+        dark: "dark-2",
+      },
+      hoverBackground: {
+        light: "light-4",
+        dark: "dark-2",
       },
     },
   },

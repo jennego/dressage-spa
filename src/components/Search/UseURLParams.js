@@ -28,7 +28,6 @@ const UseUrlParams = (props) => {
         : levelArr.includes(test.level.toLowerCase());
 
     let filtered = tests.dressage_tests.filter(filters);
-    console.log("filter", filtered);
     setCombinedFilterArr({ dressage_tests: filtered });
 
     return () => {

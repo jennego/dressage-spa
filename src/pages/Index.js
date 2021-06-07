@@ -8,6 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import loadable from "@loadable/component";
 import { FavContext } from "../contexts/favouritesProvider";
+import TestViewProvider from "../contexts/testViewProvider";
 
 const UseUrlParams = loadable((props) =>
   import("../components/Search/UseURLParams")
@@ -22,11 +23,13 @@ const DressageIndexPage = () => {
 
   const { favId } = useContext(FavContext);
 
+  console.log(user);
+
   useEffect(() => {
     if (!isLoading) {
-      if (isAuthenticated) {
+      if (isAuthenticated && user.sub !== undefined) {
         setIsLoadingData(true);
-        DressageTest.getWithUser(user.sub)
+        DressageTest.getAllWithUser(user.sub)
           .then((data) => {
             setTests({ dressage_tests: data.dressage_tests });
             setIsLoadingData(false);
@@ -52,20 +55,22 @@ const DressageIndexPage = () => {
 
   console.log(tests);
   return (
-    <div className="index main">
-      {isLoadingData ? (
-        <Box justify="center">
-          <Loading />
-          <Paragraph fill size="large" textAlign="center">
-            Please Wait. It may take a few seconds on the first load as the data
-            is on a free Heroku account.
-          </Paragraph>
-        </Box>
-      ) : (
-        <UseUrlParams tests={tests}> </UseUrlParams>
-      )}
-      {hasError ? <ErrorMessage /> : ""}
-    </div>
+    <TestViewProvider>
+      <div className="index main">
+        {isLoadingData ? (
+          <Box justify="center">
+            <Loading />
+            <Paragraph fill size="large" textAlign="center">
+              Please Wait. Fetching data from the server. It may take a few
+              seconds on the first load as the data is on a free Heroku account.
+            </Paragraph>
+          </Box>
+        ) : (
+          <UseUrlParams tests={tests}> </UseUrlParams>
+        )}
+        {hasError ? <ErrorMessage /> : ""}
+      </div>
+    </TestViewProvider>
   );
 };
 

@@ -1,14 +1,16 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo, useRef, useContext } from "react";
 
 import TestSegmentItem from "../List/TestSegmentItem";
-import { TextInput, Card, Box, Text, Button } from "grommet";
-import { Search as SearchIcon, FormClose } from "grommet-icons";
+import { TextInput, Card, Box, Text, Button, Grommet } from "grommet";
+import { Search as SearchIcon, FormClose, List, Table } from "grommet-icons";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 import Filters from "./Filters";
 import Loading from "../loading";
 import { Highlight } from "react-highlighter-ts/dist/lib";
 import Fuse from "fuse.js";
+import TableView from "../List/TableView";
+import { TestViewContext } from "../../contexts/testViewProvider";
 // import loadable from "@loadable/component";
 
 const Search = (props) => {
@@ -18,6 +20,7 @@ const Search = (props) => {
   const [searchValue, setSearchValue] = useState("");
   const { search } = useLocation();
   const { query } = queryString.parse(search);
+  const { view, setTableView, setListView } = useContext(TestViewContext);
 
   const searchResultsList = useMemo(
     () =>
@@ -61,17 +64,17 @@ const Search = (props) => {
   useEffect(() => {
     const getParams = (query) => {
       if (query !== undefined) {
-        console.log("grab from url", query);
-        console.log("search term state: ", searchTerm);
+        // console.log("grab from url", query);
+        // console.log("search term state: ", searchTerm);
         setSearchTerm(query);
         setSearchValue(query);
       } else {
         setSearchValue("");
-        console.log("we do nothing");
+        // console.log("we do nothing");
       }
     };
     getParams(query);
-    return console.log("please clean this mess");
+    // return console.log("please clean this mess");
   }, [query]);
 
   useEffect(() => {
@@ -173,11 +176,33 @@ const Search = (props) => {
         </Card>
         <Filters />
       </div>
+      <div class="view-control container-fluid">
+        <Box flex direction="row" justify="end">
+          <Button
+            size="small"
+            margin={{ horizontal: "0.3rem" }}
+            label="list"
+            icon={<List />}
+            gap="xsmall"
+            primary={view === "list" ? true : false}
+            onClick={setListView}
+          />
+          <Button
+            size="small"
+            label="table"
+            gap="xsmall"
+            margin={{ horizontal: "0.3rem" }}
+            icon={<Table />}
+            primary={view === "table" ? true : false}
+            onClick={setTableView}
+          />
+        </Box>
+      </div>
       {query === undefined || query.length === 0 ? (
         <div className="row no-gutters mb-4 mt-4">
           {props.tests.dressage_tests === undefined ? (
             <Loading />
-          ) : (
+          ) : view === "list" ? (
             props.tests.dressage_tests.map((test, refIndex) => (
               <div className="col-12 col-md-9 mx-auto">
                 <TestSegmentItem
@@ -187,21 +212,27 @@ const Search = (props) => {
                 ></TestSegmentItem>
               </div>
             ))
+          ) : (
+            <TableView data={props.tests.dressage_tests} />
           )}
         </div>
       ) : searchResults.length === 0 ? (
         `There is nothing found for ${query}`
       ) : (
         <div className="row no-gutter mb-4 mt-4">
-          {searchResults.map(({ item }, refIndex) => (
-            <div className="col-12 col-md-9 mx-auto">
-              <TestSegmentItem
-                id={item.id}
-                {...item}
-                index={refIndex}
-              ></TestSegmentItem>
-            </div>
-          ))}
+          {view === "list" ? (
+            searchResults.map(({ item }, refIndex) => (
+              <div className="col-12 col-md-9 mx-auto">
+                <TestSegmentItem
+                  id={item.id}
+                  {...item}
+                  index={refIndex}
+                ></TestSegmentItem>
+              </div>
+            ))
+          ) : (
+            <TableView data={searchResults} search={true} />
+          )}
         </div>
       )}
     </div>
