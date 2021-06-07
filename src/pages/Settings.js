@@ -14,9 +14,6 @@ const Settings = () => {
       <Heading margin={{ left: "medium" }}>Settings</Heading>
       <Main background="surface" pad="large">
         <div className="row">
-          <LoginButton />
-          <LogoutButton />
-          <SignupButton />
           <Box
             pad="small"
             border={{ side: "bottom", style: "dotted" }}

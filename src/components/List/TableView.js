@@ -1,13 +1,5 @@
 import React, { useState, useContext } from "react";
-import {
-  Grommet,
-  Box,
-  DataTable,
-  CheckBox,
-  Text,
-  grommet,
-  Anchor,
-} from "grommet";
+import { Box, DataTable, Text, Anchor } from "grommet";
 import { Star, View } from "grommet-icons";
 import { Link } from "react-router-dom";
 import { FavContext } from "../../contexts/favouritesProvider";
@@ -112,7 +104,7 @@ const TableView = ({ data, search }, props) => {
 
   return (
     <div className="container-fluid">
-      <Box background="surface">
+      <Box background="surface" animation="fadeIn">
         <DataTable
           className="test-table"
           background={{ select: "light-1" }}

@@ -61,8 +61,8 @@ const DressageIndexPage = () => {
           <Box justify="center">
             <Loading />
             <Paragraph fill size="large" textAlign="center">
-              Please Wait. It may take a few seconds on the first load as the
-              data is on a free Heroku account.
+              Please Wait. Fetching data from the server. It may take a few
+              seconds on the first load as the data is on a free Heroku account.
             </Paragraph>
           </Box>
         ) : (
