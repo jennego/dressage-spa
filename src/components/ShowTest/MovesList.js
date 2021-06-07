@@ -42,7 +42,7 @@ const MovesList = (props) => {
                 <Paragraph
                   size="large"
                   margin="none"
-                  class="move-detail-text"
+                  className="move-detail-text"
                   style={{ breakWord: "break-word" }}
                 >
                   {move.movement}

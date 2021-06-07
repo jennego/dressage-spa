@@ -176,7 +176,7 @@ const Search = (props) => {
         </Card>
         <Filters />
       </div>
-      <div class="view-control container-fluid">
+      <div className="view-control container-fluid">
         <Box flex direction="row" justify="end">
           <Button
             size="small"
