@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo, useRef, useContext } from "react";
 
 import TestSegmentItem from "../List/TestSegmentItem";
 import { TextInput, Card, Box, Text, Button, Grommet } from "grommet";
@@ -10,6 +10,7 @@ import Loading from "../loading";
 import { Highlight } from "react-highlighter-ts/dist/lib";
 import Fuse from "fuse.js";
 import TableView from "../List/TableView";
+import { TestViewContext } from "../../contexts/testViewProvider";
 // import loadable from "@loadable/component";
 
 const Search = (props) => {
@@ -19,7 +20,7 @@ const Search = (props) => {
   const [searchValue, setSearchValue] = useState("");
   const { search } = useLocation();
   const { query } = queryString.parse(search);
-  const [view, setView] = useState("list");
+  const { view, setTableView, setListView } = useContext(TestViewContext);
 
   const searchResultsList = useMemo(
     () =>
@@ -184,7 +185,7 @@ const Search = (props) => {
             icon={<List />}
             gap="xsmall"
             primary={view === "list" ? true : false}
-            onClick={() => setView("list")}
+            onClick={setListView}
           />
           <Button
             size="small"
@@ -193,7 +194,7 @@ const Search = (props) => {
             margin={{ horizontal: "0.3rem" }}
             icon={<Table />}
             primary={view === "table" ? true : false}
-            onClick={() => setView("table")}
+            onClick={setTableView}
           />
         </Box>
       </div>

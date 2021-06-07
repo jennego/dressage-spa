@@ -1,16 +1,35 @@
-import React, { useState } from "react";
-import { Grommet, Box, DataTable, CheckBox, Text, grommet } from "grommet";
+import React, { useState, useContext } from "react";
+import {
+  Grommet,
+  Box,
+  DataTable,
+  CheckBox,
+  Text,
+  grommet,
+  Anchor,
+} from "grommet";
 import { Star, View } from "grommet-icons";
+import { Link } from "react-router-dom";
+import { FavContext } from "../../contexts/favouritesProvider";
+
 const TableView = ({ data, search }, props) => {
+  const {
+    isFaved,
+    setIsFaved,
+    favId,
+    setFavId,
+    DeleteFavourite,
+    CreateFavourite,
+  } = useContext(FavContext);
   const [selectedRow, setSelectedRow] = useState([]);
   const columns = [
     {
       property: "is_faved",
       render: (datum) =>
         datum.is_faved === true ? (
-          <Star />
+          <Star onClick={() => DeleteFavourite(datum.fav[0].id)} />
         ) : (
-          <Star color="surface" border="red" />
+          <Star color="surface" onClick={() => CreateFavourite(datum.id)} />
         ),
     },
     { property: "org_name", header: "Organization" },
@@ -38,11 +57,13 @@ const TableView = ({ data, search }, props) => {
     },
     {
       property: "Go to Test",
-      render: () => (
-        <Box flex align="center">
-          <View />
-          <Text>View</Text>
-        </Box>
+      render: (datum) => (
+        <Anchor as={Link} to={`/tests/${datum.id}`}>
+          <Box flex align="center">
+            <View />
+            <Text>View</Text>
+          </Box>
+        </Anchor>
       ),
     },
   ];
@@ -76,7 +97,7 @@ const TableView = ({ data, search }, props) => {
       render: (datum) => "go to test",
     },
   ];
-  console.log("table data", data);
+  console.log(props);
 
   const selectHandler = (row) => {
     setSelectedRow(row);
