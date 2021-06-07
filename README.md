@@ -15,6 +15,7 @@ API REPO: https://github.com/jennego/dressage
 TO DO
 
 - FIX LOADING ISSUE ON FIRST LOAD FOR AUTHED USERS (seems to be fine for user not logged in, probably an Auth0 loading issue)
+- move notification to main layout so all can access it via provider
 
 Table functions
 
@@ -22,16 +23,15 @@ Table functions
 - bulk fav / delete fav
 - add own social keys to auth0
 - add throttle to favourite create/delete clicks
+- add pdf data to the new data thing
 - test mobile again
 
 Roadmap
 
-- add pdf data to the new data thing
 - right click context menu (open, open in new tab, add to favs)
 - user settings to user metadata
-- allow user editing
+- allow user metadata editing
 - improve Auth0 and server loading
-- clean up code
 - enable/set up pwa - use workbox?
   - favs need to be able to be accessed offline, others optional
 

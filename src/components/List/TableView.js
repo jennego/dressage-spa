@@ -5,14 +5,7 @@ import { Link } from "react-router-dom";
 import { FavContext } from "../../contexts/favouritesProvider";
 
 const TableView = ({ data, search }, props) => {
-  const {
-    isFaved,
-    setIsFaved,
-    favId,
-    setFavId,
-    DeleteFavourite,
-    CreateFavourite,
-  } = useContext(FavContext);
+  const { DeleteFavourite, CreateFavourite } = useContext(FavContext);
   const [selectedRow, setSelectedRow] = useState([]);
   const columns = [
     {
@@ -101,8 +94,9 @@ const TableView = ({ data, search }, props) => {
 
   return (
     <div className="container-fluid">
-      <Box background="surface" animation="fadeIn">
+      <Box background="surface" animation="fadeIn" style={{ overflow: "auto" }}>
         <DataTable
+          style={{ overflow: "auto" }}
           className="test-table"
           background={{ select: "light-1" }}
           columns={search ? resultColumns : columns}
