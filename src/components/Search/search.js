@@ -64,17 +64,17 @@ const Search = (props) => {
   useEffect(() => {
     const getParams = (query) => {
       if (query !== undefined) {
-        console.log("grab from url", query);
-        console.log("search term state: ", searchTerm);
+        // console.log("grab from url", query);
+        // console.log("search term state: ", searchTerm);
         setSearchTerm(query);
         setSearchValue(query);
       } else {
         setSearchValue("");
-        console.log("we do nothing");
+        // console.log("we do nothing");
       }
     };
     getParams(query);
-    return console.log("please clean this mess");
+    // return console.log("please clean this mess");
   }, [query]);
 
   useEffect(() => {

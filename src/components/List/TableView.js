@@ -89,7 +89,6 @@ const TableView = ({ data, search }, props) => {
       render: (datum) => "go to test",
     },
   ];
-  console.log(props);
 
   const selectHandler = (row) => {
     setSelectedRow(row);
@@ -99,8 +98,6 @@ const TableView = ({ data, search }, props) => {
     allRows[row] = { background: "hoverBackground" };
     return allRows;
   }, {});
-
-  console.log(styleSelectedRows);
 
   return (
     <div className="container-fluid">

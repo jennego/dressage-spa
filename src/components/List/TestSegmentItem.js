@@ -71,7 +71,6 @@ const TestSegmentItem = (
                 delay: index * 200,
               }}
             >
-              {console.log(index)}
               <CardHeader pad={{ horizontal: "small" }}>
                 <Heading level={2} margin="xsmall">
                   {full_name}

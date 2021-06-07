@@ -14,13 +14,13 @@ API REPO: https://github.com/jennego/dressage
 
 TO DO
 
+- FIX LOADING ISSUE ON FIRST LOAD FOR AUTHED USERS (seems to be fine for user not logged in, probably an Auth0 loading issue)
+
 Table functions
 
 - sort
 - bulk fav / delete fav
 - add own social keys to auth0
-- table / list view in a good spot on index page, save pref to localstorage
-- favourite list button on index when signed in
 - add throttle to favourite create/delete clicks
 - test mobile again
 
