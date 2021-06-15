@@ -16,15 +16,12 @@ TO DO
 
 - FIX LOADING ISSUE ON FIRST LOAD FOR AUTHED USERS (seems to be fine for user not logged in, probably an Auth0 loading issue)
 - move notification to main layout so all can access it via provider
-
-Table functions
-
-- sort
-- bulk fav / delete fav
 - add own social keys to auth0
 - add throttle to favourite create/delete clicks
 - add pdf data to the new data thing
 - test mobile again
+- bulk fav / delete fav
+- if mobile default to list view
 
 Roadmap
 
