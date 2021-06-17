@@ -22,9 +22,13 @@ const FooterSection = (props) => (
       <div className="col-lg-4 col-6">
         <Box margin="medium">
           <Text size="small">
-            Complain or compliment here. <br />
-            Dressage Test Admin <br />
-            Site Copy Admin
+            <a
+              href="https://dressage-tests.herokuapp.com"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Dressage Test Admin <br />
+            </a>
           </Text>
         </Box>
       </div>
