@@ -26,7 +26,7 @@ const DressageIndexPage = () => {
   console.log(user);
 
   useEffect(() => {
-    if (!isLoading) {
+    if (isLoading === false) {
       if (isAuthenticated && user.sub !== undefined) {
         setIsLoadingData(true);
         DressageTest.getAllWithUser(user.sub)
@@ -51,7 +51,7 @@ const DressageIndexPage = () => {
           });
       }
     }
-  }, [favId]);
+  }, [favId, isLoading]);
 
   console.log(tests);
   return (
