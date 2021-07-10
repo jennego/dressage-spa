@@ -7,8 +7,6 @@ import Profile from "../pages/profile";
 import ProtectedRoute from "../auth/protected-route";
 import FavProvider from "../contexts/favouritesProvider";
 import FavouritedTests from "../pages/Fav";
-import sw from "../serviceWorker";
-
 const DressageIndexPage = loadable(() => import("../pages/Index"));
 const DressageShowPage = loadable(() => import("../pages/Show"));
 const About = loadable(() => import("../pages/About"));
@@ -50,7 +48,7 @@ class Routes extends Component {
         {/* <Route path="/search/:query">
           <Search />
         </Route> */}
-        <Route path={"/tests"}>
+        <Route path={["/tests", "/"]}>
           <DressageIndexPage />
         </Route>
         <Route component={Page404} />
