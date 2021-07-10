@@ -7,7 +7,7 @@ import Profile from "../pages/profile";
 import ProtectedRoute from "../auth/protected-route";
 import FavProvider from "../contexts/favouritesProvider";
 import FavouritedTests from "../pages/Fav";
-import sw from "../service-worker";
+import sw from "../serviceWorker";
 
 const DressageIndexPage = loadable(() => import("../pages/Index"));
 const DressageShowPage = loadable(() => import("../pages/Show"));
