@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App";
-import * as serviceWorker from "./serviceWorker";
+import * as serviceWorker from "./service-worker";
 import AppProvider from "./contexts/ThemeToggleProvider";
 import MenuProvider from "./contexts/SlideMenuProvider";
 import Auth0ProviderWithHistory from "./auth/auth-provider-with-history";
