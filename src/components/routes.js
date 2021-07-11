@@ -48,7 +48,7 @@ class Routes extends Component {
         {/* <Route path="/search/:query">
           <Search />
         </Route> */}
-        <Route path={["/tests", "/"]}>
+        <Route path={["/tests"]}>
           <DressageIndexPage />
         </Route>
         <Route component={Page404} />

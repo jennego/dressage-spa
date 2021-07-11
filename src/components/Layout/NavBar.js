@@ -45,7 +45,7 @@ const NavBar = () => {
         background="brand"
       >
         <Box direction="row" align="center" gap="small">
-          <h3>Dressage Tests</h3>
+          <h3>Dressage Tests PWA</h3>
         </Box>
 
         <Box direction="row">
