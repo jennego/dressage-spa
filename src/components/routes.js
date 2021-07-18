@@ -51,7 +51,7 @@ class Routes extends Component {
         <Route path={["/tests"]}>
           <DressageIndexPage />
         </Route>
-        <Route component={Page404} />
+        {/* <Route component={Page404} /> */}
       </Switch>
     );
   }
