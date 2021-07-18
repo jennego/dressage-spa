@@ -36,7 +36,7 @@ const FavProvider = ({ children }) => {
       const responseData = await response.json();
       setFavId(responseData.id);
 
-      console.log(responseData);
+      console.log("created " + responseData.id);
     } catch (error) {
       console.log(error.message);
     }
@@ -56,7 +56,7 @@ const FavProvider = ({ children }) => {
         },
       });
       const responseData = await response.json();
-      console.log(favId + responseData);
+      console.log("deleted " + favId + responseData);
     } catch (error) {
       console.log(error.message);
     } finally {

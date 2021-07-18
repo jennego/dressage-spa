@@ -3,8 +3,10 @@ import { Box, DataTable, Text, Anchor } from "grommet";
 import { Star, View } from "grommet-icons";
 import { Link } from "react-router-dom";
 import { FavContext } from "../../contexts/favouritesProvider";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const TableView = ({ data, search }, props) => {
+  const { user, isAuthenticated } = useAuth0();
   const { DeleteFavourite, CreateFavourite } = useContext(FavContext);
   const [selectedRow, setSelectedRow] = useState([]);
   const columns = [
@@ -13,8 +15,16 @@ const TableView = ({ data, search }, props) => {
       render: (datum) =>
         datum.is_faved === true ? (
           <Star onClick={() => DeleteFavourite(datum.fav[0].id)} />
+        ) : isAuthenticated ? (
+          <Star
+            color="surface"
+            onClick={() => CreateFavourite(datum.id, user.sub)}
+          />
         ) : (
-          <Star color="surface" onClick={() => CreateFavourite(datum.id)} />
+          <Star
+            color="surface"
+            onClick={() => console.log("sign in to favourite!")}
+          />
         ),
     },
     { property: "org_name", header: "Organization" },

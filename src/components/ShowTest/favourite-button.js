@@ -42,8 +42,6 @@ const FavouriteButton = ({ testId }, props) => {
     CreateFavourite,
   } = useContext(FavContext);
 
-  console.log(isFaved);
-
   useEffect(() => {
     if (isLoading === false) {
       if (isAuthenticated) {
@@ -60,7 +58,6 @@ const FavouriteButton = ({ testId }, props) => {
       }
     }
   }, [isLoading, favId]);
-
   console.log(isFaved, favId);
 
   const onOpenNotice = (message, icon) => {

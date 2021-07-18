@@ -14,14 +14,13 @@ API REPO: https://github.com/jennego/dressage
 
 TO DO
 
-- FIX LOADING ISSUE ON FIRST LOAD FOR AUTHED USERS (seems to be fine for user not logged in, probably an Auth0 loading issue)
 - move notification to main layout so all can access it via provider
 - add own social keys to auth0
 - add throttle to favourite create/delete clicks
 - add pdf data to the new data thing
 - test mobile again
-- bulk fav / delete fav
 - if mobile default to list view
+- bulk fav / delete fav??
 
 Roadmap
 
