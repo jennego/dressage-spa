@@ -28,6 +28,10 @@ Roadmap
 - user settings to user metadata
 - allow user metadata editing
 - improve Auth0 and server loading
+- web sockets?
+
+PWA
+
 - enable/set up pwa - use workbox?
   - favs need to be able to be accessed offline, others optional
 
