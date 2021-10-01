@@ -8,8 +8,6 @@ const Roadmap = () => {
       <h1>Roadmap</h1>
       <p>Features eventually planned:</p>
       <ul>
-        <li>Sign in/Out via OAuth (FB, Google, maybe Twitter?)</li>
-        <li>Favoriting</li>
         <li>Save personal notes on test page?</li>
         <li>Basic offline support (Progessive Web App)</li>
         <li> HTML 5 Canvas/Phaser Arena drawing app/game </li>
