@@ -32,6 +32,7 @@ Roadmap
 
 PWA
 
+- figure out this PWA thing!!!
 - enable/set up pwa - use workbox?
   - favs need to be able to be accessed offline, others optional
 
