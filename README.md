@@ -1,18 +1,27 @@
-# Dressage Tests App - Single Page Application (SPA)
+# Dressage Tests App - Single Page Application (SPA) with Fauna backend
 
-This is the React SPA version of the dressage test listing app. API is running on Ruby on Rails.
+This is the React SPA version of the dressage test listing app. API was running on Ruby on Rails but is switching to fauna.
 
 Don't forget your dressage test or learn the wrong one!
 
 https://dressagetests.netlify.app
 
-Front end on Netlify, back end on Heroku.
+Front end on Netlify.
 
 API REPO: https://github.com/jennego/dressage
 
 ---
 
 TO DO
+
+- move all data to fauna
+- reconfigure app to work with fauna
+- create pwa
+- use local storage (dexie or similar?) for favs and saving of tests (don't require login)
+- add admin console to add tests (requires login)
+- add training and first 2023 tests
+
+Backburner
 
 - move notification to main layout so all can access it via provider
 - add own social keys to auth0
@@ -27,8 +36,6 @@ Roadmap
 - right click context menu (open, open in new tab, add to favs)
 - user settings to user metadata
 - allow user metadata editing
-- improve Auth0 and server loading
-- web sockets?
 
 PWA
 
