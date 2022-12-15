@@ -1,6 +1,6 @@
 # Dressage Tests App - Single Page Application (SPA) with Fauna backend
 
-This is the React SPA version of the dressage test listing app. API was running on Ruby on Rails but is switching to fauna.
+This is the React SPA version of the dressage test listing app. API was running on Ruby on Rails but is switching to fauna due to lack of free, easy to use hosting providers for Rails (and a surprise AWS bill lol).
 
 Don't forget your dressage test or learn the wrong one!
 

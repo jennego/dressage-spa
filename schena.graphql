@@ -1,0 +1,38 @@
+type Dressage_Test {
+  name: String
+  current: Boolean
+  org_name: String
+  level: String
+  year: Int
+  note: String
+  introduce: String
+  purpose: String
+  moves: [Move] @relation
+  links: [Link] @relation
+  downloads: [Download] @relation
+}
+
+type Move {
+  letter: String
+  move: String
+  dressage_test: Dressage_Test! @relation
+  order: Int
+}
+
+type Link {
+  url: String!
+  name: String
+  dressage_test: Dressage_Test! @relation
+}
+
+type Download {
+  url: String!
+  name: String
+  dressage_test: Dressage_Test! @relation
+}
+
+type Query {
+  getAllTests: [Dressage_Test]
+}
+
+# allow creation of dressage test and subfields in one operation

@@ -13,7 +13,7 @@ const About = loadable(() => import("../pages/About"));
 const Page404 = loadable(() => import("../pages/404.js"));
 const Settings = loadable(() => import("../pages/Settings.js"));
 const Roadmap = loadable(() => import("../pages/Roadmap.js"));
-
+const Admin = loadable(() => import("../components/Admin/index"));
 // import DressageIndexPage from "../pages/Index.js";
 // import DressageShowPage from "../pages/Show.js";
 // import About from "../pages/About.js";
@@ -44,6 +44,10 @@ class Routes extends Component {
         </Route>
         <Route path="/tests/:id">
           <DressageShowPage />
+        </Route>
+
+        <Route exact path="/admin">
+          <Admin />
         </Route>
         {/* <Route path="/search/:query">
           <Search />
