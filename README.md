@@ -1,5 +1,7 @@
 # Dressage Tests App - Single Page Application (SPA)
 
+**Currently doesn't work since Heroku died** 
+
 This is the React SPA version of the dressage test listing app. API is running on Ruby on Rails.
 
 Don't forget your dressage test or learn the wrong one!
